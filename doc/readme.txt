@@ -43,8 +43,9 @@ Mi intencion seria tirar ideas aca, pa ver como diseñar e implementar esta cosa
 		recientemente obtenidos, y la transformacion actual.
 
 	(Ahora cosas algo mas rebuscadas)
-	o) Un turno, y como afecta al jugador y sus personajes.
-	o) 
+	o) Un 'turno', y como afecta al jugador y sus personajes.
+	o) Una 'camara' por jugador, como parte de la interfaz grafica, para que se centre en el ultimo personaje con el que
+	realizo una accion.
 
  	
 
