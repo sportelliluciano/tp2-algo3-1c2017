@@ -2,9 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import model.atributos_de_unidad.modos.GohanNormal;
-import model.atributos_de_unidad.modos.GokuNormal;
-
 public class Tablero {
 	private ArrayList<Posicionable> posicionables = new ArrayList<Posicionable>();
 		
