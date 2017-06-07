@@ -6,36 +6,33 @@ import org.junit.Test;
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
+import model.atributos_de_unidad.modos.GohanNormal;
 import model.atributos_de_unidad.modos.GokuNormal;
 
 public class TestFirstWeek {
 	
 	@Test
 	public void test01MoverUnidadCambiaSuPosicion(){
-		// TODO: Implement
 				
 		Tablero tablero = new Tablero();
-		Posicion pos_vieja = new Posicion(5,5);
-		Posicion pos_nueva = new Posicion(6,5);
-		Unidad goku = new Unidad(new GokuNormal(), pos_vieja);
-		tablero.agregar(goku);
+		Unidad goku = new Unidad(new GokuNormal());
+		tablero.agregarUnidad(goku, new Posicion(5,5));
 		
-		tablero.moverUnidad(goku, pos_nueva);
-		assertTrue(goku.getPosicion().equals(pos_nueva));
+		tablero.moverUnidad(goku, new Posicion(6,5));
+		assertTrue(goku.getPosicion().equals(new Posicion(6,5)));
 		
 	}
 	
-	@Test
+	@Test(expected = RuntimeException.class)
 	public void test02aCrearUnidadEnPosicionTomadaLanzaExcepcion() {
 		// TODO: Implement
 		
-		// Crear tablero (si es posible sin consumibles)
-		// Crear un goku.
-		// Crear un gohan, seteando su posicion (x,y) a la misma de goku
-		// O bien hacemos que explote y capturamos la excepcion..
-		// o bien, que no cree al gohan y confirmar (por tablero o juego) que solo goku existe.
+		Tablero tablero = new Tablero();
+		Unidad goku = new Unidad(new GokuNormal());
+		Unidad gohan = new Unidad(new GohanNormal());
+		tablero.agregarUnidad(goku, new Posicion(5,5));
+		tablero.agregarUnidad(gohan, new Posicion(5,5));
 		
-		assertTrue(false);
 	}
 	
 	@Test

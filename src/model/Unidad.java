@@ -7,8 +7,7 @@ public class Unidad extends Posicionable {
 
 	private Modo modo;
 	
-	public Unidad(Modo modo, Posicion posicion) {
-		super(posicion);
+	public Unidad(Modo modo) {
 		this.modo = modo;
 	}
 
@@ -17,4 +16,15 @@ public class Unidad extends Posicionable {
 		setPosicion(nuevaPosicion);
 	}
 
+	public void ocuparLugarDe(Posicionable p) {
+		// TODO Auto-generated method stub
+		p.serOcupadoPor(this);
+	}
+	
+	@Override
+	public void serOcupadoPor(Unidad u) {
+		
+		throw new RuntimeException();
+		
+	}
 }

@@ -9,7 +9,10 @@ public class Tablero {
 		unidad.moverA(nuevaPosicion);
 	}
 
-	public void agregar(Posicionable posicionable) {
-		posicionables.add(posicionable);
+	public void agregarUnidad(Unidad u, Posicion posicion) {
+		for (Posicionable p: posicionables)
+			if (p.getPosicion().equals(posicion))
+				u.ocuparLugarDe(p);
+		posicionables.add(u);
 	}
 }
