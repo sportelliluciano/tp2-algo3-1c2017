@@ -3,19 +3,26 @@ package integration;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import model.Posicion;
+import model.Tablero;
+import model.Unidad;
+import model.atributos_de_unidad.modos.GokuNormal;
+
 public class TestFirstWeek {
 	
 	@Test
 	public void test01MoveCharacterAndCheckNewPosition(){
 		// TODO: Implement
+				
+		Tablero tablero = new Tablero();
+		Posicion pos_vieja = new Posicion(5,5);
+		Posicion pos_nueva = new Posicion(6,5);
+		Unidad goku = new Unidad(new GokuNormal(), pos_vieja);
+		tablero.agregar(goku);
 		
-		// Crear tablero (si es posible sin consumibles)
-		// Crear un goku
-		// Preguntar o setear su posicion (x,y) a un lugar con nada alrededor
-		// Moverlo a (x+1,y)
-		// assertTrue(x_new == x+1 && y_new == y+1);
+		tablero.moverUnidad(goku, pos_nueva);
+		assertTrue(goku.getPosicion().equals(pos_nueva));
 		
-		assertTrue(false);
 	}
 	
 	@Test

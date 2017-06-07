@@ -12,10 +12,8 @@ public class Posicion {
 		this.j = j;
 	}
 	
-	public boolean esIgualA(Posicion other){
-		
+	public boolean equals(Posicion other){
 		return (this.i == other.i && this.j == other.j);
-		
 	}
 	
 }
