@@ -1,5 +1,8 @@
 package model;
 
-public class Tablero {
+import java.util.ArrayList;
 
+public class Tablero {
+	private ArrayList<Posicionable> posicionables;
+	
 }
