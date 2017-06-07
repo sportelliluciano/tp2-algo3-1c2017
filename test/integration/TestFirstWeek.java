@@ -11,7 +11,7 @@ import model.atributos_de_unidad.modos.GokuNormal;
 public class TestFirstWeek {
 	
 	@Test
-	public void test01MoveCharacterAndCheckNewPosition(){
+	public void test01MoverUnidadCambiaSuPosicion(){
 		// TODO: Implement
 				
 		Tablero tablero = new Tablero();
@@ -26,7 +26,7 @@ public class TestFirstWeek {
 	}
 	
 	@Test
-	public void test02aCantSpawnCharacterInAnotherCharactersCell() {
+	public void test02aCrearUnidadEnPosicionTomadaLanzaExcepcion() {
 		// TODO: Implement
 		
 		// Crear tablero (si es posible sin consumibles)
@@ -39,7 +39,7 @@ public class TestFirstWeek {
 	}
 	
 	@Test
-	public void test02bCantMoveCharacterToFriendlyCharactersCell() {
+	public void test02NoSePuedeMoverUnidadAPosicionTomadaPorOtraUnidad() {
 		// TODO: Implement
 	
 		// Crear tablero (si es posible sin consumibles)
@@ -50,18 +50,9 @@ public class TestFirstWeek {
 
 		assertTrue(false);
 	}
-	
-	@Test
-	public void test02cCantMoveCharacterToEnemyCharactersCell() {
-		// TODO: Implement
-	
-		// Lo mismo que la anterior pero con un Freezer del oponente en vez de Gohan.
 
-		assertTrue(false);
-	}
-	
 	@Test
-	public void test03aCharacterCantMoveThroughFriendlyCharactersCell() {
+	public void test03aNoSePuedeAtravesarUnidadAmistosa() {
 		// TODO: Implement
 	
 		// Crear tablero (si es posible sin consumibles)
@@ -74,7 +65,7 @@ public class TestFirstWeek {
 	}
 	
 	@Test
-	public void test03bCharacterCantMoveThroughEnemyCharactersCell() {
+	public void test03bNoSePuedeAtravesarUnidadEnemiga() {
 		// TODO: Implement
 	
 		// Lo mismo que la anterior pero con un Freezer del oponente en vez de Gohan
@@ -83,31 +74,31 @@ public class TestFirstWeek {
 	}
 	
 	@Test
-	public void test04CheckIfCharacterTransformed() {
+	public void test04TransformarseCambiaElModo() {
 		// TODO: Implement
 		assertTrue(false);
 	}
 	
 	@Test
-	public void test05MoveCharacterAfterTransform() {
+	public void test05MoverPersonajeTrasLaTransformacionAumentaDistancia() {
 		// TODO: Implement
 		assertTrue(false);
 	}
 	
 	@Test
-	public void test06CreateAGameCheckCharacterPositions() {
+	public void test06CrearJuegoYValidarPosicionesDeTablero() {
 		// TODO: Implement
 		assertTrue(false);
 	}
 	
 	@Test
-	public void test07AttackingEnemyTooFarAwayDoesntDamageIt() {
+	public void test07NoSePuedeAtacarEnemigosMuyLejos() {
 		// TODO: Implement
 		assertTrue(false);
 	}
 	
 	@Test
-	public void test07AttackingEnemyCloseEnoughDamagesIt() {
+	public void test07AtacarEnemigoCercanoReduceSuVida() {
 		// TODO: Implement
 		assertTrue(false);
 	}
