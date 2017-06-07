@@ -25,28 +25,42 @@ public class TestFirstWeek {
 	
 	@Test(expected = RuntimeException.class)
 	public void test02aCrearUnidadEnPosicionTomadaLanzaExcepcion() {
-		// TODO: Implement
 		
 		Tablero tablero = new Tablero();
 		Unidad goku = new Unidad(new GokuNormal());
 		Unidad gohan = new Unidad(new GohanNormal());
+		
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		tablero.agregarUnidad(gohan, new Posicion(5,5));
-		
 	}
 	
 	@Test
-	public void test02NoSePuedeMoverUnidadAPosicionTomadaPorOtraUnidad() {
-		// TODO: Implement
-	
-		// Crear tablero (si es posible sin consumibles)
-		// Crear un goku
-		// Crear un gohan del mismo bando, ubicado bien cerquita de goku
-		// Tratar de mover a gohan a la posicion de goku.
-		// O bien tirar excepcion ahi y esperarla con el test, o tener una funcion de "puede moverse ahi" q de false.
-
-		assertTrue(false);
+	public void test02bCrearOtraUnidadEnPosicionVacia() {
+		
+		Tablero tablero = new Tablero();
+		Unidad goku = new Unidad(new GokuNormal());
+		Unidad gohan = new Unidad(new GohanNormal());
+		
+		tablero.agregarUnidad(goku, new Posicion(5,5));
+		tablero.agregarUnidad(gohan, new Posicion(6,5));
+		
+		assertTrue(goku.getPosicion().equals(new Posicion(5,5)));
+		assertTrue(gohan.getPosicion().equals(new Posicion(6,5)));
 	}
+	
+	
+	@Test(expected = RuntimeException.class)
+	public void test02cNoSePuedeMoverUnidadAPosicionTomadaPorOtraUnidad() {
+	
+		Tablero tablero = new Tablero();
+		Unidad goku = new Unidad(new GokuNormal());
+		Unidad gohan = new Unidad(new GohanNormal());
+		tablero.agregarUnidad(goku, new Posicion(5,5));
+		tablero.agregarUnidad(gohan, new Posicion(6,5));
+		
+		tablero.moverUnidad(gohan, new Posicion(5,5));
+
+}
 
 	@Test
 	public void test03aNoSePuedeAtravesarUnidadAmistosa() {
@@ -60,7 +74,7 @@ public class TestFirstWeek {
 
 		assertTrue(false);
 	}
-	
+	/*
 	@Test
 	public void test03bNoSePuedeAtravesarUnidadEnemiga() {
 		// TODO: Implement
@@ -99,5 +113,5 @@ public class TestFirstWeek {
 		// TODO: Implement
 		assertTrue(false);
 	}
-	
+	*/
 }

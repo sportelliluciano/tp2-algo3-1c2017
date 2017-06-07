@@ -15,5 +15,14 @@ public class Posicion {
 	public boolean equals(Posicion other){
 		return (this.i == other.i && this.j == other.j);
 	}
+
+	public int getX() {
+		// TODO Auto-generated method stub
+		return this.i;
+	}
 	
+	public int getY() {
+		// TODO Auto-generated method stub
+		return this.j;
+	}
 }
