@@ -5,7 +5,7 @@ import model.atributos_de_unidad.Modo;
 
 public class GohanNormal extends Modo {
 
-	//private int velocidadMovimiento = 2;
+	private int velocidad = 2;
 
 	@Override
 	public boolean puedeTransformarse(Unidad u) {
@@ -17,5 +17,15 @@ public class GohanNormal extends Modo {
 	public Modo transformarA(Unidad u) {
 		// TODO Auto-generated method stub
 		return null;
-	}		
+	}
+
+	@Override
+	public String getNombre() {
+		return "Normal";
+	}
+
+	@Override
+	public int getVelocidad() {
+		return velocidad;
+	}
 }

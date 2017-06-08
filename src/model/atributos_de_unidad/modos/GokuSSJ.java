@@ -5,6 +5,8 @@ import model.atributos_de_unidad.Modo;
 
 public class GokuSSJ extends Modo {
 
+	private int velocidad = 5;
+
 	@Override
 	public boolean puedeTransformarse(Unidad u) {
 		// TODO Auto-generated method stub
@@ -17,4 +19,14 @@ public class GokuSSJ extends Modo {
 		throw new RuntimeException();
 	}
 
+	@Override
+	public String getNombre() {
+		return "Super Saiyajin";
+	}
+
+	@Override
+	public int getVelocidad() {
+		return velocidad ;
+	}
 }
+
