@@ -21,8 +21,14 @@ public class Unidad extends Posicionable {
 	
 	@Override
 	public void serOcupadoPor(Unidad u) {
-		
 		throw new RuntimeException();
-		
+	}
+
+	public Ki getKi() {
+		return null;
+	}
+
+	public void setModo(Modo modo) {
+		this.modo = modo;
 	}
 }

@@ -3,9 +3,7 @@ package model.atributos_de_unidad.modos;
 import model.Unidad;
 import model.atributos_de_unidad.Modo;
 
-public class GohanNormal extends Modo {
-
-	//private int velocidadMovimiento = 2;
+public class GokuSSJ extends Modo {
 
 	@Override
 	public boolean puedeTransformarse(Unidad u) {
@@ -15,7 +13,8 @@ public class GohanNormal extends Modo {
 
 	@Override
 	public Modo transformarA(Unidad u) {
-		// TODO Auto-generated method stub
-		return null;
-	}		
+		// TODO Excepcion para no hay mas transformaciones
+		throw new RuntimeException();
+	}
+
 }
