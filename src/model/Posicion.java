@@ -1,31 +1,36 @@
 package model;
 
+
 import model.error.ErrorPosicionInvalida;
 
 // La posicion (i,j) en el tablero de un consumible / unidad.
 // Podriamos heredar de alguna de java pero javafx.Point2D labura con doubles
 // Hay un Point de ints pero en awt; es una libreria obsoleta, mejor no usarla.
 public class Posicion {
-
-	public int i,j;
+	private int x,y;
 	
-	public Posicion(int i, int j) throws ErrorPosicionInvalida {
-		if ((i < 0) || (j < 0))
+	public Posicion(int x, int y) throws ErrorPosicionInvalida {
+		if ((x < 0) || (y < 0))
 			throw new ErrorPosicionInvalida();
 		
-		this.i = i;
-		this.j = j;
+		this.x = x;
+		this.y = y;
 	}
 	
-	public boolean equals(Posicion other){
-		return (this.i == other.i && this.j == other.j);
+	public boolean equals(Posicion other) {
+		return (this.x == other.x && this.y == other.y);
 	}
 
 	public int getX() {
-		return this.i;
+		return this.x;
 	}
 	
 	public int getY() {
-		return this.j;
+		return this.y;
 	}
+
+	public boolean estaDentroDelLimite(int limiteX, int limiteY) {
+		return (this.x < limiteX) && (this.y < limiteY);
+	}
+	
 }
