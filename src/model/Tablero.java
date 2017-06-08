@@ -1,16 +1,17 @@
 package model;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Tablero {
-	private ArrayList<Posicionable> posicionables = new ArrayList<Posicionable>();
-		
+	private List<Posicionable> posicionables = new ArrayList<Posicionable>();
+	
 	public void moverUnidad(Unidad unidad, Posicion nuevaPosicion) {
 		for (Posicionable p: posicionables) {
 			if (p.getPosicion().equals(nuevaPosicion)){
 				unidad.ocuparLugarDe(p);
 			}
-		}		
+		}
 		unidad.moverA(nuevaPosicion);
 	}
 

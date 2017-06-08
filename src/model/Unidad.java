@@ -12,12 +12,10 @@ public class Unidad extends Posicionable {
 	}
 
 	public void moverA(Posicion nuevaPosicion) {
-		// TODO: Chequear que pueda moverse ahi (la prueba 01 no lo contempla)
 		setPosicion(nuevaPosicion);
 	}
 
 	public void ocuparLugarDe(Posicionable p) {
-		// TODO Auto-generated method stub
 		p.serOcupadoPor(this);
 	}
 	

@@ -17,12 +17,10 @@ public class Posicion {
 	}
 
 	public int getX() {
-		// TODO Auto-generated method stub
 		return this.i;
 	}
 	
 	public int getY() {
-		// TODO Auto-generated method stub
 		return this.j;
 	}
 }
