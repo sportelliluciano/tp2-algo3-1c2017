@@ -10,9 +10,11 @@ import model.Unidad;
 import model.atributos_de_unidad.modos.GohanNormal;
 import model.atributos_de_unidad.modos.GokuNormal;
 
+import model.error.*;
+
 public class TestSemana1Consigna02 {
 	@Test(expected = RuntimeException.class)
-	public void test02aCrearUnidadEnPosicionTomadaLanzaExcepcion() {
+	public void test02aCrearUnidadEnPosicionTomadaLanzaExcepcion() throws ErrorPosicionInvalida {
 		
 		Tablero tablero = new Tablero();
 		Unidad goku = new Unidad(new GokuNormal());
@@ -23,7 +25,7 @@ public class TestSemana1Consigna02 {
 	}	
 	
 	@Test
-	public void test02bCrearOtraUnidadEnPosicionVacia() {
+	public void test02bCrearOtraUnidadEnPosicionVacia() throws ErrorPosicionInvalida {
 		
 		Tablero tablero = new Tablero();
 		Unidad goku = new Unidad(new GokuNormal());
@@ -38,7 +40,7 @@ public class TestSemana1Consigna02 {
 	
 	
 	@Test(expected = RuntimeException.class)
-	public void test02cNoSePuedeMoverUnidadAPosicionTomadaPorOtraUnidad() {
+	public void test02cNoSePuedeMoverUnidadAPosicionTomadaPorOtraUnidad() throws ErrorPosicionInvalida {
 	
 		Tablero tablero = new Tablero();
 		Unidad goku = new Unidad(new GokuNormal());
