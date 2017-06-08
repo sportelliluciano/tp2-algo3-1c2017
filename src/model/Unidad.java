@@ -18,11 +18,11 @@ public class Unidad extends Posicionable {
 	public HashSet<Posicion> movsPosibles(Tablero tablero) {
 		
 		HashSet<Posicion> posiciones = new HashSet<Posicion>();
-		_movsPosibles(tablero, posiciones, getPosicion(), modo.getVelocidad());
+		//_movsPosibles(tablero, posiciones, getPosicion(), modo.getVelocidad());
 		return posiciones;
 	}
 	
-	private void _movsPosibles(Tablero tablero, HashSet<Posicion> posiciones, Posicion posicion, int movRestantes) {
+	/*private void _movsPosibles(Tablero tablero, HashSet<Posicion> posiciones, Posicion posicion, int movRestantes) {
 
 		if (movRestantes == 0)
 			return;
@@ -34,11 +34,11 @@ public class Unidad extends Posicionable {
 				_movsPosibles(tablero, posiciones, p, movRestantes - 1);
 			}
 		}
-	}
+	}*/
 
-	private boolean puedeMoverseA(Posicion p, Tablero tablero) { // No se si esto de enchufar el tablero aca servira pero x ahora...
+	/*private boolean puedeMoverseA(Posicion p, Tablero tablero) { // No se si esto de enchufar el tablero aca servira pero x ahora...
 		return true;
-	}
+	}*/
 
 	public void moverA(Posicion nuevaPosicion) {
 		setPosicion(nuevaPosicion);

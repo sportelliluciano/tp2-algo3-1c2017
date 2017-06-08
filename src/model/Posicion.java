@@ -1,9 +1,6 @@
 package model;
 
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
->>>>>>> f4386a9333726fef5eff9d640110441ba2a07909
 
 import model.error.ErrorPosicionInvalida;
 
@@ -32,15 +29,13 @@ public class Posicion {
 	public int getY() {
 		return this.y;
 	}
-<<<<<<< HEAD
 
 	public boolean estaDentroDelLimite(int limiteX, int limiteY) {
 		return (this.x < limiteX) && (this.y < limiteY);
 	}
 	
-=======
 	
-	public ArrayList<Posicion> getVecinos() {
+	/*public ArrayList<Posicion> getVecinos() {
 		ArrayList<Posicion> lista =  new ArrayList<Posicion>();
 		
 		try {
@@ -59,6 +54,6 @@ public class Posicion {
 		
 		return lista;
 		
-	}
->>>>>>> f4386a9333726fef5eff9d640110441ba2a07909
+	}*/
+
 }

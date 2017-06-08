@@ -28,15 +28,8 @@ public class Tablero {
 	
 	public boolean hayUnidadEnPosicion(Posicion pos) {
 		for (Posicionable p: posicionables) {
-<<<<<<< HEAD
 			if (p.getPosicion().equals(pos))
 				return true;
-=======
-			if (p.getPosicion().equals(nuevaPosicion)){
-				unidad.ocuparLugarDe(p);
-				return;
-			}
->>>>>>> f4386a9333726fef5eff9d640110441ba2a07909
 		}
 		
 		return false;
