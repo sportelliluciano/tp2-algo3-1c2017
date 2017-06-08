@@ -6,7 +6,7 @@ Mi intencion seria tirar ideas aca, pa ver como diseñar e implementar esta cosa
 
  - Espaniol (Que seria mas bien spanglish)
  - Ingles (por esta vota Emiliano :3 pero si alguno no esta muy ducho se complica...)
- - Español (1 voto de Lucho)
+ - Español (1 voto de Lucho 1 voto jona)
  
 * Como dividimos el trabajo?
 
