@@ -10,6 +10,7 @@ public class Tablero {
 		for (Posicionable p: posicionables) {
 			if (p.getPosicion().equals(nuevaPosicion)){
 				unidad.ocuparLugarDe(p);
+				return;
 			}
 		}
 		unidad.moverA(nuevaPosicion);
