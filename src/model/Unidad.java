@@ -36,10 +36,11 @@ public class Unidad extends Posicionable {
 		}
 	}*/
 
-	/*private boolean puedeMoverseA(Posicion p, Tablero tablero) { // No se si esto de enchufar el tablero aca servira pero x ahora...
-		return true;
+	/*public boolean puedeMoverseA(Posicion p, Tablero tablero) { // No se si esto de enchufar el tablero aca servira pero x ahora...
+		Direccion direccionMovimiento = Direccion.obtenerDireccion(this.getPosicion(), p);
+		
 	}*/
-
+	
 	public void moverA(Posicion nuevaPosicion) {
 		setPosicion(nuevaPosicion);
 	}

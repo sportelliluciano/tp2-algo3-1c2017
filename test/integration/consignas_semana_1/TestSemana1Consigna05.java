@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import model.DireccionDerecha;
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
@@ -15,16 +16,16 @@ public class TestSemana1Consigna05 {
 	
 	@Test (expected = RuntimeException.class)
 	public void test05AvanzarTresPosicionesConGokuNormal() throws ErrorPosicionInvalida {
-		Tablero tablero = new Tablero();
+		Tablero tablero = new Tablero(20, 20);
 		Unidad goku = new Unidad(new GokuNormal());
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		
-		tablero.moverUnidad(goku, new Posicion(8,5));
+		tablero.moverUnidad(goku, new DireccionDerecha());
 	}
 	
 	@Test
 	public void test05AvanzarTresPosicionesConGokuKaioken() throws ErrorPosicionInvalida, ErrorNoCumpleReqTrans {
-		Tablero tablero = new Tablero();
+		Tablero tablero = new Tablero(20, 20);
 		Unidad goku = new Unidad(new GokuNormal());
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		

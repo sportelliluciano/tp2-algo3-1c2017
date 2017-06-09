@@ -1,17 +1,21 @@
 package model;
 
-import java.util.ArrayList;
-
 import model.error.ErrorPosicionInvalida;
 
 // La posicion (i,j) en el tablero de un consumible / unidad.
-// Podriamos heredar de alguna de java pero javafx.Point2D labura con doubles
-// Hay un Point de ints pero en awt; es una libreria obsoleta, mejor no usarla.
+
 public class Posicion {
 	private int x,y;
 	
+	private static int maxX, maxY;
+	
+	public static void setLimites(int limiteX, int limiteY) {
+		maxX = limiteX;
+		maxY = limiteY;
+	}
+	
 	public Posicion(int x, int y) throws ErrorPosicionInvalida {
-		if ((x < 0) || (y < 0))
+		if ((x < 0) || (y < 0) || (x > maxX) || (y > maxY))
 			throw new ErrorPosicionInvalida();
 		
 		this.x = x;
@@ -33,27 +37,5 @@ public class Posicion {
 	public boolean estaDentroDelLimite(int limiteX, int limiteY) {
 		return (this.x < limiteX) && (this.y < limiteY);
 	}
-	
-	
-	/*public ArrayList<Posicion> getVecinos() {
-		ArrayList<Posicion> lista =  new ArrayList<Posicion>();
-		
-		try {
-			lista.add(new Posicion(Math.max(i-1,0), Math.max(j-1, 0)));
-			lista.add(new Posicion(Math.max(i-1,0), j));
-			lista.add(new Posicion(Math.max(i-1,0), j+1));
-			
-			lista.add(new Posicion(i, j+1));
-			lista.add(new Posicion(i, Math.max(j-1, 0)));
-			
-			lista.add(new Posicion(i+1, Math.max(j-1, 0)));
-			lista.add(new Posicion(i+1, j));
-			lista.add(new Posicion(i+1, j+1));
-			
-		} catch (ErrorPosicionInvalida e) {	}
-		
-		return lista;
-		
-	}*/
 
 }

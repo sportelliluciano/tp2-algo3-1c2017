@@ -8,25 +8,19 @@ import java.util.ArrayList;
 
 public class Tablero {
 	private List<Posicionable> posicionables = new ArrayList<Posicionable>();
-	private int ancho, alto;
 	
 	public Tablero (int ancho, int alto) {
-		this.ancho = ancho;
-		this.alto = alto;
+		Posicion.setLimites(ancho, alto);
 	}
 	
 	public void moverUnidad(Unidad unidad, Direccion dir) throws ErrorPosicionInvalida {
 		Posicion nuevaPosicion = dir.obtenerPosicionNueva(unidad.getPosicion());
-		if ( !posicionEstaLibre(nuevaPosicion) )
+		if (hayUnidadEn(nuevaPosicion))
 			throw new ErrorPosicionInvalida();
 		unidad.setPosicion(nuevaPosicion);
 	}
 	
-	public boolean posicionEstaLibre(Posicion pos) {
-		return ( !hayUnidadEnPosicion(pos) && pos.estaDentroDelLimite(this.ancho, this.alto) );
-	}
-	
-	public boolean hayUnidadEnPosicion(Posicion pos) {
+	public boolean hayUnidadEn(Posicion pos) {
 		for (Posicionable p: posicionables) {
 			if (p.getPosicion().equals(pos))
 				return true;
@@ -36,7 +30,7 @@ public class Tablero {
 	}
 
 	public void agregarUnidad(Unidad unidad, Posicion posicion) throws ErrorPosicionInvalida {
-		if (!posicionEstaLibre(posicion))
+		if (hayUnidadEn(posicion))
 			throw new ErrorPosicionInvalida();
 		
 		unidad.setPosicion(posicion);
