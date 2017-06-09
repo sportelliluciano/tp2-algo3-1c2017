@@ -14,13 +14,13 @@ import model.error.ErrorPosicionInvalida;
 
 public class TestSemana1Consigna05 {
 	
-	@Test (expected = RuntimeException.class)
+	@Test (expected = ErrorPosicionInvalida.class)
 	public void test05AvanzarTresPosicionesConGokuNormal() throws ErrorPosicionInvalida {
 		Tablero tablero = new Tablero(20, 20);
 		Unidad goku = new Unidad(new GokuNormal());
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		
-		tablero.moverUnidad(goku, new DireccionDerecha());
+		tablero.moverUnidad(goku, new Posicion(8,5));
 	}
 	
 	@Test

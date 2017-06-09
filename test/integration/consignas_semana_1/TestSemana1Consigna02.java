@@ -50,7 +50,7 @@ public class TestSemana1Consigna02 {
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		tablero.agregarUnidad(gohan, new Posicion(6,5));
 		
-		tablero.moverUnidad(gohan, new DireccionIzquierda());
+		tablero.moverUnidad(gohan, new Posicion(6,5));
 }
 
 }

@@ -21,7 +21,8 @@ public class TestSemana1Consigna01 {
 		Unidad goku = new Unidad(new GokuNormal());
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		
-		tablero.moverUnidad(goku, new DireccionArriba());
+		tablero.moverUnidad(goku, new Posicion(5,4));
+		
 		assertTrue(goku.getPosicion().equals(new Posicion(5,4)));
 		
 	}

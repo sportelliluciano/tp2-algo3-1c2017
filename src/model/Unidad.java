@@ -1,9 +1,11 @@
 package model;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import model.atributos_de_unidad.*;
 import model.error.ErrorNoCumpleReqTrans;
+import model.error.ErrorPosicionInvalida;
 
 // Uno de los 3 tipitos que maneja el jugador.
 public class Unidad extends Posicionable {
@@ -11,49 +13,37 @@ public class Unidad extends Posicionable {
 	private Modo modo;
 	private Ki ki = new Ki();
 	
+	
 	public Unidad(Modo modo) {
 		this.modo = modo;
 	}
 
-	public HashSet<Posicion> movsPosibles(Tablero tablero) {
+	public Set<Posicion> movsPosibles(Tablero tablero) {
 		
-		HashSet<Posicion> posiciones = new HashSet<Posicion>();
-		//_movsPosibles(tablero, posiciones, getPosicion(), modo.getVelocidad());
+		Set<Posicion> posiciones = new HashSet<Posicion>();
+		_movsPosibles(tablero, posiciones, getPosicion(), modo.getVelocidad());
 		return posiciones;
 	}
 	
-	/*private void _movsPosibles(Tablero tablero, HashSet<Posicion> posiciones, Posicion posicion, int movRestantes) {
+	private void _movsPosibles(Tablero tablero, Set<Posicion> posiciones, Posicion posicion, int movRestantes) {
 
 		if (movRestantes == 0)
 			return;
 		
 		for (Posicion p: posicion.getVecinos()) {
 			
-			if (puedeMoverseA(p, tablero) && !posiciones.contains(p)){
+			if (!tablero.hayUnidadEn(p)){
 				posiciones.add(p);
 				_movsPosibles(tablero, posiciones, p, movRestantes - 1);
 			}
 		}
-	}*/
-
-	/*public boolean puedeMoverseA(Posicion p, Tablero tablero) { // No se si esto de enchufar el tablero aca servira pero x ahora...
-		Direccion direccionMovimiento = Direccion.obtenerDireccion(this.getPosicion(), p);
-		
-	}*/
+	}
 	
-	public void moverA(Posicion nuevaPosicion) {
+	public void moverA(Posicion nuevaPosicion, Tablero tablero) throws ErrorPosicionInvalida {
+		Set<Posicion> movimientos = movsPosibles(tablero);
+		if (!movimientos.contains(nuevaPosicion))
+			throw new ErrorPosicionInvalida();
 		setPosicion(nuevaPosicion);
-	}
-
-	public void ocuparLugarDe(Posicionable p) {
-		Posicion nuevaPosicion = p.getPosicion();
-		p.serOcupadoPor(this);
-		moverA(nuevaPosicion);
-	}
-	
-	@Override
-	public void serOcupadoPor(Unidad u) {
-		throw new RuntimeException();
 	}
 
 	public void pasarTurno() {

@@ -17,9 +17,8 @@ public class GokuNormal extends Modo {
 
 	@Override
 	public Modo transformarA(Unidad u) throws ErrorNoCumpleReqTrans {
-		if (!puedeTransformarse(u)){
+		if (!puedeTransformarse(u))
 			throw new ErrorNoCumpleReqTrans();
-		}
 		//u.getKi().reducirEn(this.costoKi);
 		return this.siguienteModo;
 	}

@@ -4,28 +4,37 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import model.Posicion;
+import model.Tablero;
+import model.Unidad;
+import model.atributos_de_unidad.modos.GohanNormal;
+import model.atributos_de_unidad.modos.GokuNormal;
+import model.error.ErrorPosicionInvalida;
+
 public class TestSemana1Consigna03 {
 
-	@Test
-	public void test03aNoSePuedeAtravesarUnidadAmistosa() {
-		// TODO: Implement
-	
-		// Crear tablero (si es posible sin consumibles)
-		// Crear un goku
-		// Crear un gohan del mismo bando, ubicado bien cerquita de goku
-		// Tratar de mover a gohan 2 lugares abajo y 2 a la izquierda (lo que haria q tuviera que pasar encima de goku)
-		// O bien tirar excepcion ahi y esperarla con el test, o tener una funcion de "puede moverse ahi" q de false.
-
-		assertTrue(false);
+	@Test (expected = ErrorPosicionInvalida.class)
+	public void test03aNoSePuedeAtravesarUnidadAmistosa() throws ErrorPosicionInvalida {
+		Tablero tablero = new Tablero(20,20);
+		Unidad goku = new Unidad(new GokuNormal());
+		Unidad gohan = new Unidad(new GohanNormal());
+		
+		tablero.agregarUnidad(goku, new Posicion(1,1));
+		tablero.agregarUnidad(gohan, new Posicion(2,2));
+		
+		tablero.moverUnidad(goku, new Posicion(3,3));
 	}
-	/*
-	@Test
-	public void test03bNoSePuedeAtravesarUnidadEnemiga() {
-		// TODO: Implement
 	
-		// Lo mismo que la anterior pero con un Freezer del oponente en vez de Gohan
-
-		assertTrue(false);
+	@Test (expected = ErrorPosicionInvalida.class)
+	public void test03bNoSePuedeAtravesarUnidadEnemiga() throws ErrorPosicionInvalida {
+		Tablero tablero = new Tablero(20,20);
+		Unidad goku = new Unidad(new GokuNormal());
+		Unidad gohan = new Unidad(new GohanNormal());
+		
+		tablero.agregarUnidad(goku, new Posicion(1,1));
+		tablero.agregarUnidad(gohan, new Posicion(2,2));
+		
+		tablero.moverUnidad(goku, new Posicion(3,3));
 	}
-	*/
+	
 }

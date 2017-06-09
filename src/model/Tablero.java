@@ -13,13 +13,6 @@ public class Tablero {
 		Posicion.setLimites(ancho, alto);
 	}
 	
-	public void moverUnidad(Unidad unidad, Direccion dir) throws ErrorPosicionInvalida {
-		Posicion nuevaPosicion = dir.obtenerPosicionNueva(unidad.getPosicion());
-		if (hayUnidadEn(nuevaPosicion))
-			throw new ErrorPosicionInvalida();
-		unidad.setPosicion(nuevaPosicion);
-	}
-	
 	public boolean hayUnidadEn(Posicion pos) {
 		for (Posicionable p: posicionables) {
 			if (p.getPosicion().equals(pos))
@@ -35,6 +28,10 @@ public class Tablero {
 		
 		unidad.setPosicion(posicion);
 		posicionables.add(unidad);
+	}
+
+	public void moverUnidad(Unidad unidad, Posicion nuevaPosicion) throws ErrorPosicionInvalida {
+		unidad.moverA(nuevaPosicion, this);
 	}
 	
 }
