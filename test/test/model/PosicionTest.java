@@ -13,11 +13,6 @@ import model.error.ErrorPosicionInvalida;
 
 public class PosicionTest {
 
-	@Before
-	public void setUp() {
-		Posicion.setLimites(100, 100);
-	}
-	
 	@Test
 	public void testEquals() throws ErrorPosicionInvalida {
 		assertTrue(new Posicion(1,1).equals(new Posicion(1,1)));

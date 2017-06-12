@@ -32,7 +32,7 @@ public class Unidad extends Posicionable {
 		
 		for (Posicion p: posicion.getVecinos()) {
 			
-			if (!tablero.hayUnidadEn(p)){
+			if (!tablero.hayPosicionableEn(p)){
 				posiciones.add(p);
 				_movsPosibles(tablero, posiciones, p, movRestantes - 1);
 			}
