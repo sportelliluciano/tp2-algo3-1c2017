@@ -2,6 +2,7 @@ package model.atributos_de_unidad.modos;
 
 import model.Unidad;
 import model.atributos_de_unidad.Modo;
+import model.error.ErrorNoHayMasTrans;
 
 public class GokuSSJ extends Modo {
 
