@@ -2,6 +2,7 @@ package model.atributos_de_unidad.modos;
 
 import model.Unidad;
 import model.atributos_de_unidad.Modo;
+import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 
 public class GokuSSJ extends Modo {
@@ -14,7 +15,7 @@ public class GokuSSJ extends Modo {
 	}
 
 	@Override
-	public Modo transformarA(Unidad u) throws ErrorNoHayMasTrans { 
+	public Modo transformarA(Unidad u) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans { 
 		// TODO Excepcion para no hay mas transformaciones
 		throw new ErrorNoHayMasTrans();
 	}
