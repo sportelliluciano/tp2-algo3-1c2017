@@ -14,7 +14,7 @@ public class GokuSSJ extends Modo {
 	}
 
 	@Override
-	public Modo transformarA(Unidad u) { throws ErrorNoHayMasTrans
+	public Modo transformarA(Unidad u) throws ErrorNoHayMasTrans { 
 		// TODO Excepcion para no hay mas transformaciones
 		throw new ErrorNoHayMasTrans();
 	}
