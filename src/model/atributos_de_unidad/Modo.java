@@ -8,7 +8,7 @@ public abstract class Modo {
 	
 	public abstract boolean puedeTransformarse(Unidad u);
 	
-	public abstract Modo transformarA(Unidad u) throws ErrorNoCumpleReqTrans;
+	public abstract Modo transformarA(Unidad u) throws Exception/*ErrorNoCumpleReqTrans*/;
 	
 	public abstract String getNombre();
 
