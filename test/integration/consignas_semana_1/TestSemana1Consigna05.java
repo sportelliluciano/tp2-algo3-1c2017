@@ -4,12 +4,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import model.DireccionDerecha;
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
 import model.atributos_de_unidad.modos.GokuNormal;
 import model.error.ErrorNoCumpleReqTrans;
+import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 
 public class TestSemana1Consigna05 {
@@ -24,7 +24,7 @@ public class TestSemana1Consigna05 {
 	}
 	
 	@Test
-	public void test05AvanzarTresPosicionesConGokuKaioken() throws ErrorPosicionInvalida, ErrorNoCumpleReqTrans {
+	public void test05AvanzarTresPosicionesConGokuKaioken() throws ErrorPosicionInvalida, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
 		Tablero tablero = new Tablero(20, 20);
 		Unidad goku = new Unidad(new GokuNormal());
 		tablero.agregarUnidad(goku, new Posicion(5,5));

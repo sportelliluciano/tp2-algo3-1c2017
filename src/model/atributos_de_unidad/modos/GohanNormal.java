@@ -2,6 +2,8 @@ package model.atributos_de_unidad.modos;
 
 import model.Unidad;
 import model.atributos_de_unidad.Modo;
+import model.error.ErrorNoCumpleReqTrans;
+import model.error.ErrorNoHayMasTrans;
 
 public class GohanNormal extends Modo {
 
@@ -14,7 +16,7 @@ public class GohanNormal extends Modo {
 	}
 
 	@Override
-	public Modo transformarA(Unidad u) {
+	public Modo transformarA(Unidad u) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
 		// TODO Auto-generated method stub
 		return null;
 	}

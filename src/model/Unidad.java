@@ -5,6 +5,7 @@ import java.util.Set;
 
 import model.atributos_de_unidad.*;
 import model.error.ErrorNoCumpleReqTrans;
+import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 
 // Uno de los 3 tipitos que maneja el jugador.
@@ -50,7 +51,7 @@ public class Unidad extends Posicionable {
 		ki.pasarTurno();
 	}
 	
-	public void transformarse() throws ErrorNoCumpleReqTrans {
+	public void transformarse() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
 		this.modo = modo.transformarA(this);
 	}
 
