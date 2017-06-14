@@ -9,14 +9,13 @@ public class GokuSSJ extends Modo {
 
 	@Override
 	public boolean puedeTransformarse(Unidad u) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Modo transformarA(Unidad u) {
+	public Modo transformarA(Unidad u) { throws ErrorNoHayMasTrans
 		// TODO Excepcion para no hay mas transformaciones
-		throw new RuntimeException();
+		throw new ErrorNoHayMasTrans();
 	}
 
 	@Override
