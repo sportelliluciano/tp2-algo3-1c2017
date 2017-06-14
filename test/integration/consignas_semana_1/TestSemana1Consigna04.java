@@ -8,6 +8,7 @@ import model.Unidad;
 import model.atributos_de_unidad.modos.GokuNormal;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorPosicionInvalida;
+//import model.error.ErrorNoHayMasTrans;
 
 public class TestSemana1Consigna04 {
 	
@@ -28,4 +29,12 @@ public class TestSemana1Consigna04 {
 		
 		goku.transformarse();
 	}
+	/*
+	@Test (expected = ErrorNoHayMasTrans.class)
+	public void test04bTransformarseEstandoEnUltimaTransformacionLanzaError() throws ErrorNoCumpleReqTrans, ErrorPosicionInvalida, ErrorNoHayMasTrans {
+		Unidad goku = new Unidad(new GokuSSJ());
+		
+		goku.transformarse();		
+	}*/
+	
 }
