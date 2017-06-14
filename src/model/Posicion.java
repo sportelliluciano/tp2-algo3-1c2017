@@ -24,6 +24,13 @@ public class Posicion {
 		return ((this.x == other.x) && (this.y == other.y));
 	}
 	
+    public Posicion add(Posicion other) {
+    	int nuevo_x = this.getX() + other.getX();
+    	int nuevo_y = this.getY() + other.getY();
+    	
+    	return new Posicion(nuevo_x, nuevo_y);
+    }
+	
 	@Override
 	public int hashCode() {
 		return (this.x + ";" + this.y).hashCode();
