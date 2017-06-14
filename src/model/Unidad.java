@@ -19,19 +19,19 @@ public class Unidad extends Posicionable {
 		this.modo = modo;
 	}
 
-	public Set<Posicion> movsPosibles(Tablero tablero) {
+	public Set<Posicion> movsPosibles(Tablero tablero) throws ErrorPosicionInvalida {
 		
 		Set<Posicion> posiciones = new HashSet<Posicion>();
 		_movsPosibles(tablero, posiciones, getPosicion(), modo.getVelocidad());
 		return posiciones;
 	}
 	
-	private void _movsPosibles(Tablero tablero, Set<Posicion> posiciones, Posicion posicion, int movRestantes) {
+	private void _movsPosibles(Tablero tablero, Set<Posicion> posiciones, Posicion posicion, int movRestantes) throws ErrorPosicionInvalida {
 
 		if (movRestantes == 0)
 			return;
 		
-		for (Posicion p: posicion.getVecinos()) {
+		for (Posicion p: posicion.getVecinos(Direccion.getDireccionesSinDiagonales())) {
 			
 			if (!tablero.hayPosicionableEn(p)){
 				posiciones.add(p);

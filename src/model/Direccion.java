@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import model.error.ErrorPosicionInvalida;
 
 public class Direccion {
@@ -25,10 +28,20 @@ public class Direccion {
 		abajo_der = 	new Direccion( 1, -1);
     }
 	
+	private static ArrayList<Direccion> sinDiagonales = new ArrayList<Direccion>(Arrays.asList(der, arriba, izq, abajo));
+	private static ArrayList<Direccion> conDiagonales = new ArrayList<Direccion>(Arrays.asList(der, arriba_der, arriba, arriba_izq, izq, abajo_izq, abajo, abajo_der));
+	
     private int x;
     private int y;
 
-    
+	public static ArrayList<Direccion> getDireccionesConDiagonales() {
+		return conDiagonales;
+	}
+	
+	public static ArrayList<Direccion> getDireccionesSinDiagonales() {
+		return sinDiagonales;
+	}
+	
     private Direccion(int x, int y) {
         this.x = x;
         this.y = y;

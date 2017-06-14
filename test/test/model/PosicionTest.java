@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import model.Direccion;
 import model.Posicion;
 import model.error.ErrorPosicionInvalida;
 
@@ -23,10 +24,10 @@ public class PosicionTest {
 	@Test
 	public void testGetVecinos() throws ErrorPosicionInvalida {
 		Posicion p = new Posicion(0,0);
-		Set<Posicion> vecinos = p.getVecinos();
+		Set<Posicion> vecinos = p.getVecinos(Direccion.getDireccionesSinDiagonales());
 		assertTrue(vecinos.contains(new Posicion(0,1)));
 		assertTrue(vecinos.contains(new Posicion(1,0)));
-		assertTrue(vecinos.contains(new Posicion(1,1)));
+		assertTrue(vecinos.contains(new Posicion(-1,0)));
 		assertFalse(vecinos.contains(new Posicion(0,0)));
 	}
 
