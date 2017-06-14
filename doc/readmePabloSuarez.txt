@@ -16,3 +16,9 @@ Para hablar con Pablo Suarez:
   Profe: cual le parece la mas adecuada? Todas tienen algun lio para implementarse...
   
   
+  Sobre las posiciones:
+  Lo mas adecuado sería crear la entidades correspondientes, como Tablero y Posición, y que puedan interactuar entre sí. 
+  Si luego hay una matriz o alguna otra construcción detrás, esto es un tema de implementación, pero debería
+  quedar oculto.
+  
+  
