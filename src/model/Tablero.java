@@ -46,4 +46,12 @@ public class Tablero {
 			throw new ErrorPosicionInvalida();
 	}
 	
+	public int getAncho() {
+		return ancho;
+	}
+	
+	public int getAlto() {
+		return alto;
+	}
+	
 }
