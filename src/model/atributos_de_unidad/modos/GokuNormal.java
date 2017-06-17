@@ -10,7 +10,9 @@ public class GokuNormal extends Modo {
 	private int costoKi = 20;
 	private Modo siguienteModo = new GokuKaioKen();
 	private int velocidad = 2;
-
+ 	private int ataqueBasico = 20;//Nuevo
+    private int distanciaDeAtaque = 2;//Nuevo
+ 
 	@Override
 	public boolean puedeTransformarse(Unidad u) {
 		return u.getKi().getMagnitud() >= this.costoKi;
@@ -35,7 +37,12 @@ public class GokuNormal extends Modo {
 	}
 	
 	@Override
-	public int getDistanciaDeAtaque(){
+	public int getAtaqueBasico(){//Nuevo
+		return ataqueBasico ;
+	}
+	
+	@Override
+	public int getDistanciaDeAtaque(){//Nuevo
 		return distanciaDeAtaque;
 	}
 	
