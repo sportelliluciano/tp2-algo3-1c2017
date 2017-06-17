@@ -8,6 +8,8 @@ import model.error.ErrorNoHayMasTrans;
 public class GohanNormal extends Modo {
 
 	private int velocidad = 2;
+	private int ataqueBasico = 15;//Nuevo
+    private int distanciaDeAtaque = 2;//Nuevo
 
 	@Override
 	public boolean puedeTransformarse(Unidad u) {
@@ -32,7 +34,12 @@ public class GohanNormal extends Modo {
 	}
 	
 	@Override
-	public int getDistanciaDeAtaque(){
+	public int getAtaqueBasico(){//Nuevo
+		return ataqueBasico ;
+	}
+	
+	@Override
+	public int getDistanciaDeAtaque(){//Nuevo
 	    return distanciaDeAtaque;
 	}
 }
