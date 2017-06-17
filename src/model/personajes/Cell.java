@@ -1,8 +1,6 @@
 package model.personajes;
 
 import model.Unidad;
-import model.ataque.Ataque;
-import model.error.ErrorKiInsuficiente;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 
