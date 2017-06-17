@@ -3,12 +3,13 @@ package model;
 import java.util.HashSet;
 import java.util.Set;
 
+import model.ataque.Ataque;
 import model.atributos_de_unidad.*;
+import model.error.ErrorKiInsuficiente;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 
-// Uno de los 3 tipitos que maneja el jugador.
 public abstract class Unidad extends Posicionable {
 
 	protected Modo modo;
@@ -16,13 +17,7 @@ public abstract class Unidad extends Posicionable {
 	protected int vidaMaxima;
 	protected int vidaActual;
 
-	
-//	public Unidad(Modo modo) {
-//		this.modo = modo;
-//	}
-
 	public Set<Posicion> movsPosibles(Tablero tablero) throws ErrorPosicionInvalida {
-		
 		Set<Posicion> posiciones = new HashSet<Posicion>();
 		_movsPosibles(tablero, posiciones, getPosicion(), modo.getVelocidad());
 		return posiciones;
@@ -64,6 +59,27 @@ public abstract class Unidad extends Posicionable {
 	public Ki getKi() {
 		return this.ki;
 	}
+	
+	public void ataqueBasicoA(Unidad unidad) {
+		unidad.recibirAtaque(modo.getAtaqueBasico());
+	}
+	
+	public void ataqueEspecialA(Unidad unidad) throws ErrorKiInsuficiente {
+		unidad.recibirAtaque(modo.getAtaqueEspecial());
+	}
+	
+	public void recibirAtaque(Ataque ataque) {
+		vidaActual -= ataque.getDano();
+	}
+	
+	public boolean estaVivo() {
+		return this.vidaActual > 0;
+	}
+	
+	public int getVidaActual() {
+		return this.vidaActual;
+	}
+	
 /*
 //solo correr los test y no tener que modificar el cosntructor
 	public int getVida(){

@@ -1,5 +1,6 @@
 package model.personajes.modos;
 
+import model.ataque.AtaqueBasico;
 import model.atributos_de_unidad.Ki;
 import model.atributos_de_unidad.Modo;
 import model.error.ErrorNoCumpleReqTrans;
@@ -11,7 +12,7 @@ public class GokuSSJ extends Modo {
 		nombre            = "Super Saiyajin";
     	velocidad         = 5;
     	distanciaDeAtaque = 4;
-     	ataqueBasico      = 60;
+     	ataqueBasico      = new AtaqueBasico(60);
 	}
 	
 	@Override

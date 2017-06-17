@@ -1,5 +1,6 @@
 package model.atributos_de_unidad;
 
+import model.ataque.Ataque;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 
@@ -8,14 +9,16 @@ public abstract class Modo {
 	protected Modo siguienteModo;
 	protected String nombre;
 	protected int velocidad;
-	protected int ataqueBasico;
+	protected Ataque ataqueBasico;
+	protected Ataque ataqueEspecial;
 	protected int distanciaDeAtaque;
 	protected int costoKiSiguienteTransformacion;
+	protected int costoKiAtaqueEspecial;
 	
 	public Modo siguienteTransformacion(Ki ki) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
 		if (ki.getMagnitud() < costoKiSiguienteTransformacion)
 			throw new ErrorNoCumpleReqTrans();
-		return siguienteModo;		
+		return siguienteModo;
 	}
 	
 	public String getNombre() {
@@ -26,8 +29,12 @@ public abstract class Modo {
 		return velocidad;
 	}
 	
-	public int getAtaqueBasico() {
+	public Ataque getAtaqueBasico() {
 		return ataqueBasico;
+	}
+	
+	public Ataque getAtaqueEspecial() {
+		return ataqueEspecial;
 	}
 	
 	public int getDistanciaDeAtaque() {
