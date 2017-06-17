@@ -30,4 +30,9 @@ public class GohanNormal extends Modo {
 	public int getVelocidad() {
 		return velocidad;
 	}
+	
+	@Override
+	public int getDistanciaDeAtaque(){
+	    return distanciaDeAtaque;
+	}
 }
