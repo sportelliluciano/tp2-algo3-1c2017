@@ -7,18 +7,19 @@ import org.junit.Test;
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
-import model.atributos_de_unidad.modos.GohanNormal;
-import model.atributos_de_unidad.modos.GokuNormal;
-
 import model.error.*;
+import model.personajes.Gohan;
+import model.personajes.Goku;
+import model.personajes.modos.GohanNormal;
+import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna02 {
 	@Test(expected = ErrorPosicionInvalida.class)
 	public void test02aCrearUnidadEnPosicionTomadaLanzaExcepcion() throws ErrorPosicionInvalida {
 		
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Unidad(new GokuNormal());
-		Unidad gohan = new Unidad(new GohanNormal());
+		Unidad goku = new Goku();
+		Unidad gohan = new Gohan();
 		
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		tablero.agregarUnidad(gohan, new Posicion(5,5));
@@ -28,8 +29,8 @@ public class TestSemana1Consigna02 {
 	public void test02bCrearOtraUnidadEnPosicionVacia() throws ErrorPosicionInvalida {
 		
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Unidad(new GokuNormal());
-		Unidad gohan = new Unidad(new GohanNormal());
+		Unidad goku = new Goku();
+		Unidad gohan = new Gohan();
 		
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		tablero.agregarUnidad(gohan, new Posicion(6,5));
@@ -43,8 +44,8 @@ public class TestSemana1Consigna02 {
 	public void test02cNoSePuedeMoverUnidadAPosicionTomadaPorOtraUnidad() throws ErrorPosicionInvalida {
 	
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Unidad(new GokuNormal());
-		Unidad gohan = new Unidad(new GohanNormal());
+		Unidad goku = new Goku();
+		Unidad gohan = new Gohan();
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		tablero.agregarUnidad(gohan, new Posicion(6,5));
 		

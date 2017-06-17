@@ -1,6 +1,5 @@
 package model.atributos_de_unidad;
 
-import model.Unidad;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 
@@ -11,10 +10,13 @@ public abstract class Modo {
 	protected int velocidad;
 	protected int ataqueBasico;
 	protected int distanciaDeAtaque;
+	protected int costoKiSiguienteTransformacion;
 	
-	public abstract boolean puedeTransformarse(Unidad u);
-	
-	public abstract Modo transformarA(Unidad u) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans;
+	public Modo siguienteTransformacion(Ki ki) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+		if (ki.getMagnitud() < costoKiSiguienteTransformacion)
+			throw new ErrorNoCumpleReqTrans();
+		return siguienteModo;		
+	}
 	
 	public String getNombre() {
 		return nombre;

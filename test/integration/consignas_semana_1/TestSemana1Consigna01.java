@@ -8,9 +8,9 @@ import model.*;
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
-import model.atributos_de_unidad.modos.GokuNormal;
-
 import model.error.*;
+import model.personajes.Goku;
+import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna01 {
 	
@@ -18,7 +18,7 @@ public class TestSemana1Consigna01 {
 	public void test01MoverUnidadCambiaSuPosicion() throws ErrorPosicionInvalida {
 				
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Unidad(new GokuNormal());
+		Unidad goku = new Goku();
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		
 		tablero.moverUnidad(goku, new Posicion(5,4));

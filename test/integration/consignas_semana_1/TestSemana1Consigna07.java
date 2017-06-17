@@ -7,10 +7,13 @@ import org.junit.Test;
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
-import model.atributos_de_unidad.modos.FreezerNormal;
-import model.atributos_de_unidad.modos.GokuNormal;
 import model.error.ErrorEnemigoFueraDeAlcance;
 import model.error.ErrorPosicionInvalida;
+import model.personajes.Freezer;
+import model.personajes.Gohan;
+import model.personajes.Goku;
+import model.personajes.modos.FreezerNormal;
+import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna07 {
 	
@@ -18,8 +21,8 @@ public class TestSemana1Consigna07 {
 	public void test07NoSePuedeAtacarEnemigosMuyLejos() throws ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
 		
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Unidad(new GokuNormal());
-		Unidad freezer = new Unidad(new FreezerNormal());
+		Unidad goku = new Goku();
+		Unidad freezer = new Gohan();
 		
 		tablero.agregarUnidad(goku, new Posicion(3,3));//distancia de ataque = 2
 		tablero.agregarUnidad(freezer, new Posicion(15,15));//se encuentra a distancia = 12
@@ -32,10 +35,10 @@ public class TestSemana1Consigna07 {
 	public void test07AtacarEnemigoCercanoReduceSuVida()throws ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida  {
 		Tablero tablero = new Tablero(20,20);
 		
-		Unidad goku = new Unidad(new GokuNormal());//500 puntos de vida y poder de pelea = 20
+		Unidad goku = new Goku(); //500 puntos de vida y poder de pelea = 20
 		goku.setVida(500);
 
-		Unidad freezer = new Unidad(new FreezerNormal());//400 puntos de vida
+		Unidad freezer = new Freezer(); //400 puntos de vida
 		freezer.setVida(400);
 		
 		Posicion posGoku =  new Posicion(3,3),posFreezer = new Posicion(4,4);

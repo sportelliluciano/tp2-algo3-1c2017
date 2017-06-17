@@ -7,17 +7,19 @@ import org.junit.Test;
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
-import model.atributos_de_unidad.modos.GohanNormal;
-import model.atributos_de_unidad.modos.GokuNormal;
 import model.error.ErrorPosicionInvalida;
+import model.personajes.Gohan;
+import model.personajes.Goku;
+import model.personajes.modos.GohanNormal;
+import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna03 {
 
 	@Test (expected = ErrorPosicionInvalida.class)
 	public void test03aNoSePuedeAtravesarUnidadAmistosa() throws ErrorPosicionInvalida {
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Unidad(new GokuNormal());
-		Unidad gohan = new Unidad(new GohanNormal());
+		Unidad goku = new Goku();
+		Unidad gohan = new Gohan();
 		
 		tablero.agregarUnidad(goku, new Posicion(1,1));
 		tablero.agregarUnidad(gohan, new Posicion(2,2));
@@ -28,8 +30,8 @@ public class TestSemana1Consigna03 {
 	@Test (expected = ErrorPosicionInvalida.class)
 	public void test03bNoSePuedeAtravesarUnidadEnemiga() throws ErrorPosicionInvalida {
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Unidad(new GokuNormal());
-		Unidad gohan = new Unidad(new GohanNormal());
+		Unidad goku = new Goku();
+		Unidad gohan = new Gohan();
 		
 		tablero.agregarUnidad(goku, new Posicion(1,1));
 		tablero.agregarUnidad(gohan, new Posicion(2,2));

@@ -9,16 +9,17 @@ import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 
 // Uno de los 3 tipitos que maneja el jugador.
-public class Unidad extends Posicionable {
+public abstract class Unidad extends Posicionable {
 
-	private Modo modo;
-	private Ki ki = new Ki();
-//	private int vida ;//lo pongo pero fijensen si va aca
+	protected Modo modo;
+	protected Ki ki = new Ki();
+	protected int vidaMaxima;
+	protected int vidaActual;
 
 	
-	public Unidad(Modo modo) {
-		this.modo = modo;
-	}
+//	public Unidad(Modo modo) {
+//		this.modo = modo;
+//	}
 
 	public Set<Posicion> movsPosibles(Tablero tablero) throws ErrorPosicionInvalida {
 		
@@ -53,9 +54,9 @@ public class Unidad extends Posicionable {
 	}
 	
 	public void transformarse() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
-		this.modo = modo.transformarA(this);
+		this.modo = this.modo.siguienteTransformacion(this.ki); 
 	}
-
+	
 	public Modo getModo() {
 		return this.modo;
 	}
