@@ -4,17 +4,32 @@ import model.Unidad;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 
-// El enunciado a veces le dice "modo" a la "transformacion actual" o falta de ella.
 public abstract class Modo {
+	
+	protected Modo siguienteModo;
+	protected String nombre;
+	protected int velocidad;
+	protected int ataqueBasico;
+	protected int distanciaDeAtaque;
 	
 	public abstract boolean puedeTransformarse(Unidad u);
 	
 	public abstract Modo transformarA(Unidad u) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans;
 	
-	public abstract String getNombre();
+	public String getNombre() {
+		return nombre;
+	}
 
-	public abstract int getVelocidad();
+	public int getVelocidad() {
+		return velocidad;
+	}
 	
-	//	public abstract int getDistanciaDeAtaque();
+	public int getAtaqueBasico() {
+		return ataqueBasico;
+	}
+	
+	public int getDistanciaDeAtaque() {
+		return distanciaDeAtaque;
+	}
 
 }

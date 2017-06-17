@@ -7,8 +7,14 @@ import model.error.ErrorNoHayMasTrans;
 
 public class GokuSSJ extends Modo {
 
-	private int velocidad = 5;
-
+	public GokuSSJ() {
+		nombre = "Goku Super Saiyajin";
+    	velocidad = 5;
+    	distanciaDeAtaque = 4;
+     	ataqueBasico = 60;
+        siguienteModo = null;
+	}
+	
 	@Override
 	public boolean puedeTransformarse(Unidad u) {
 		return false;
@@ -16,18 +22,7 @@ public class GokuSSJ extends Modo {
 
 	@Override
 	public Modo transformarA(Unidad u) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans { 
-		// TODO Excepcion para no hay mas transformaciones
 		throw new ErrorNoHayMasTrans();
-	}
-
-	@Override
-	public String getNombre() {
-		return "Super Saiyajin";
-	}
-
-	@Override
-	public int getVelocidad() {
-		return velocidad ;
 	}
 }
 

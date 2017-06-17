@@ -7,6 +7,7 @@ import org.junit.Test;
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
+import model.atributos_de_unidad.modos.FreezerNormal;
 import model.atributos_de_unidad.modos.GokuNormal;
 import model.error.ErrorEnemigoFueraDeAlcance;
 import model.error.ErrorPosicionInvalida;

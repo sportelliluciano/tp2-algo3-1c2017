@@ -8,9 +8,15 @@ import model.error.ErrorNoHayMasTrans;
 public class GokuKaioKen extends Modo {
 
 	private int costoKi = 50;
-	private Modo siguienteModo = new GokuSSJ();	
-	private int velocidad = 3;
 
+	public GokuKaioKen() {
+		siguienteModo = new GokuSSJ();	
+		velocidad = 3;
+		distanciaDeAtaque = 4;
+		ataqueBasico = 40;	
+		nombre = "Kaio-ken";
+	}
+	
 	@Override
 	public boolean puedeTransformarse(Unidad u) {
 		return u.getKi().getMagnitud() >= this.costoKi;
@@ -23,14 +29,5 @@ public class GokuKaioKen extends Modo {
 		//u.getKi().reducirEn(this.costoKi);
 		return this.siguienteModo;
 	}
-
-	@Override
-	public String getNombre() {
-		return "Kaio-ken";
-	}
-
-	@Override
-	public int getVelocidad() {
-		return velocidad;
-	}
+	
 }

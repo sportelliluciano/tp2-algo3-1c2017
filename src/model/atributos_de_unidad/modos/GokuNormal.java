@@ -8,10 +8,14 @@ import model.error.ErrorNoHayMasTrans;
 public class GokuNormal extends Modo {
 
 	private int costoKi = 20;
-	private Modo siguienteModo = new GokuKaioKen();
-	private int velocidad = 2;
- 	private int ataqueBasico = 20;//Nuevo
-    private int distanciaDeAtaque = 2;//Nuevo
+	
+    public GokuNormal() {
+    	nombre = "Goku Normal";
+    	velocidad = 2;
+    	distanciaDeAtaque = 2;
+     	ataqueBasico = 20;
+        siguienteModo = new GokuKaioKen();
+    }
  
 	@Override
 	public boolean puedeTransformarse(Unidad u) {
@@ -25,25 +29,4 @@ public class GokuNormal extends Modo {
 		//u.getKi().reducirEn(this.costoKi);
 		return this.siguienteModo;
 	}
-
-	@Override
-	public String getNombre() {
-		return "Normal";
-	}
-
-	@Override
-	public int getVelocidad() {
-		return velocidad;
-	}
-	
-	@Override
-	public int getAtaqueBasico(){//Nuevo
-		return ataqueBasico ;
-	}
-	
-	@Override
-	public int getDistanciaDeAtaque(){//Nuevo
-		return distanciaDeAtaque;
-	}
-	
 }
