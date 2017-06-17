@@ -47,7 +47,7 @@ public class Direccion {
         this.y = y;
     }
 
-	public Posicion obtenerPosicionNueva(Posicion actual) throws ErrorPosicionInvalida {
+	public Posicion obtenerPosicionNueva(Posicion actual) {
 		return actual.add(new Posicion(x, y));
 	}
 }

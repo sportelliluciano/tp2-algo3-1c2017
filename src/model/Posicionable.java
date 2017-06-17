@@ -11,8 +11,4 @@ public abstract class Posicionable {
 	public void setPosicion(Posicion nuevaPosicion) {
 		this.posicion = nuevaPosicion;
 	}
-
-	public void serOcupadoPor(Unidad unidad) {
-		
-	}
 }

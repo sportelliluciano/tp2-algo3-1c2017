@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import model.error.ErrorPosicionInvalida;
-
 // La posicion (i,j) en el tablero de un consumible / unidad.
 
 public class Posicion {
@@ -46,18 +44,13 @@ public class Posicion {
 	public int getY() {
 		return this.y;
 	}
-
-	public boolean estaDentroDelLimite(int limiteX, int limiteY) {
-		return (this.x < limiteX) && (this.y < limiteY);
-	}
 	
-	public Set<Posicion> getVecinos(ArrayList<Direccion> direcciones) throws ErrorPosicionInvalida {
+	public Set<Posicion> getVecinos(ArrayList<Direccion> direcciones) {
 		Set<Posicion> posicionesVecinas = new HashSet<Posicion>();
 		
-		for(Direccion d: direcciones){
+		for(Direccion d: direcciones)
 			posicionesVecinas.add(d.obtenerPosicionNueva(this));
-			
-		}
+		
 		return posicionesVecinas;
 	}
 	
