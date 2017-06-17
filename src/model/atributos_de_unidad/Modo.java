@@ -14,4 +14,7 @@ public abstract class Modo {
 	public abstract String getNombre();
 
 	public abstract int getVelocidad();
+	
+	//	public abstract int getDistanciaDeAtaque();
+
 }
