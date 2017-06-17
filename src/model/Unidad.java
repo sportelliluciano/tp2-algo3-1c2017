@@ -13,7 +13,8 @@ public class Unidad extends Posicionable {
 
 	private Modo modo;
 	private Ki ki = new Ki();
-	
+//	private int vida ;//lo pongo pero fijensen si va aca
+
 	
 	public Unidad(Modo modo) {
 		this.modo = modo;
@@ -62,4 +63,38 @@ public class Unidad extends Posicionable {
 	public Ki getKi() {
 		return this.ki;
 	}
+/*
+//solo correr los test y no tener que modificar el cosntructor
+	public int getVida(){
+		return vida;
+	}
+
+	public void setVida(int puntosDeVida) {
+		vida = puntosDeVida;
+	}
+	//no se si esta bien ubicado en esta clase,pero anda
+	public void atacarBasicoA(Unidad enemigo) throws ErrorEnemigoFueraDeAlcance{ 
+		if(!enemigoEstaDentroDeAlcance(enemigo))
+			throw new ErrorEnemigoFueraDeAlcance();
+		enemigo.setVida( enemigo.getVida() - modo.getAtaqueBasico() );
+	}
+	
+	private boolean enemigoEstaDentroDeAlcance(Unidad enemigo) {
+		Posicion posicionPropia = getPosicion();
+		Posicion posicionEnemiga = enemigo.getPosicion();
+		
+		if(posicionPropia.getX() == posicionEnemiga.getX())
+			if(modo.getDistanciaDeAtaque() + posicionPropia.getY() >= posicionEnemiga.getY() )
+				return true;
+	
+		if(posicionPropia.getY() == posicionEnemiga.getY())
+			if(modo.getDistanciaDeAtaque() + posicionPropia.getX() >= posicionEnemiga.getX() )
+				return true;
+		
+		if( Math.abs(posicionPropia.getX() - posicionEnemiga.getX()) == Math.abs(posicionPropia.getY() - posicionEnemiga.getY()) )
+			if(modo.getDistanciaDeAtaque() >= Math.abs(posicionPropia.getX() - posicionEnemiga.getX()) )
+				return true;
+	
+		return false;
+	}*/
 }
