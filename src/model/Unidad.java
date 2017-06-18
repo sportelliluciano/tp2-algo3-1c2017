@@ -60,11 +60,13 @@ public abstract class Unidad extends Posicionable {
 		return this.ki;
 	}
 	
-	public void ataqueBasicoA(Unidad unidad) {
+	public void ataqueBasicoA(Unidad unidad) throws ErrorEnemigoFueraDeAlcance {
+	    validarAtaque();
 		unidad.recibirAtaque(modo.getAtaqueBasico());
 	}
 	
-	public void ataqueEspecialA(Unidad unidad) throws ErrorKiInsuficiente {
+	public void ataqueEspecialA(Unidad unidad) throws ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance {
+	    validarAtaque();
 		unidad.recibirAtaque(modo.getAtaqueEspecial());
 	}
 	
@@ -79,39 +81,53 @@ public abstract class Unidad extends Posicionable {
 	public int getVidaActual() {
 		return this.vidaActual;
 	}
-	
-/*
-//solo correr los test y no tener que modificar el cosntructor
-	public int getVida(){
-		return vida;
-	}
 
-	public void setVida(int puntosDeVida) {
+	/*public void setVida(int puntosDeVida) {
 		vida = puntosDeVida;
-	}
-	//no se si esta bien ubicado en esta clase,pero anda
-	public void atacarBasicoA(Unidad enemigo) throws ErrorEnemigoFueraDeAlcance{ 
-		if(!enemigoEstaDentroDeAlcance(enemigo))
-			throw new ErrorEnemigoFueraDeAlcance();
-		enemigo.setVida( enemigo.getVida() - modo.getAtaqueBasico() );
-	}
-	
-	private boolean enemigoEstaDentroDeAlcance(Unidad enemigo) {
-		Posicion posicionPropia = getPosicion();
-		Posicion posicionEnemiga = enemigo.getPosicion();
-		
-		if(posicionPropia.getX() == posicionEnemiga.getX())
-			if(modo.getDistanciaDeAtaque() + posicionPropia.getY() >= posicionEnemiga.getY() )
-				return true;
-	
-		if(posicionPropia.getY() == posicionEnemiga.getY())
-			if(modo.getDistanciaDeAtaque() + posicionPropia.getX() >= posicionEnemiga.getX() )
-				return true;
-		
-		if( Math.abs(posicionPropia.getX() - posicionEnemiga.getX()) == Math.abs(posicionPropia.getY() - posicionEnemiga.getY()) )
-			if(modo.getDistanciaDeAtaque() >= Math.abs(posicionPropia.getX() - posicionEnemiga.getX()) )
-				return true;
-	
-		return false;
 	}*/
+		
+	private void validarAtaque throws ErrorEnemigoFueraDeAlcance{
+	    if(!enemigoEstaDentroDeAlcance(enemigo,tablero))
+			 throw new ErrorEnemigoFueraDeAlcance();
+	}
+	
+	private boolean enemigoEstaDentroDeAlcance(Unidad enemigo,Tablero tablero) throws ErrorPosicionInvalida {
+		Posicion posEnemiga = enemigo.getPosicion();
+		
+		Set<Posicion> posPosibles = this.posicionesPosibles(tablero);
+		if(posPosibles.contains(posEnemiga))
+			return true;
+		
+		return false;
+		
+	}
+	
+	//este metodo busca cuales son las posiciones que llega el ataque.FALTA AÑADIR SI TRASPASA O NO A UNIDAD ALIADA
+	private Set<Posicion> posicionesPosibles(Tablero tablero) throws ErrorPosicionInvalida {
+		
+		Set<Posicion> posiciones = new HashSet<Posicion>();
+		
+		for (Direccion d: Direccion.getDireccionesConDiagonales()) 
+			_posicionesPosibles(tablero, d, posiciones,d.obtenerPosicionNueva(getPosicion()), modo.getDistanciaDeAtaque());
+		
+		return posiciones;
+	}
+	
+	private void _posicionesPosibles(Tablero tablero, Direccion d,Set<Posicion> posiciones,Posicion p, int distanciaRestante) throws ErrorPosicionInvalida {
+	    if (distanciaRestante == 0)
+		    return;	
+	
+	    try{
+	        tablero.validarPosicion(p);}//para que cuando choque al tablero no se pase    
+        catch(Exception ErrorPosicionInvalida){
+    	    return;}
+	
+	    posiciones.add(p);
+
+        if(tablero.hayPosicionableEn(p)) return;//si se encontro una unidad la deja guarda y sale
+    
+	    p = d.obtenerPosicionNueva(p);
+ 	    _posicionesPosibles(tablero,d, posiciones, p, distanciaRestante - 1);
+	
+    }
 }
