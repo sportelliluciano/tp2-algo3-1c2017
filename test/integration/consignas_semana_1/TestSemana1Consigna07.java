@@ -25,7 +25,7 @@ public class TestSemana1Consigna07 {
 		tablero.agregarUnidad(goku, new Posicion(3,3));//distancia de ataque = 2
 		tablero.agregarUnidad(freezer, new Posicion(15,15));//se encuentra a distancia = 12
 
-		goku.ataqueBasicoA(freezer);
+		goku.ataqueBasicoA(freezer,tablero);
 		
 	}		
 	
@@ -44,7 +44,7 @@ public class TestSemana1Consigna07 {
 		
 		int vidaOponenteAntesDeAtaque = freezer.getVidaActual();
 		
-		goku.ataqueBasicoA(freezer);
+		goku.ataqueBasicoA(freezer,tablero);
 		
 		assertEquals(freezer.getVidaActual(),(vidaOponenteAntesDeAtaque - 20));
 		
