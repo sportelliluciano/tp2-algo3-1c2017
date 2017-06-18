@@ -60,13 +60,13 @@ public abstract class Unidad extends Posicionable {
 		return this.ki;
 	}
 	
-	public void ataqueBasicoA(Unidad unidad) throws ErrorEnemigoFueraDeAlcance {
-	    validarAtaque();
+	public void ataqueBasicoA(Unidad unidad, Tablero tablero) throws ErrorEnemigoFueraDeAlcance {
+	    validarAtaque(unidad,tablero);
 		unidad.recibirAtaque(modo.getAtaqueBasico());
 	}
 	
-	public void ataqueEspecialA(Unidad unidad) throws ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance {
-	    validarAtaque();
+	public void ataqueEspecialA(Unidad unidad, Tablero tablero) throws ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance {
+	    validarAtaque(unidad,tablero);
 		unidad.recibirAtaque(modo.getAtaqueEspecial());
 	}
 	
@@ -81,12 +81,8 @@ public abstract class Unidad extends Posicionable {
 	public int getVidaActual() {
 		return this.vidaActual;
 	}
-
-	/*public void setVida(int puntosDeVida) {
-		vida = puntosDeVida;
-	}*/
 		
-	private void validarAtaque throws ErrorEnemigoFueraDeAlcance{
+	private void validarAtaque (Unidad enemigo, Tablero tablero) throws ErrorEnemigoFueraDeAlcance{
 	    if(!enemigoEstaDentroDeAlcance(enemigo,tablero))
 			 throw new ErrorEnemigoFueraDeAlcance();
 	}
@@ -102,7 +98,7 @@ public abstract class Unidad extends Posicionable {
 		
 	}
 	
-	//este metodo busca cuales son las posiciones que llega el ataque.FALTA AÃ‘ADIR SI TRASPASA O NO A UNIDAD ALIADA
+	//este metodo busca cuales son las posiciones que llega el ataque.FALTA AÑADIR SI TRASPASA O NO A UNIDAD ALIADA
 	private Set<Posicion> posicionesPosibles(Tablero tablero) throws ErrorPosicionInvalida {
 		
 		Set<Posicion> posiciones = new HashSet<Posicion>();
