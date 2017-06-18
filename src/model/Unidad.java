@@ -9,6 +9,8 @@ import model.error.ErrorKiInsuficiente;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
+import model.error.ErrorEnemigoFueraDeAlcance;
+
 
 public abstract class Unidad extends Posicionable {
 
@@ -60,12 +62,12 @@ public abstract class Unidad extends Posicionable {
 		return this.ki;
 	}
 	
-	public void ataqueBasicoA(Unidad unidad, Tablero tablero) throws ErrorEnemigoFueraDeAlcance {
+	public void ataqueBasicoA(Unidad unidad, Tablero tablero) throws ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
 	    validarAtaque(unidad,tablero);
 		unidad.recibirAtaque(modo.getAtaqueBasico());
 	}
 	
-	public void ataqueEspecialA(Unidad unidad, Tablero tablero) throws ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance {
+	public void ataqueEspecialA(Unidad unidad, Tablero tablero) throws ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
 	    validarAtaque(unidad,tablero);
 		unidad.recibirAtaque(modo.getAtaqueEspecial());
 	}
@@ -82,7 +84,7 @@ public abstract class Unidad extends Posicionable {
 		return this.vidaActual;
 	}
 		
-	private void validarAtaque (Unidad enemigo, Tablero tablero) throws ErrorEnemigoFueraDeAlcance{
+	private void validarAtaque (Unidad enemigo, Tablero tablero) throws ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
 	    if(!enemigoEstaDentroDeAlcance(enemigo,tablero))
 			 throw new ErrorEnemigoFueraDeAlcance();
 	}
@@ -98,7 +100,7 @@ public abstract class Unidad extends Posicionable {
 		
 	}
 	
-	//este metodo busca cuales son las posiciones que llega el ataque.FALTA AÑADIR SI TRASPASA O NO A UNIDAD ALIADA
+	//este metodo busca cuales son las posiciones que llega el ataque.FALTA Aï¿½ADIR SI TRASPASA O NO A UNIDAD ALIADA
 	private Set<Posicion> posicionesPosibles(Tablero tablero) throws ErrorPosicionInvalida {
 		
 		Set<Posicion> posiciones = new HashSet<Posicion>();
