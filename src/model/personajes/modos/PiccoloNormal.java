@@ -1,6 +1,7 @@
 package model.personajes.modos;
 
 import model.ataque.AtaqueBasico;
+import model.ataque.Makankosappo;
 import model.atributos_de_unidad.Modo;
 import model.equipos.GuerrerosZ;
 
@@ -11,6 +12,7 @@ public class PiccoloNormal extends Modo {
     	velocidad = 2;
     	distanciaDeAtaque = 2;
      	ataqueBasico = new AtaqueBasico(20);
+     	ataqueEspecial = new Makankosappo(20);
      	
      	costoKiSiguienteTransformacion = 20;
         siguienteModo = new PiccoloFortalecido(equipo);

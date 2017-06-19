@@ -1,6 +1,7 @@
 package model.personajes.modos;
 
 import model.ataque.AtaqueBasico;
+import model.ataque.Makankosappo;
 import model.atributos_de_unidad.Ki;
 import model.atributos_de_unidad.Modo;
 import model.error.ErrorNoCumpleReqTrans;
@@ -13,6 +14,7 @@ public class PiccoloProtector extends Modo {
     	velocidad = 4;
     	distanciaDeAtaque = 6;
      	ataqueBasico = new AtaqueBasico(60);
+     	ataqueEspecial = new Makankosappo(60);
 	}
 	
 	@Override

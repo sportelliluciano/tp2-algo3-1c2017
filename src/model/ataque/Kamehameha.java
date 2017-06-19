@@ -1,17 +1,10 @@
 package model.ataque;
 
 
-public class Kamehameha implements Ataque {
-
-	private int dano;
+public class Kamehameha extends AtaqueBasico implements Ataque {
 	
 	public Kamehameha(int danoBasico) {
-		this.dano = (int)(danoBasico * 1.5);
-	}
-	
-	@Override
-	public int getDano() {
-		return this.dano;
+		super((int)(danoBasico * 1.5));
 	}
 
 }

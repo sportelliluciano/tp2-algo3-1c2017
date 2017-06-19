@@ -1,6 +1,7 @@
 package model.personajes.modos;
 
 import model.ataque.AtaqueBasico;
+import model.ataque.RayoMortal;
 import model.atributos_de_unidad.Ki;
 import model.atributos_de_unidad.Modo;
 import model.error.ErrorNoCumpleReqTrans;
@@ -12,6 +13,7 @@ public class FreezerDefinitivo extends Modo {
     	velocidad = 6;
     	distanciaDeAtaque = 3;
     	ataqueBasico = new AtaqueBasico(50);
+    	ataqueEspecial = new RayoMortal(50);
     }
 	
 	@Override

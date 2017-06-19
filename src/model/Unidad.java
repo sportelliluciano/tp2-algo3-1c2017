@@ -18,8 +18,7 @@ public abstract class Unidad extends Posicionable {
 	protected Equipo equipo;
 	protected Modo modo;
 	protected Ki ki = new Ki();
-	protected int vidaMaxima;
-	protected int vidaActual;
+	protected Vida vida;
 
 	public Set<Posicion> movsPosibles(Tablero tablero) throws ErrorPosicionInvalida {
 		Set<Posicion> posiciones = new HashSet<Posicion>();
@@ -64,32 +63,37 @@ public abstract class Unidad extends Posicionable {
 		return this.ki;
 	}
 	
+	protected void _atacar(Unidad enemigo, Tablero tablero, Ataque ataque) throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
+		validarAtaque(enemigo, tablero);
+		enemigo.recibirAtaque(ataque);
+	}
+	
 	public void ataqueBasicoA(Unidad unidad, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
-	    validarAtaque(unidad, tablero);
-	    Ataque ataqueBasico = modo.getAtaqueBasico();
-		unidad.recibirAtaque(ataqueBasico);
+	    _atacar(unidad, tablero, modo.getAtaqueBasico());
 	}
 	
 	public void ataqueEspecialA(Unidad unidad, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
-	    validarAtaque(unidad,tablero);
-	    Ataque ataqueEspecial = modo.getAtaqueEspecial();
-		unidad.recibirAtaque(ataqueEspecial);
+		_atacar(unidad, tablero, modo.getAtaqueEspecial());
 	}
 	
 	public void recibirAtaque(Ataque ataque) {
-		vidaActual -= ataque.getDano();
+		vida.reducirEn(ataque.getDano());
 	}
 	
 	public boolean estaVivo() {
-		return this.vidaActual > 0;
+		return vida.estaVivo();
 	}
 	
 	public int getVidaActual() {
-		return this.vidaActual;
+		return vida.getVidaActual();
 	}
 	
 	public int getVidaMaxima() {
-		return this.vidaMaxima;
+		return vida.getVidaMaxima();
+	}
+	
+	public int getPorcentajeVida() {
+		return vida.getPorcentajeVida();
 	}
 		
 	private void validarAtaque (Unidad enemigo, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {

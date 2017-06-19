@@ -1,6 +1,7 @@
 package model.personajes.modos;
 
 import model.ataque.AtaqueBasico;
+import model.ataque.Masenko;
 import model.atributos_de_unidad.Ki;
 import model.atributos_de_unidad.Modo;
 import model.equipos.GuerrerosZ;
@@ -18,6 +19,7 @@ public class GohanSSJFase1 extends Modo {
     	velocidad = 2;
     	distanciaDeAtaque = 2;
      	ataqueBasico = new AtaqueBasico(30);
+     	ataqueEspecial = new Masenko(30);
         
      	this.equipo = equipo;
      	siguienteModo = new GohanSSJFase2();
@@ -28,10 +30,10 @@ public class GohanSSJFase1 extends Modo {
 		Goku goku = equipo.getGoku();
 		Piccolo piccolo = equipo.getPiccolo();
 		
-		if (goku.getVidaActual() > goku.getVidaMaxima() * 0.3)
+		if (goku.getPorcentajeVida() > 30)
 			throw new ErrorNoCumpleReqTrans();
 		
-		if (piccolo.getVidaActual() > piccolo.getVidaMaxima() * 0.3)
+		if (piccolo.getPorcentajeVida() > 30)
 			throw new ErrorNoCumpleReqTrans();
 		
 		return siguienteModo;

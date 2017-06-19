@@ -1,6 +1,7 @@
 package model.personajes.modos;
 
 import model.ataque.AtaqueBasico;
+import model.ataque.Masenko;
 import model.atributos_de_unidad.Ki;
 import model.atributos_de_unidad.Modo;
 import model.error.ErrorNoCumpleReqTrans;
@@ -13,6 +14,7 @@ public class GohanSSJFase2 extends Modo {
     	velocidad = 3;
     	distanciaDeAtaque = 4;
      	ataqueBasico = new AtaqueBasico(100);
+     	ataqueEspecial = new Masenko(100);
     }
 	
 	@Override
