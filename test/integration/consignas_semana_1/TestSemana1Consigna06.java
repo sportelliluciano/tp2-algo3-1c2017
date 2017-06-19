@@ -38,13 +38,13 @@ public class TestSemana1Consigna06 {
 		int alto = tablero.getAlto();
 		int ancho = tablero.getAncho();
 		
-		jugador1.elegirPersonaje(new Gohan());
-		jugador1.elegirPersonaje(new Goku());
-		jugador1.elegirPersonaje(new Piccolo());
+		jugador1.elegirPersonaje(new Gohan(null));
+		jugador1.elegirPersonaje(new Goku(null));
+		jugador1.elegirPersonaje(new Piccolo(null));
 
-		jugador2.elegirPersonaje(new Freezer());
-		jugador2.elegirPersonaje(new Cell());
-		jugador2.elegirPersonaje(new MajinBoo());
+		jugador2.elegirPersonaje(new Freezer(null));
+		jugador2.elegirPersonaje(new Cell(null));
+		jugador2.elegirPersonaje(new MajinBoo(null));
 
 		Set<Posicion> esquina1 = jugador1.getEsquina();
 		

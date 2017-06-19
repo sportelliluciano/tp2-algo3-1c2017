@@ -20,6 +20,10 @@ public class Jugador {
 
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+	
 	public void setJuego(Juego juego,Set<Posicion> esquinaEnemiga){
 		this.juego = juego;
 		esquina = esquinaAleatoria(esquinaEnemiga);
@@ -27,7 +31,7 @@ public class Jugador {
 	
 	public void elegirPersonaje(Unidad unidad) throws ErrorPosicionInvalida{
 		Posicion pos = posEsquina(esquina);
-		juego.agregarUnidad(unidad, pos);
+		juego.getTablero().agregarUnidad(unidad, pos);
 		personajes.add(unidad);
 	}
 	
@@ -90,8 +94,8 @@ public class Jugador {
 		case 4:return esquinaInferiorIzq;
 		
 		}
-		return null;
-
+		
+		throw new RuntimeException("Esto debería ser inalcanzable");
 	}
 
 	public Set<Unidad> getPersonajes() {
