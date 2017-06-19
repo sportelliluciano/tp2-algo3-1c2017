@@ -1,6 +1,7 @@
 package model.personajes.modos;
 
 import model.ataque.AtaqueBasico;
+import model.ataque.Kamehameha;
 import model.atributos_de_unidad.Modo;
 
 public class GokuNormal extends Modo {
@@ -15,4 +16,9 @@ public class GokuNormal extends Modo {
         siguienteModo     = new GokuKaioKen();
     }
 
+    @Override
+    public void incrementarPoderPelea(double multiplicador) {
+    	ataqueBasico = new AtaqueBasico((int)(20 * multiplicador));
+    	ataqueEspecial = new Kamehameha((int)(20 * multiplicador));
+    }
 }

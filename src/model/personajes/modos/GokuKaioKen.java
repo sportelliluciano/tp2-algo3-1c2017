@@ -1,6 +1,7 @@
 package model.personajes.modos;
 
 import model.ataque.AtaqueBasico;
+import model.ataque.Kamehameha;
 import model.atributos_de_unidad.Modo;
 
 public class GokuKaioKen extends Modo {
@@ -14,5 +15,11 @@ public class GokuKaioKen extends Modo {
 		costoKiSiguienteTransformacion = 50;
 		siguienteModo     = new GokuSSJ();
 	}
+	
+	@Override
+    public void incrementarPoderPelea(double multiplicador) {
+    	ataqueBasico = new AtaqueBasico((int)(40 * multiplicador));
+    	ataqueEspecial = new Kamehameha((int)(40 * multiplicador));
+    }
 	
 }
