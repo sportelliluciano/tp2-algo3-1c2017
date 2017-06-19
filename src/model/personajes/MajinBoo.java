@@ -1,15 +1,17 @@
 package model.personajes;
 
 import model.Unidad;
-import model.error.ErrorNoCumpleReqTrans;
-import model.error.ErrorNoHayMasTrans;
+import model.equipos.EnemigosDeLaTierra;
+import model.personajes.modos.MajinBooNormal;
 
 public class MajinBoo extends Unidad {
 
-	@Override
-	public void transformarse() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
-		// TODO Auto-generated method stub
-
+	public MajinBoo(EnemigosDeLaTierra equipo) {
+		this.equipo = equipo;
+		vidaMaxima = 300;
+		vidaActual = 300;
+		
+		modo = new MajinBooNormal();
 	}
 
 }

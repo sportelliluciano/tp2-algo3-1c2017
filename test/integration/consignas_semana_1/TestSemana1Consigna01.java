@@ -18,7 +18,7 @@ public class TestSemana1Consigna01 {
 	public void test01MoverUnidadCambiaSuPosicion() throws ErrorPosicionInvalida {
 				
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Goku();
+		Unidad goku = new Goku(null);
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		
 		tablero.moverUnidad(goku, new Posicion(5,4));

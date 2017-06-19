@@ -16,7 +16,7 @@ public class TestSemana1Consigna04 {
 	
 	@Test
 	public void test04aTransformarseCambiaElModo() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida {
-		Unidad goku = new Goku();	
+		Unidad goku = new Goku(null);	
 		for (int i = 0; i < 4; i++) // Goku requiere 20 ki para el kaioken y 
 			goku.pasarTurno();		// carga 5 ki por turno.
 		
@@ -27,7 +27,7 @@ public class TestSemana1Consigna04 {
 	
 	@Test (expected = ErrorNoCumpleReqTrans.class)
 	public void test04bTransformarseConKiInsuficienteLanzaError() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida {
-		Unidad goku = new Goku();
+		Unidad goku = new Goku(null);
 		
 		goku.transformarse();
 	}

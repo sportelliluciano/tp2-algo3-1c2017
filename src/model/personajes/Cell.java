@@ -1,14 +1,16 @@
 package model.personajes;
 
 import model.Unidad;
-import model.error.ErrorNoCumpleReqTrans;
-import model.error.ErrorNoHayMasTrans;
+import model.equipos.EnemigosDeLaTierra;
+import model.personajes.modos.CellNormal;
 
 public class Cell extends Unidad {
 
-	@Override
-	public void transformarse() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
-		// TODO Auto-generated method stub
-
+	public Cell(EnemigosDeLaTierra equipo) {
+		this.equipo = equipo;
+		vidaMaxima = 500;
+		vidaActual = 500;
+		
+		modo = new CellNormal();
 	}
 }

@@ -18,8 +18,8 @@ public class TestSemana1Consigna02 {
 	public void test02aCrearUnidadEnPosicionTomadaLanzaExcepcion() throws ErrorPosicionInvalida {
 		
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Goku();
-		Unidad gohan = new Gohan();
+		Unidad goku = new Goku(null);
+		Unidad gohan = new Gohan(null);
 		
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		tablero.agregarUnidad(gohan, new Posicion(5,5));
@@ -29,8 +29,8 @@ public class TestSemana1Consigna02 {
 	public void test02bCrearOtraUnidadEnPosicionVacia() throws ErrorPosicionInvalida {
 		
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Goku();
-		Unidad gohan = new Gohan();
+		Unidad goku = new Goku(null);
+		Unidad gohan = new Gohan(null);
 		
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		tablero.agregarUnidad(gohan, new Posicion(6,5));
@@ -44,8 +44,8 @@ public class TestSemana1Consigna02 {
 	public void test02cNoSePuedeMoverUnidadAPosicionTomadaPorOtraUnidad() throws ErrorPosicionInvalida {
 	
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Goku();
-		Unidad gohan = new Gohan();
+		Unidad goku = new Goku(null);
+		Unidad gohan = new Gohan(null);
 		tablero.agregarUnidad(goku, new Posicion(5,5));
 		tablero.agregarUnidad(gohan, new Posicion(6,5));
 		

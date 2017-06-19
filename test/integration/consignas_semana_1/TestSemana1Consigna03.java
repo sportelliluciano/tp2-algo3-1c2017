@@ -18,8 +18,8 @@ public class TestSemana1Consigna03 {
 	@Test (expected = ErrorPosicionInvalida.class)
 	public void test03aNoSePuedeAtravesarUnidadAmistosa() throws ErrorPosicionInvalida {
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Goku();
-		Unidad gohan = new Gohan();
+		Unidad goku = new Goku(null);
+		Unidad gohan = new Gohan(null);
 		
 		tablero.agregarUnidad(goku, new Posicion(1,1));
 		tablero.agregarUnidad(gohan, new Posicion(2,2));
@@ -30,8 +30,8 @@ public class TestSemana1Consigna03 {
 	@Test (expected = ErrorPosicionInvalida.class)
 	public void test03bNoSePuedeAtravesarUnidadEnemiga() throws ErrorPosicionInvalida {
 		Tablero tablero = new Tablero(20,20);
-		Unidad goku = new Goku();
-		Unidad gohan = new Gohan();
+		Unidad goku = new Goku(null);
+		Unidad gohan = new Gohan(null);
 		
 		tablero.agregarUnidad(goku, new Posicion(1,1));
 		tablero.agregarUnidad(gohan, new Posicion(2,2));

@@ -9,11 +9,13 @@ import model.error.ErrorKiInsuficiente;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
+import model.error.ErrorUnidadNoEsEnemiga;
 import model.error.ErrorEnemigoFueraDeAlcance;
 
 
 public abstract class Unidad extends Posicionable {
 
+	protected Equipo equipo;
 	protected Modo modo;
 	protected Ki ki = new Ki();
 	protected int vidaMaxima;
@@ -62,14 +64,16 @@ public abstract class Unidad extends Posicionable {
 		return this.ki;
 	}
 	
-	public void ataqueBasicoA(Unidad unidad, Tablero tablero) throws ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
-	    validarAtaque(unidad,tablero);
-		unidad.recibirAtaque(modo.getAtaqueBasico());
+	public void ataqueBasicoA(Unidad unidad, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
+	    validarAtaque(unidad, tablero);
+	    Ataque ataqueBasico = modo.getAtaqueBasico();
+		unidad.recibirAtaque(ataqueBasico);
 	}
 	
-	public void ataqueEspecialA(Unidad unidad, Tablero tablero) throws ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
+	public void ataqueEspecialA(Unidad unidad, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
 	    validarAtaque(unidad,tablero);
-		unidad.recibirAtaque(modo.getAtaqueEspecial());
+	    Ataque ataqueEspecial = modo.getAtaqueEspecial();
+		unidad.recibirAtaque(ataqueEspecial);
 	}
 	
 	public void recibirAtaque(Ataque ataque) {
@@ -83,10 +87,16 @@ public abstract class Unidad extends Posicionable {
 	public int getVidaActual() {
 		return this.vidaActual;
 	}
+	
+	public int getVidaMaxima() {
+		return this.vidaMaxima;
+	}
 		
-	private void validarAtaque (Unidad enemigo, Tablero tablero) throws ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
+	private void validarAtaque (Unidad enemigo, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
 	    if(!enemigoEstaDentroDeAlcance(enemigo,tablero))
-			 throw new ErrorEnemigoFueraDeAlcance();
+			throw new ErrorEnemigoFueraDeAlcance();
+	    if(equipo.pertenece(enemigo))
+	    	throw new ErrorUnidadNoEsEnemiga(); 
 	}
 	
 	private boolean enemigoEstaDentroDeAlcance(Unidad enemigo,Tablero tablero) throws ErrorPosicionInvalida {
@@ -128,4 +138,8 @@ public abstract class Unidad extends Posicionable {
  	    _posicionesPosibles(tablero,d, posiciones, p, distanciaRestante - 1);
 	
     }
+
+	public int cantidadDeEsferasDelDragon() {
+		return 0;
+	}
 }

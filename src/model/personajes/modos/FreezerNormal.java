@@ -5,7 +5,6 @@ import model.atributos_de_unidad.Modo;
 
 public class FreezerNormal extends Modo {
 	
-	
     public FreezerNormal() {
     	nombre = "Freezer Normal";
     	velocidad = 4;

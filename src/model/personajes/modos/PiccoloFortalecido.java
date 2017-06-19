@@ -6,34 +6,29 @@ import model.atributos_de_unidad.Modo;
 import model.equipos.GuerrerosZ;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
-import model.personajes.Goku;
-import model.personajes.Piccolo;
+import model.personajes.Gohan;
 
-public class GohanSSJFase1 extends Modo {
-	
+public class PiccoloFortalecido extends Modo {
+
 	private GuerrerosZ equipo;
 	
-	public GohanSSJFase1(GuerrerosZ equipo) {
-    	nombre = "Gohan Super Sayajin fase 1";
+	public PiccoloFortalecido(GuerrerosZ equipo) {
+		nombre = "Piccolo Fortalecido";
     	velocidad = 2;
     	distanciaDeAtaque = 2;
-     	ataqueBasico = new AtaqueBasico(30);
-        
+     	ataqueBasico = new AtaqueBasico(20);
+     	
      	this.equipo = equipo;
-     	siguienteModo = new GohanSSJFase2();
-    }
+        siguienteModo = new PiccoloProtector();
+	}
 	
 	@Override
 	public Modo siguienteTransformacion(Ki ki) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
-		Goku goku = equipo.getGoku();
-		Piccolo piccolo = equipo.getPiccolo();
-		
-		if (goku.getVidaActual() > goku.getVidaMaxima() * 0.3)
-			throw new ErrorNoCumpleReqTrans();
-		
-		if (piccolo.getVidaActual() > piccolo.getVidaMaxima() * 0.3)
+		Gohan gohan = equipo.getGohan();
+		if (gohan.getVidaActual() > gohan.getVidaMaxima() * 0.2)
 			throw new ErrorNoCumpleReqTrans();
 		
 		return siguienteModo;
 	}
+	
 }
