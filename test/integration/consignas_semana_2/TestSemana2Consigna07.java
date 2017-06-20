@@ -66,7 +66,7 @@ public class TestSemana2Consigna07 {
 		
 		cell.transformarse();
 		
-		for(int j = 0; j < 8; j++){//necesita absorber 8 veces para la transformacion semiPerfecto
+		for(int j = 0; j < 8; j++){//necesita absorber 8 veces para la transformacion Perfecto
 			cell.pasarTurno();
 			cell.ataqueEspecialA(piccolo, tablero);//absorbe vida
 		}
