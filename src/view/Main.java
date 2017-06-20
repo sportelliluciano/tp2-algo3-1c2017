@@ -1,7 +1,6 @@
-package main;
+package view;
 
 import javafx.application.*;
-import javafx.event.*;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.image.*;
@@ -53,7 +52,6 @@ public class Main extends Application {
 	}
 	
 	public void cerrarPrograma(){
-		System.out.println("Se cerró el juego.");
 		ventana.close();
 	}
 }
