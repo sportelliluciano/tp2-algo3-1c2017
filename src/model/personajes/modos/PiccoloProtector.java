@@ -15,6 +15,7 @@ public class PiccoloProtector extends Modo {
     	distanciaDeAtaque = 6;
      	ataqueBasico = new AtaqueBasico(60);
      	ataqueEspecial = new Makankosappo(60);
+     	poderDeAtaque = 60;
 	}
 	
 	@Override

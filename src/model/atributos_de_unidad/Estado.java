@@ -8,6 +8,7 @@ public class Estado {
 	public	int envenenamiento;
 	public int silencio;
 	public int reduccionVelocidad;
+	public int boost;
 	
 	public Estado(){
 		this.duracionParalisis = 0;

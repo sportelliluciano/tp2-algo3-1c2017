@@ -12,7 +12,7 @@ public class CellPerfecto extends Modo {
     	velocidad         = 4;
     	distanciaDeAtaque = 4;
      	ataqueBasico      = new AtaqueBasico(80);
-     	
+     	poderDeAtaque = 80;
     }
 	
 	@Override

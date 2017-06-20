@@ -14,7 +14,8 @@ public class MajinBooOriginal extends Modo {
     	distanciaDeAtaque = 3;
     	ataqueBasico = new AtaqueBasico(60);
         ataqueEspecial = new ConvierteteEnChocolate();
-       
+        poderDeAtaque = 60;
+        
     }
 	
 	@Override

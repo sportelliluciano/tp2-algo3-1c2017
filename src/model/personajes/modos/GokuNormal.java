@@ -11,6 +11,7 @@ public class GokuNormal extends Modo {
     	velocidad         = 2;
     	distanciaDeAtaque = 2;
      	ataqueBasico      = new AtaqueBasico(20);
+     	poderDeAtaque = 20;
      	
      	costoKiSiguienteTransformacion = 20;
         siguienteModo     = new GokuKaioKen();

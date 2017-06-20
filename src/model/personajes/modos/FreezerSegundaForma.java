@@ -11,7 +11,8 @@ public class FreezerSegundaForma extends Modo {
     	distanciaDeAtaque = 3;
     	ataqueBasico = new AtaqueBasico(40);
     	ataqueEspecial = new RayoMortal(40);
-       
+    	poderDeAtaque = 40;
+    	
         costoKiSiguienteTransformacion = 50;
         siguienteModo = new FreezerDefinitivo();
     }

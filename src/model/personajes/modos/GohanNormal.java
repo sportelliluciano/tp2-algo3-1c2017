@@ -13,6 +13,7 @@ public class GohanNormal extends Modo {
     	distanciaDeAtaque = 2;
      	ataqueBasico = new AtaqueBasico(15);
      	ataqueEspecial = new Masenko(15);
+     	poderDeAtaque = 15;
      	
      	costoKiSiguienteTransformacion = 10;
         siguienteModo = new GohanSSJFase1(equipo);

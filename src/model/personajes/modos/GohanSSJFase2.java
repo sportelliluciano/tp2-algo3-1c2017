@@ -15,7 +15,8 @@ public class GohanSSJFase2 extends Modo {
     	distanciaDeAtaque = 4;
      	ataqueBasico = new AtaqueBasico(100);
      	ataqueEspecial = new Masenko(100);
-    }
+     	poderDeAtaque = 100;
+	}
 	
 	@Override
 	public Modo siguienteTransformacion(Ki ki) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {

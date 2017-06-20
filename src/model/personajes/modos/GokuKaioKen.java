@@ -11,6 +11,7 @@ public class GokuKaioKen extends Modo {
 		velocidad         = 3;
 		distanciaDeAtaque = 4;
 		ataqueBasico      = new AtaqueBasico(40);
+		poderDeAtaque = 40;
 		
 		costoKiSiguienteTransformacion = 50;
 		siguienteModo     = new GokuSSJ();
