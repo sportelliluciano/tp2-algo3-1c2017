@@ -12,7 +12,7 @@ import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 
 public class TestSemana2Consigna04 {
-	
+	@Test
   	public void test04TransformarPiccoloAprotectorConGohanConMenosDeVeintePorcientoDeVidaCambiaModo() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida {
 	        Tablero tablero = new Tablero(20,20);
 	        GuerrerosZ guerreros = new GuerrerosZ();
@@ -34,7 +34,7 @@ public class TestSemana2Consigna04 {
 		
 	        piccolo.transformarse();
 		
-	        assertTrue(gohan.getModo().getNombre().equals("Piccolo Protector"));
+	        assertTrue(piccolo.getModo().getNombre().equals("Piccolo Protector"));
 
 	}
 	
