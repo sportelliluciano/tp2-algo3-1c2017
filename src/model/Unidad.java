@@ -19,6 +19,7 @@ public abstract class Unidad extends Posicionable {
 	protected Modo modo;
 	protected Ki ki = new Ki();
 	protected Vida vida;
+	protected Estado estado = new Estado(); //Camilo
 
 	public Set<Posicion> movsPosibles(Tablero tablero) throws ErrorPosicionInvalida {
 		Set<Posicion> posiciones = new HashSet<Posicion>();
@@ -41,6 +42,7 @@ public abstract class Unidad extends Posicionable {
 	}
 	
 	public void moverA(Posicion nuevaPosicion, Tablero tablero) throws ErrorPosicionInvalida {
+		if(!estado.moverseEsPosible()) return;
 		Set<Posicion> movimientos = movsPosibles(tablero);
 		if (!movimientos.contains(nuevaPosicion))
 			throw new ErrorPosicionInvalida();
@@ -49,6 +51,7 @@ public abstract class Unidad extends Posicionable {
 
 	public void pasarTurno() {
 		ki.pasarTurno();
+		estado.pasarTurno();
 	}
 	
 	public void transformarse() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
@@ -145,5 +148,9 @@ public abstract class Unidad extends Posicionable {
 
 	public int cantidadDeEsferasDelDragon() {
 		return 0;
+	}
+	
+	public void paralizar(int durante){
+		estado.paralizar(durante);
 	}
 }
