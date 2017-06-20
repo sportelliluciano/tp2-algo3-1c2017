@@ -13,7 +13,7 @@ import model.error.ErrorPosicionInvalida;
 public class TestSemana2Consigna01 {
 	
 	@Test(expected = ErrorNoCumpleReqTrans.class)
-	public void test04aTransformarseCambiaElModo() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida {
+	public void test01TransformarGohanConCompañerosConVidaMayorAlTreintaPorcientoDaError() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida {
 		Tablero tablero = new Tablero(20,20);
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -31,7 +31,7 @@ public class TestSemana2Consigna01 {
 		for (int i = 0; i < 6; i++) // Gohan requiere 30 ki para SSJ2 y 
 			gohan.pasarTurno();		// carga 5 ki por turno.
 		
-		gohan.transformarse();//no puede transformar porque necesita que sus aliados tengan menod de 30% vida
+		gohan.transformarse();//no puede transformar porque necesita que sus aliados tengan menor de 30% vida
 		
 	}
 	
