@@ -23,7 +23,7 @@ public class CellSemiPerfecto extends Modo {
 	@Override
 	public Ataque getAtaqueEspecial() {
 		vidaAbsorbida++;
-		return super.getAtaqueEspecial();
+		return ataqueBasico;
 	}
 	
 	@Override
