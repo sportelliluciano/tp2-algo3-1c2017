@@ -16,7 +16,7 @@ import model.error.ErrorPosicionInvalida;
 public class TestSemana2Consigna02 {
 
 	@Test
-	public void test04bTransformarseConKiInsuficienteLanzaError() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida {
+	public void test02TransformarGohanAultilmaTransformacionConCompañerosDeVidaInferiorAlTreintaPorcientoCambiaElModo() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida {
 		Tablero tablero = new Tablero(20,20);
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
