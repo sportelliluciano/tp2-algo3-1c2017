@@ -2,6 +2,8 @@ package integration.consignas_semana_2;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
+
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
