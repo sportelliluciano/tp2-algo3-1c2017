@@ -15,7 +15,7 @@ import model.personajes.modos.GokuNormal;
 public class TestSemana1Consigna01 {
 	
 	@Test
-	public void test01MoverUnidadCambiaSuPosicion() throws ErrorPosicionInvalida {
+	public void test01MoverUnidadCambiaSuPosicion() throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 				
 		Tablero tablero = new Tablero(20,20);
 		Unidad goku = new Goku(null);

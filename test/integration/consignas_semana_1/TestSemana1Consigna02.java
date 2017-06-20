@@ -41,7 +41,7 @@ public class TestSemana1Consigna02 {
 	
 	
 	@Test(expected = ErrorPosicionInvalida.class)
-	public void test02cNoSePuedeMoverUnidadAPosicionTomadaPorOtraUnidad() throws ErrorPosicionInvalida {
+	public void test02cNoSePuedeMoverUnidadAPosicionTomadaPorOtraUnidad() throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 	
 		Tablero tablero = new Tablero(20,20);
 		Unidad goku = new Goku(null);

@@ -1,6 +1,7 @@
 package model.atributos_de_unidad;
 
 import model.ataque.Ataque;
+import model.error.ErrorUnidadParalizada;
 
 public class Estado {
 	public int duracionParalisis;
@@ -12,8 +13,9 @@ public class Estado {
 		this.duracionParalisis = 0;
 	}
 	
-	public boolean moverseEsPosible() {
-		return !paralizado();
+	public void moverseEsPosible() throws ErrorUnidadParalizada {
+		if(paralizado()) throw new ErrorUnidadParalizada();
+		return;
 	}
 	
 	public void paralizar(int porCantidadDeTurnos){

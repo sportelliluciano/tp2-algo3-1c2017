@@ -10,6 +10,7 @@ import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadNoEsEnemiga;
+import model.error.ErrorUnidadParalizada;
 import model.error.ErrorEnemigoFueraDeAlcance;
 
 
@@ -41,8 +42,8 @@ public abstract class Unidad extends Posicionable {
 		}
 	}
 	
-	public void moverA(Posicion nuevaPosicion, Tablero tablero) throws ErrorPosicionInvalida {
-		if(!estado.moverseEsPosible()) return;
+	public void moverA(Posicion nuevaPosicion, Tablero tablero) throws ErrorPosicionInvalida, ErrorUnidadParalizada {
+		estado.moverseEsPosible();
 		Set<Posicion> movimientos = movsPosibles(tablero);
 		if (!movimientos.contains(nuevaPosicion))
 			throw new ErrorPosicionInvalida();

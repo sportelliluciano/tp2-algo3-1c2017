@@ -8,6 +8,7 @@ import model.Posicion;
 import model.Tablero;
 import model.Unidad;
 import model.error.ErrorPosicionInvalida;
+import model.error.ErrorUnidadParalizada;
 import model.personajes.Gohan;
 import model.personajes.Goku;
 import model.personajes.modos.GohanNormal;
@@ -16,7 +17,7 @@ import model.personajes.modos.GokuNormal;
 public class TestSemana1Consigna03 {
 
 	@Test (expected = ErrorPosicionInvalida.class)
-	public void test03aNoSePuedeAtravesarUnidadAmistosa() throws ErrorPosicionInvalida {
+	public void test03aNoSePuedeAtravesarUnidadAmistosa() throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 		Tablero tablero = new Tablero(20,20);
 		Unidad goku = new Goku(null);
 		Unidad gohan = new Gohan(null);
@@ -28,7 +29,7 @@ public class TestSemana1Consigna03 {
 	}
 	
 	@Test (expected = ErrorPosicionInvalida.class)
-	public void test03bNoSePuedeAtravesarUnidadEnemiga() throws ErrorPosicionInvalida {
+	public void test03bNoSePuedeAtravesarUnidadEnemiga() throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 		Tablero tablero = new Tablero(20,20);
 		Unidad goku = new Goku(null);
 		Unidad gohan = new Gohan(null);

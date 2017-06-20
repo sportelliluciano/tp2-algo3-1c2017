@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import model.error.ErrorPosicionInvalida;
+import model.error.ErrorUnidadParalizada;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class Tablero {
 		posicionables.add(unidad);
 	}
 
-	public void moverUnidad(Unidad unidad, Posicion nuevaPosicion) throws ErrorPosicionInvalida {
+	public void moverUnidad(Unidad unidad, Posicion nuevaPosicion) throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 		validarPosicion(nuevaPosicion);
 		unidad.moverA(nuevaPosicion, this);
 	}

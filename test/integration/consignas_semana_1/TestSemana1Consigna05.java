@@ -10,13 +10,14 @@ import model.Unidad;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
+import model.error.ErrorUnidadParalizada;
 import model.personajes.Goku;
 import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna05 {
 	
 	@Test (expected = ErrorPosicionInvalida.class)
-	public void test05AvanzarTresPosicionesConGokuNormal() throws ErrorPosicionInvalida {
+	public void test05AvanzarTresPosicionesConGokuNormal() throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 		Tablero tablero = new Tablero(20, 20);
 		Unidad goku = new Goku(null);
 		tablero.agregarUnidad(goku, new Posicion(5,5));
@@ -25,7 +26,7 @@ public class TestSemana1Consigna05 {
 	}
 	
 	@Test
-	public void test05AvanzarTresPosicionesConGokuKaioken() throws ErrorPosicionInvalida, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+	public void test05AvanzarTresPosicionesConGokuKaioken() throws ErrorPosicionInvalida, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorUnidadParalizada {
 		Tablero tablero = new Tablero(20, 20);
 		Unidad goku = new Goku(null);
 		tablero.agregarUnidad(goku, new Posicion(5,5));
