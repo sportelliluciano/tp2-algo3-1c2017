@@ -8,4 +8,9 @@ public class ConvierteteEnChocolate implements Ataque {
 		return 0;
 	}
 
+	@Override
+	public int paralizaDurante() {
+		return 3;
+	}
+
 }

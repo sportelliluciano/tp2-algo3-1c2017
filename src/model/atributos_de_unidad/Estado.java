@@ -1,5 +1,7 @@
 package model.atributos_de_unidad;
 
+import model.ataque.Ataque;
+
 public class Estado {
 	public int duracionParalisis;
 	public	int envenenamiento;
@@ -11,7 +13,7 @@ public class Estado {
 	}
 	
 	public boolean moverseEsPosible() {
-		return duracionParalisis==0;
+		return !paralizado();
 	}
 	
 	public void paralizar(int porCantidadDeTurnos){
@@ -19,5 +21,14 @@ public class Estado {
 	}
 	public void pasarTurno(){
 		if(duracionParalisis!=0) duracionParalisis--;
+	}
+
+	public void recibirAtaque(Ataque ataque) {
+		paralizar(ataque.paralizaDurante());
+		
+	}
+	
+	public boolean paralizado(){
+		return duracionParalisis!=0;
 	}
 }

@@ -12,4 +12,9 @@ public class AtaqueBasico implements Ataque {
 	public int getDano() {
 		return this.dano;
 	}
+
+	@Override
+	public int paralizaDurante() {
+		return 0;
+	}
 }

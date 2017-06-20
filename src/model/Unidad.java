@@ -81,6 +81,7 @@ public abstract class Unidad extends Posicionable {
 	
 	public void recibirAtaque(Ataque ataque) {
 		vida.reducirEn(ataque.getDano());
+		estado.recibirAtaque(ataque);
 	}
 	
 	public boolean estaVivo() {
