@@ -1,16 +1,14 @@
 package model.efectos;
 
-public class BoostAtaque extends Efecto{
-	int porcentaje;
-	
-	public BoostAtaque(int porcentaje, int duracion){
+public class Paralizante extends Efecto {
+
+	public Paralizante(int duracion) {
 		super(duracion);
-		this.porcentaje = porcentaje;
 	}
 
 	@Override
 	public int getBoostAtaque() {
-		return porcentaje;
+		return 0;
 	}
 
 	@Override
@@ -20,7 +18,7 @@ public class BoostAtaque extends Efecto{
 
 	@Override
 	public boolean paraliza() {
-		return false;
+		return true;
 	}
-	
+
 }
