@@ -20,7 +20,8 @@ public class GohanSSJFase1 extends Modo {
     	distanciaDeAtaque = 2;
      	ataqueBasico = new AtaqueBasico(30);
      	ataqueEspecial = new Masenko(30);
-        
+     	poderDeAtaque = 30;
+     	
      	this.equipo = equipo;
      	siguienteModo = new GohanSSJFase2();
     }

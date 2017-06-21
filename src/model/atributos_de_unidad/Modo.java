@@ -14,6 +14,7 @@ public abstract class Modo {
 	protected int distanciaDeAtaque;
 	protected int costoKiSiguienteTransformacion;
 	protected int costoKiAtaqueEspecial;
+	protected int poderDeAtaque;
 	
 	public Modo siguienteTransformacion(Ki ki) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
 		if (ki.getMagnitud() < costoKiSiguienteTransformacion)

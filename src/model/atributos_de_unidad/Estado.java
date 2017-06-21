@@ -1,16 +1,17 @@
 package model.atributos_de_unidad;
 
+import java.util.ArrayList;
+
 import model.ataque.Ataque;
+import model.efectos.Efecto;
+import model.efectos.Paralizante;
 import model.error.ErrorUnidadParalizada;
 
 public class Estado {
-	public int duracionParalisis;
-	public	int envenenamiento;
-	public int silencio;
-	public int reduccionVelocidad;
+	public ArrayList<Efecto> efectos;
 	
 	public Estado(){
-		this.duracionParalisis = 0;
+		this.efectos = new ArrayList<Efecto>(); 
 	}
 	
 	public void moverseEsPosible() throws ErrorUnidadParalizada {
@@ -18,19 +19,23 @@ public class Estado {
 		return;
 	}
 	
-	public void paralizar(int porCantidadDeTurnos){
-		duracionParalisis = porCantidadDeTurnos;
-	}
 	public void pasarTurno(){
-		if(duracionParalisis!=0) duracionParalisis--;
+		for(Efecto efecto : efectos){
+			efecto.pasarTurno();
+			if(efecto.tiempoRestante()<=0) efectos.remove(efecto);
+		}
 	}
 
 	public void recibirAtaque(Ataque ataque) {
-		paralizar(ataque.paralizaDurante());
-		
+		for(Efecto efecto : ataque.efectos()){
+			efectos.add(efecto);
+		}
 	}
 	
 	public boolean paralizado(){
-		return duracionParalisis!=0;
+		for(Efecto efecto : efectos){
+			if(efecto.paraliza()) return true;
+		}
+		return false;
 	}
 }

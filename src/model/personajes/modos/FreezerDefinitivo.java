@@ -14,6 +14,7 @@ public class FreezerDefinitivo extends Modo {
     	distanciaDeAtaque = 3;
     	ataqueBasico = new AtaqueBasico(50);
     	ataqueEspecial = new RayoMortal(50);
+    	poderDeAtaque = 50;
     }
 	
 	@Override

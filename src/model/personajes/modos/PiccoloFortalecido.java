@@ -19,6 +19,7 @@ public class PiccoloFortalecido extends Modo {
     	distanciaDeAtaque = 4;
      	ataqueBasico = new AtaqueBasico(40);
      	ataqueEspecial = new Makankosappo(40);
+     	poderDeAtaque = 40;
      	
      	this.equipo = equipo;
         siguienteModo = new PiccoloProtector();

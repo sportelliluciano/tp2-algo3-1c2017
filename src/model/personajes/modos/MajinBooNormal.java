@@ -11,7 +11,8 @@ public class MajinBooNormal extends Modo {
     	distanciaDeAtaque = 2;
     	ataqueBasico = new AtaqueBasico(30);
         ataqueEspecial = new ConvierteteEnChocolate();
-       
+        poderDeAtaque = 30;
+        
         costoKiSiguienteTransformacion = 20;
         siguienteModo = new MajinBooMalo();
     }

@@ -16,6 +16,7 @@ public class CellNormal extends Modo {
     	velocidad         = 2;
     	distanciaDeAtaque = 3;
      	ataqueBasico      = new AtaqueBasico(20);
+     	poderDeAtaque = 20;
      	
         siguienteModo     = new CellSemiPerfecto();
     }

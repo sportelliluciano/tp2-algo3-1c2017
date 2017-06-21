@@ -13,6 +13,7 @@ public class PiccoloNormal extends Modo {
     	distanciaDeAtaque = 2;
      	ataqueBasico = new AtaqueBasico(20);
      	ataqueEspecial = new Makankosappo(20);
+     	poderDeAtaque = 20;
      	
      	costoKiSiguienteTransformacion = 20;
         siguienteModo = new PiccoloFortalecido(equipo);

@@ -16,6 +16,7 @@ public class CellSemiPerfecto extends Modo {
     	velocidad         = 3;
     	distanciaDeAtaque = 4;
      	ataqueBasico      = new AtaqueBasico(40);
+     	poderDeAtaque = 40;
      	
         siguienteModo     = new CellPerfecto();
     }
@@ -23,7 +24,7 @@ public class CellSemiPerfecto extends Modo {
 	@Override
 	public Ataque getAtaqueEspecial() {
 		vidaAbsorbida++;
-		return super.getAtaqueEspecial();
+		return ataqueBasico;
 	}
 	
 	@Override

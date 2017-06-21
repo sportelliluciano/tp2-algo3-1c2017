@@ -14,6 +14,7 @@ public class GokuSSJ extends Modo {
     	velocidad         = 5;
     	distanciaDeAtaque = 4;
      	ataqueBasico      = new AtaqueBasico(60);
+     	poderDeAtaque = 60;
 	}
 	
 	@Override

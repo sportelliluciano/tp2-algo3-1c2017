@@ -152,7 +152,4 @@ public abstract class Unidad extends Posicionable {
 		return 0;
 	}
 	
-	public void paralizar(int durante){
-		estado.paralizar(durante);
-	}
 }
