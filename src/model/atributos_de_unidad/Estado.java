@@ -38,4 +38,13 @@ public class Estado {
 		}
 		return false;
 	}
+	
+	public int calcularBoostAtaque(){
+		int boost = 0;
+		for(Efecto efecto : efectos){
+			boost += efecto.getBoostAtaque();
+		}
+		return boost;
+		
+	}
 }
