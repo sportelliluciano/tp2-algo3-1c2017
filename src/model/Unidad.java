@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import model.ataque.Ataque;
+import model.ataque.AtaqueBasico;
 import model.atributos_de_unidad.*;
 import model.error.ErrorKiInsuficiente;
 import model.error.ErrorNoCumpleReqTrans;
@@ -74,7 +75,7 @@ public abstract class Unidad extends Posicionable {
 	}
 	
 	public void ataqueBasicoA(Unidad unidad, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
-	    _atacar(unidad, tablero, modo.getAtaqueBasico());
+	    _atacar(unidad, tablero, new AtaqueBasico(estado.aplicarBoost(modo.getPoderDeAtaque())));
 	}
 	
 	public void ataqueEspecialA(Unidad unidad, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {

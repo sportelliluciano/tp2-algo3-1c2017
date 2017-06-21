@@ -47,4 +47,8 @@ public class Estado {
 		return boost;
 		
 	}
+	public int aplicarBoost(int poderAtaqueBase){
+		return poderAtaqueBase + (poderAtaqueBase*calcularBoostAtaque())/100;
+		
+	}
 }

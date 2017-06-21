@@ -44,5 +44,11 @@ public abstract class Modo {
 
 	public void incrementarPoderPelea(double multiplicador) {
 	}
-
+	public int getCostoKiAtaqueEspecial(){
+		return costoKiAtaqueEspecial;
+	}
+	
+	public int getPoderDeAtaque(){
+		return poderDeAtaque;
+	}
 }
