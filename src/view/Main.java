@@ -2,6 +2,7 @@ package view;
 
 import javafx.application.*;
 import javafx.stage.*;
+import model.Tablero;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.control.*;
@@ -42,9 +43,7 @@ public class Main extends Application {
 		layoutInicio.setCenter(layoutMenuInicio);
 		menuPrincipal = new Scene(layoutInicio, DIM_HOR, DIM_VER);
 		
-		StackPane layoutJuego = new StackPane();
-		Label textoPlaceholder = new Label("Aca va el juego");
-		layoutJuego.getChildren().add(textoPlaceholder);
+		BorderPane layoutJuego = new ContenedorTablero(ventana, DIM_HOR, DIM_VER, new Tablero(20,15));
 		menuDeJuego = new Scene(layoutJuego, DIM_HOR, DIM_VER);
 		
 		ventana.setScene(menuPrincipal);
