@@ -157,4 +157,9 @@ public abstract class Unidad extends Posicionable {
 		estado.aplicarEfectos(consumible.efectos);
 	}
 	
+	//para pruebas
+	public Estado getEstado(){
+		return estado;
+	}
+	
 }
