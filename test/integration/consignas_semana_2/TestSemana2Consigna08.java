@@ -38,7 +38,7 @@ public class TestSemana2Consigna08 {
 	
    // assertEquals(goku.getEstado().duracionParalisis,3);
 	    
-	        for(int i = 0 ;i < 3; i++){//mgoku queda paralizado 3 turnos
+	        for(int i = 0 ;i < 3; i++){//goku queda paralizado 3 turnos
 	                 assertTrue(goku.getEstado().paralizado());
 	    	         goku.pasarTurno();
 	         }
