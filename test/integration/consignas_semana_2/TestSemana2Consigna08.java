@@ -21,7 +21,7 @@ public class TestSemana2Consigna08 {
 	@Test
 	public void test08AtacarConMajinBooUsandoAtaqueEspecialConvierteEnChocolate() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance {
 
-    Tablero tablero = new Tablero(19,23);
+                Tablero tablero = new Tablero(19,23);
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Goku goku = guerreros.getGoku();
@@ -34,14 +34,19 @@ public class TestSemana2Consigna08 {
 		for(int i = 0; i < 6; i++)
 			  majinBoo.pasarTurno();//necesita 30 de ki para ataqueEspecial
 			
-	  majinBoo.ataqueEspecialA(goku, tablero);
+	        majinBoo.ataqueEspecialA(goku, tablero);
 	
-    assertEquals(goku.getEstado().duracionParalisis,3);
+   // assertEquals(goku.getEstado().duracionParalisis,3);
 	    
-	  for(int i = 0 ;i < 3; i++){//majinBoo no carga su ki durante 3 tiempos
-	    	majinBoo.pasarTurno();
-	      assertEquals(majinBoo.getKi().getMagnitud(),0);
-	  }
+	        for(int i = 0 ;i < 3; i++){//mgoku queda paralizado 3 turnos
+	                 assertTrue(goku.getEstado().paralizado());
+	    	         goku.pasarTurno();
+	         }
+	  
+	        for(int i = 0 ;i < 3; i++){//majinBoo no carga su ki durante 3 tiempos
+	                 majinBoo.pasarTurno();
+	                 assertEquals(majinBoo.getKi().getMagnitud(),0);
+	        }
     
 	}
 
