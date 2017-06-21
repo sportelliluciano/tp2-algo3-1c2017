@@ -2,6 +2,7 @@ package model.efectos;
 
 public abstract class Efecto {
 	int duracion;
+	int duracionPorAtaque;
 	public Efecto(int duracion){
 		this.duracion = duracion;
 	}

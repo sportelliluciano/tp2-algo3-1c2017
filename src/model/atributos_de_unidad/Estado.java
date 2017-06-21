@@ -25,10 +25,10 @@ public class Estado {
 			if(efecto.tiempoRestante()<=0) efectos.remove(efecto);
 		}
 	}
-
-	public void recibirAtaque(Ataque ataque) {
-		for(Efecto efecto : ataque.efectos()){
-			efectos.add(efecto);
+	
+	public void aplicarEfectos(ArrayList<Efecto> efectos){
+		for(Efecto efecto : efectos){
+			this.efectos.add(efecto);
 		}
 	}
 	

@@ -82,7 +82,7 @@ public abstract class Unidad extends Posicionable {
 	
 	public void recibirAtaque(Ataque ataque) {
 		vida.reducirEn(ataque.getDano());
-		estado.recibirAtaque(ataque);
+		estado.aplicarEfectos(ataque.efectos());
 	}
 	
 	public boolean estaVivo() {
@@ -150,6 +150,10 @@ public abstract class Unidad extends Posicionable {
 
 	public int cantidadDeEsferasDelDragon() {
 		return 0;
+	}
+	
+	public void aplicarConsumible(Consumible consumible){
+		estado.aplicarEfectos(consumible.efectos);
 	}
 	
 }
