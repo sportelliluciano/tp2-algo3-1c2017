@@ -51,8 +51,9 @@ public abstract class Unidad extends Posicionable {
 	}
 
 	public void pasarTurno() {
-		ki.pasarTurno();
 		estado.pasarTurno();
+		if(estado.paralizado()) return;
+		ki.pasarTurno();
 	}
 	
 	public void transformarse() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
