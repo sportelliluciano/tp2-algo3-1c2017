@@ -29,8 +29,8 @@ public class TestSemana2Consigna06 {
 
 		Tablero tablero = new Tablero(19,23);
 		
-		tablero.agregarUnidad(cell, new Posicion(5,5));	
-		tablero.agregarUnidad(goku, new Posicion(5,6));
+		tablero.agregarPosicionable(cell, new Posicion(5,5));	
+		tablero.agregarPosicionable(goku, new Posicion(5,6));
 
 		goku.ataqueBasicoA(cell, tablero);//la vida de cell ahora es 480
 		assertEquals(cell.getPorcentajeVida(),96);//96%

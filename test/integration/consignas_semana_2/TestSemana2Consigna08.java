@@ -25,11 +25,11 @@ public class TestSemana2Consigna08 {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Goku goku = guerreros.getGoku();
-		tablero.agregarUnidad(goku,new Posicion(5,5));
+		tablero.agregarPosicionable(goku,new Posicion(5,5));
 		
 		EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		MajinBoo majinBoo = enemigos.getMajinBoo();
-		tablero.agregarUnidad(majinBoo, new Posicion(5,6));
+		tablero.agregarPosicionable(majinBoo, new Posicion(5,6));
 		
 		for(int i = 0; i < 6; i++)
 			majinBoo.pasarTurno();//necesita 30 de ki para ataqueEspecial

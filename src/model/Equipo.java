@@ -20,4 +20,8 @@ public abstract class Equipo {
 		
 		return false;			
 	}
+	
+	public List<Unidad> integrantes() {
+		return integrantes;
+	}
 }

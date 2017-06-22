@@ -21,9 +21,9 @@ public class TestSemana2Consigna04 {
 		
 	        Unidad gohan = guerreros.getGohan(),goku = guerreros.getGoku(), piccolo = guerreros.getPiccolo();	
 		
-	        tablero.agregarUnidad(gohan, new Posicion(3,3));
-	        tablero.agregarUnidad(goku, new Posicion(3,4));
-	        tablero.agregarUnidad(piccolo, new Posicion(4,3));
+	        tablero.agregarPosicionable(gohan, new Posicion(3,3));
+	        tablero.agregarPosicionable(goku, new Posicion(3,4));
+	        tablero.agregarPosicionable(piccolo, new Posicion(4,3));
 
 	        for (int i = 0; i < 4; i++) // Piccolo requiere 20 ki para SSJ1 y 
 		       piccolo.pasarTurno();		// carga 5 ki por turno.

@@ -28,8 +28,8 @@ public class TestSemana1Consigna07 {
 		Unidad goku = guerreros.getGoku();
 		Unidad freezer = enemigos.getFreezer();
 		
-		tablero.agregarUnidad(goku, new Posicion(3,3));//distancia de ataque = 2
-		tablero.agregarUnidad(freezer, new Posicion(15,15));//se encuentra a distancia = 12
+		tablero.agregarPosicionable(goku, new Posicion(3,3));//distancia de ataque = 2
+		tablero.agregarPosicionable(freezer, new Posicion(15,15));//se encuentra a distancia = 12
 
 		goku.ataqueBasicoA(freezer,tablero);
 		
@@ -48,8 +48,8 @@ public class TestSemana1Consigna07 {
 		
 		Posicion posGoku =  new Posicion(3,3),posFreezer = new Posicion(4,4);
 		
-		tablero.agregarUnidad(goku,posGoku);//distancia de ataque = 2
-		tablero.agregarUnidad(freezer,posFreezer );//se encuentra a distancia = 1
+		tablero.agregarPosicionable(goku,posGoku);//distancia de ataque = 2
+		tablero.agregarPosicionable(freezer,posFreezer );//se encuentra a distancia = 1
 		
 		int vidaOponenteAntesDeAtaque = freezer.getVidaActual();
 		

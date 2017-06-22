@@ -20,7 +20,7 @@ public class TestSemana1Consigna05 {
 	public void test05AvanzarTresPosicionesConGokuNormal() throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 		Tablero tablero = new Tablero(20, 20);
 		Unidad goku = new Goku(null);
-		tablero.agregarUnidad(goku, new Posicion(5,5));
+		tablero.agregarPosicionable(goku, new Posicion(5,5));
 		
 		tablero.moverUnidad(goku, new Posicion(8,5));
 	}
@@ -29,7 +29,7 @@ public class TestSemana1Consigna05 {
 	public void test05AvanzarTresPosicionesConGokuKaioken() throws ErrorPosicionInvalida, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorUnidadParalizada {
 		Tablero tablero = new Tablero(20, 20);
 		Unidad goku = new Goku(null);
-		tablero.agregarUnidad(goku, new Posicion(5,5));
+		tablero.agregarPosicionable(goku, new Posicion(5,5));
 		
 		for (int i = 0; i < 4; i++) // Goku requiere 20 ki para el kaioken y 
 			goku.pasarTurno();		// carga 5 ki por turno.

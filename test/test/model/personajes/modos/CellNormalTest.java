@@ -28,8 +28,8 @@ public class CellNormalTest {
 		Cell cell = enemigos.getCell();
 		Goku goku = guerreros.getGoku();
 		Tablero tablero = new Tablero(19,23);
-		tablero.agregarUnidad(cell, new Posicion(5,5));
-		tablero.agregarUnidad(goku, new Posicion(5,6));
+		tablero.agregarPosicionable(cell, new Posicion(5,5));
+		tablero.agregarPosicionable(goku, new Posicion(5,6));
 		
 		cell.recibirAtaque(new AtaqueBasico(200));
 		int vidaCellAntesAtaque = cell.getVidaActual();
@@ -46,8 +46,8 @@ public class CellNormalTest {
 		Cell cell = enemigos.getCell();
 		Goku goku = guerreros.getGoku();
 		Tablero tablero = new Tablero(19,23);
-		tablero.agregarUnidad(cell, new Posicion(5,5));
-		tablero.agregarUnidad(goku, new Posicion(5,6));
+		tablero.agregarPosicionable(cell, new Posicion(5,5));
+		tablero.agregarPosicionable(goku, new Posicion(5,6));
 		
 		for (int i=0;i<4;i++) {
 			cell.recibirAtaque(new AtaqueBasico(200));
@@ -65,8 +65,8 @@ public class CellNormalTest {
 		Cell cell = enemigos.getCell();
 		Goku goku = guerreros.getGoku();
 		Tablero tablero = new Tablero(19,23);
-		tablero.agregarUnidad(cell, new Posicion(5,5));
-		tablero.agregarUnidad(goku, new Posicion(5,6));
+		tablero.agregarPosicionable(cell, new Posicion(5,5));
+		tablero.agregarPosicionable(goku, new Posicion(5,6));
 		
 		for (int i=0;i<3;i++) {
 			cell.recibirAtaque(new AtaqueBasico(200));

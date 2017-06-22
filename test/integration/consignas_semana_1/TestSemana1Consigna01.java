@@ -19,7 +19,7 @@ public class TestSemana1Consigna01 {
 				
 		Tablero tablero = new Tablero(20,20);
 		Unidad goku = new Goku(null);
-		tablero.agregarUnidad(goku, new Posicion(5,5));
+		tablero.agregarPosicionable(goku, new Posicion(5,5));
 		
 		tablero.moverUnidad(goku, new Posicion(5,4));
 		

@@ -2,6 +2,9 @@ package model;
 
 import java.util.List;
 
+import model.consumibles.EsferaDelDragon;
+import model.consumibles.NubeVoladora;
+import model.consumibles.Semilla;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadParalizada;
 
@@ -15,6 +18,9 @@ public class Tablero {
 	public Tablero (int ancho, int alto) {
 		this.alto = alto;
 		this.ancho = ancho;
+		
+		if ( (alto < 3) || (ancho < 3) )
+			throw new RuntimeException();
 	}
 	
 	public boolean hayPosicionableEn(Posicion pos) {
@@ -26,13 +32,13 @@ public class Tablero {
 		return false;
 	}
 
-	public void agregarUnidad(Unidad unidad, Posicion posicion) throws ErrorPosicionInvalida {
+	public void agregarPosicionable(Posicionable posicionable, Posicion posicion) throws ErrorPosicionInvalida {
 		validarPosicion(posicion);
 		if (hayPosicionableEn(posicion))
 			throw new ErrorPosicionInvalida();
 		
-		unidad.setPosicion(posicion);
-		posicionables.add(unidad);
+		posicionable.setPosicion(posicion);
+		posicionables.add(posicionable);
 	}
 
 	public void moverUnidad(Unidad unidad, Posicion nuevaPosicion) throws ErrorPosicionInvalida, ErrorUnidadParalizada {
@@ -53,6 +59,63 @@ public class Tablero {
 	
 	public int getAlto() {
 		return alto;
+	}
+
+	public void agregarEquipos(Equipo equipo1, Equipo equipo2) {
+		List<Posicion> esquinaSupIzq = new ArrayList<Posicion>();
+		esquinaSupIzq.add(new Posicion(0,0));
+		esquinaSupIzq.add(new Posicion(0,1));
+		esquinaSupIzq.add(new Posicion(1,0));
+		List<Posicion> esquinaInfDer = new ArrayList<Posicion>();
+		esquinaInfDer.add(new Posicion(ancho-1,alto-1));
+		esquinaInfDer.add(new Posicion(ancho-1,alto-2));
+		esquinaInfDer.add(new Posicion(ancho-2,alto-1));
+		
+		try {
+			int i = 0;
+			for (Unidad integrante : equipo1.integrantes()) {
+				agregarPosicionable(integrante, esquinaSupIzq.get(i));
+				i++;
+			}
+			i = 0;
+			for (Unidad integrante : equipo2.integrantes()) {
+				agregarPosicionable(integrante, esquinaInfDer.get(i));
+				i++;
+			}
+		}
+		catch (ErrorPosicionInvalida e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private Posicion getPosicionRandom() {
+		int x = ((int)Math.random() * 100000) % ancho;
+		int y = ((int)Math.random() * 100000) % alto;
+		
+		return new Posicion(x, y);
+	}
+	
+	public void agregarConsumibleAleatorio() {
+		Consumible consumible = null;
+		int opc = ((int)(Math.random() * 100)) % 3;
+		switch(opc) {
+		case 0:
+			consumible = new Semilla();
+			break;
+		case 1:
+			consumible = new EsferaDelDragon();
+			break;
+		case 2:
+			consumible = new NubeVoladora();
+			break;
+		}
+		
+		Posicion p = getPosicionRandom();
+		try {
+			agregarPosicionable(consumible, p);
+		} catch (ErrorPosicionInvalida e) {
+			return;
+		}
 	}
 	
 }

@@ -21,8 +21,8 @@ public class TestSemana1Consigna02 {
 		Unidad goku = new Goku(null);
 		Unidad gohan = new Gohan(null);
 		
-		tablero.agregarUnidad(goku, new Posicion(5,5));
-		tablero.agregarUnidad(gohan, new Posicion(5,5));
+		tablero.agregarPosicionable(goku, new Posicion(5,5));
+		tablero.agregarPosicionable(gohan, new Posicion(5,5));
 	}	
 	
 	@Test
@@ -32,8 +32,8 @@ public class TestSemana1Consigna02 {
 		Unidad goku = new Goku(null);
 		Unidad gohan = new Gohan(null);
 		
-		tablero.agregarUnidad(goku, new Posicion(5,5));
-		tablero.agregarUnidad(gohan, new Posicion(6,5));
+		tablero.agregarPosicionable(goku, new Posicion(5,5));
+		tablero.agregarPosicionable(gohan, new Posicion(6,5));
 		
 		assertTrue(goku.getPosicion().equals(new Posicion(5,5)));
 		assertTrue(gohan.getPosicion().equals(new Posicion(6,5)));
@@ -46,8 +46,8 @@ public class TestSemana1Consigna02 {
 		Tablero tablero = new Tablero(20,20);
 		Unidad goku = new Goku(null);
 		Unidad gohan = new Gohan(null);
-		tablero.agregarUnidad(goku, new Posicion(5,5));
-		tablero.agregarUnidad(gohan, new Posicion(6,5));
+		tablero.agregarPosicionable(goku, new Posicion(5,5));
+		tablero.agregarPosicionable(gohan, new Posicion(6,5));
 		
 		tablero.moverUnidad(gohan, new Posicion(6,5));//no deberia mover goku?
 }

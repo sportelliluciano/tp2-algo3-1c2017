@@ -26,11 +26,11 @@ public class TestSemana2Consigna07 {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Goku goku = guerreros.getGoku();
-		tablero.agregarUnidad(goku,new Posicion(5,5));
+		tablero.agregarPosicionable(goku,new Posicion(5,5));
 		
 		EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		Cell cell = enemigos.getCell();
-		tablero.agregarUnidad(cell, new Posicion(5,6));
+		tablero.agregarPosicionable(cell, new Posicion(5,6));
 		
 		for(int i = 0; i < 4; i++){//necesita absorber 4 veces para la transformacion semiPerfecto
 			cell.pasarTurno();
@@ -50,14 +50,14 @@ public class TestSemana2Consigna07 {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Goku goku = guerreros.getGoku();
-		tablero.agregarUnidad(goku,new Posicion(5,5));
+		tablero.agregarPosicionable(goku,new Posicion(5,5));
 		
 		Piccolo piccolo = guerreros.getPiccolo();
-		tablero.agregarUnidad(piccolo,new Posicion(6,5));
+		tablero.agregarPosicionable(piccolo,new Posicion(6,5));
 		
 		EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		Cell cell = enemigos.getCell();
-		tablero.agregarUnidad(cell, new Posicion(5,6));
+		tablero.agregarPosicionable(cell, new Posicion(5,6));
 		
 		for(int i = 0; i < 4; i++){//necesita absorber 4 veces para la transformacion semiPerfecto
 			cell.pasarTurno();

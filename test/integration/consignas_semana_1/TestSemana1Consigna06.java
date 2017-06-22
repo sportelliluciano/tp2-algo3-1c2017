@@ -1,5 +1,6 @@
 package integration.consignas_semana_1;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
@@ -11,13 +12,10 @@ import model.Juego;
 import model.Jugador;
 import model.Posicion;
 import model.Tablero;
+import model.Unidad;
+import model.equipos.EnemigosDeLaTierra;
+import model.equipos.GuerrerosZ;
 import model.error.ErrorPosicionInvalida;
-import model.personajes.Cell;
-import model.personajes.Freezer;
-import model.personajes.Gohan;
-import model.personajes.Goku;
-import model.personajes.MajinBoo;
-import model.personajes.Piccolo;
 	
 //No se si esta del todo bien,pero lo pongo para ver si sirve,faltaria el elegir unidades
 //en jugador para que pueda devolverlas y asi poder saber las posiciones 
@@ -25,71 +23,37 @@ public class TestSemana1Consigna06 {
 	@Test
 	public void test06CrearJuegoYValidarPosicionesDeTablero() throws ErrorPosicionInvalida {		
 		Jugador jugador1,jugador2;
-		jugador1 = new Jugador("Fabio");
-		jugador2 = new Jugador("Marito");
+		jugador1 = new Jugador("Fabio", new EnemigosDeLaTierra());
+		jugador2 = new Jugador("Marito", new GuerrerosZ());
 
 		Juego juego = new Juego(jugador1, jugador2);
-		
-		jugador1.setJuego(juego,null);//como es el jugador 1 no tiene esquina rival,entonces paso null
-		jugador2.setJuego(juego,jugador1.getEsquina());
 		
 		Tablero tablero = juego.getTablero();
 		
 		int alto = tablero.getAlto();
 		int ancho = tablero.getAncho();
 		
-		jugador1.elegirPersonaje(new Gohan(null));
-		jugador1.elegirPersonaje(new Goku(null));
-		jugador1.elegirPersonaje(new Piccolo(null));
-
-		jugador2.elegirPersonaje(new Freezer(null));
-		jugador2.elegirPersonaje(new Cell(null));
-		jugador2.elegirPersonaje(new MajinBoo(null));
-
-		Set<Posicion> esquina1 = jugador1.getEsquina();
+		Set<Posicion> posicionesJ1 = new HashSet<Posicion>();
 		
-		Set<Posicion> esquina2 = jugador2.getEsquina();
+		for(Unidad integrante : jugador1.getPersonajes()) {
+			posicionesJ1.add(integrante.getPosicion());
+		}
 		
-		//preparo las esquinas del tablero para poder compararlas con las de los jugadores
+		assertEquals(3, posicionesJ1.size());
+		assertTrue(posicionesJ1.contains(new Posicion(0,0)));
+		assertTrue(posicionesJ1.contains(new Posicion(0,1)));
+		assertTrue(posicionesJ1.contains(new Posicion(1,0)));
 		
-        Set<Posicion> esquinaSuperiorIzq = new HashSet<Posicion>();
+		Set<Posicion> posicionesJ2 = new HashSet<Posicion>();
 		
-		esquinaSuperiorIzq.add(new Posicion(0,0));
-		esquinaSuperiorIzq.add(new Posicion(1,0));
-		esquinaSuperiorIzq.add(new Posicion(0,1));
+		for(Unidad integrante : jugador2.getPersonajes()) {
+			posicionesJ2.add(integrante.getPosicion());
+		}
 		
-		Set<Posicion> esquinaSuperiorDer= new HashSet<Posicion>();
-		
-		esquinaSuperiorDer.add(new Posicion(0,alto));
-		esquinaSuperiorDer.add(new Posicion(1,alto));
-		esquinaSuperiorDer.add(new Posicion(0,alto - 1));
-		
-		Set<Posicion> esquinaInferiorDer = new HashSet<Posicion>();
-
-		esquinaInferiorDer.add(new Posicion(ancho,alto - 1));
-		esquinaInferiorDer.add(new Posicion(ancho - 1,alto));
-		esquinaInferiorDer.add(new Posicion(ancho,alto));
-
-		Set<Posicion> esquinaInferiorIzq = new HashSet<Posicion>();
-
-		esquinaInferiorIzq.add(new Posicion(ancho,0));
-		esquinaInferiorIzq.add(new Posicion(ancho,1));
-		esquinaInferiorIzq.add(new Posicion(ancho - 1,0));
-
-	//comparo que cada jugador tenga su esquina y q el otro la opuesta
-		
-		if( esquina1.containsAll(esquinaSuperiorIzq))
-			assertTrue(esquina2.containsAll(esquinaInferiorDer));
-		else
-		if( esquina1.containsAll(esquinaSuperiorDer) )
-			assertTrue(esquina2.containsAll(esquinaInferiorIzq));
-		else    
-		if( esquina1.containsAll(esquinaInferiorIzq) )
-			assertTrue(esquina2.containsAll(esquinaSuperiorDer));
-		else    
-		if( esquina1.containsAll(esquinaInferiorDer) )
-			assertTrue(esquina2.containsAll(esquinaSuperiorIzq));
-		
+		assertEquals(3, posicionesJ2.size());
+		assertTrue(posicionesJ2.contains(new Posicion(ancho-1, alto-1)));
+		assertTrue(posicionesJ2.contains(new Posicion(ancho-2, alto-1)));
+		assertTrue(posicionesJ2.contains(new Posicion(ancho-1, alto-2)));
 	}
 
 }

@@ -1,112 +1,73 @@
 package model;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.List;
+
+import model.error.ErrorEnemigoFueraDeAlcance;
+import model.error.ErrorKiInsuficiente;
 import model.error.ErrorPosicionInvalida;
+import model.error.ErrorUnidadNoEsEnemiga;
+import model.error.ErrorUnidadParalizada;
 
 public class Jugador {
 		
 	private String nombre;
-	
+	private Equipo equipo;
 	private Juego juego;
-	
-	private Set<Posicion> esquina = null;
-	
-	private Set<Unidad> personajes;
+	private boolean movio, ataco;
 
-	public Jugador(String nombre) {
+	public Jugador(String nombre, Equipo equipo) {
 		this.nombre = nombre;
-		personajes = new HashSet<Unidad>();//guarda una referencia de las unidades agregadas al tablero
-
+		this.equipo = equipo; 
+		movio = ataco = false;
 	}
 
+	public void setJuego(Juego juego) {
+		this.juego = juego;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
 	
-	public void setJuego(Juego juego,Set<Posicion> esquinaEnemiga){
-		this.juego = juego;
-		esquina = esquinaAleatoria(esquinaEnemiga);
-	}
-	
-	public void elegirPersonaje(Unidad unidad) throws ErrorPosicionInvalida{
-		Posicion pos = posEsquina(esquina);
-		juego.getTablero().agregarUnidad(unidad, pos);
-		personajes.add(unidad);
-	}
-	
-	private Posicion posEsquina(Set<Posicion> posiciones){
-		Iterator<Posicion> iterador = posiciones.iterator();
-		Posicion pos = null;
-		
-		if(iterador.hasNext()){
-			pos = iterador.next();
-			iterador.remove();
-		}
-		
-	    return pos;		
-	}
-	
-	private Set<Posicion> esquinaAleatoria(Set<Posicion> esquinaEnemiga){
-		
-		int ancho = juego.getTablero().getAncho();
-		int alto = juego.getTablero().getAlto();
-		
-		//preparo las esquinas del tablero
-		
-		Set<Posicion> esquinaSuperiorIzq = new HashSet<Posicion>();
-		
-		esquinaSuperiorIzq.add(new Posicion(0,0));
-		esquinaSuperiorIzq.add(new Posicion(1,0));
-		esquinaSuperiorIzq.add(new Posicion(0,1));
-		
-		Set<Posicion> esquinaSuperiorDer= new HashSet<Posicion>();
-		
-		esquinaSuperiorDer.add(new Posicion(0,alto));
-		esquinaSuperiorDer.add(new Posicion(1,alto));
-		esquinaSuperiorDer.add(new Posicion(0,alto - 1));
-		
-		Set<Posicion> esquinaInferiorDer = new HashSet<Posicion>();
-
-		esquinaInferiorDer.add(new Posicion(ancho,alto - 1));
-		esquinaInferiorDer.add(new Posicion(ancho - 1,alto));
-		esquinaInferiorDer.add(new Posicion(ancho,alto));
-
-		Set<Posicion> esquinaInferiorIzq = new HashSet<Posicion>();
-
-		esquinaInferiorIzq.add(new Posicion(ancho,0));
-		esquinaInferiorIzq.add(new Posicion(ancho,1));
-		esquinaInferiorIzq.add(new Posicion(ancho - 1,0));
-		
-		if (esquinaEnemiga != null){//si el jugador opuesto ya eligio,entonces debo tener la esquina opuesta
-		    if (esquinaEnemiga.containsAll(esquinaSuperiorIzq)) return esquinaInferiorDer;
-		    if (esquinaEnemiga.containsAll(esquinaSuperiorDer)) return esquinaInferiorIzq;
-		    if (esquinaEnemiga.containsAll(esquinaInferiorIzq)) return esquinaSuperiorDer;
-		    if (esquinaEnemiga.containsAll(esquinaInferiorDer)) return esquinaSuperiorIzq;
-		}
-		
-		//en caso de ser el primer jugador en elejir,se escoge una de las 4 esquinas de forma aleatoria
-		switch((int) (Math.random() * 4) + 1) {
-		
-		case 1:return esquinaSuperiorDer;
-		case 2:return esquinaSuperiorIzq;
-		case 3:return esquinaInferiorDer;
-		case 4:return esquinaInferiorIzq;
-		
-		}
-		
-		throw new RuntimeException("Esto debería ser inalcanzable");
+	public List<Unidad> getPersonajes() {
+		return equipo.integrantes();
 	}
 
-	public Set<Unidad> getPersonajes() {
-		return personajes;
-	}
-
-	public Set<Posicion> getEsquina() {
-		return esquina;
+	public Equipo equipo() {
+		return equipo;
 	}
 	
+	public void mover(Unidad personaje, Posicion posicionNueva) 
+			throws ErrorPosicionInvalida, ErrorUnidadParalizada {
+		if (!equipo.pertenece(personaje))
+			throw new RuntimeException();
+		if (movio)
+			throw new RuntimeException();
+		movio = true;
+		personaje.moverA(posicionNueva, juego.getTablero());
+	}
 	
+	public void ataqueBasico(Unidad personaje, Unidad enemigo) 
+			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
+		if ((!equipo.pertenece(personaje)) || (equipo.pertenece(enemigo)))
+			throw new RuntimeException();
+		if (ataco)
+			throw new RuntimeException();
+		ataco = true;
+		personaje.ataqueBasicoA(enemigo, juego.getTablero());
+	}
 	
+	public void ataqueEspecial(Unidad personaje, Unidad enemigo) 
+			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorKiInsuficiente {
+		if ((!equipo.pertenece(personaje)) || (equipo.pertenece(enemigo)))
+			throw new RuntimeException();
+		if (ataco)
+			throw new RuntimeException();
+		ataco = true;
+		personaje.ataqueEspecialA(enemigo, juego.getTablero());
+	}
+	
+	public void pasarTurno() {
+		movio = ataco = false;
+	}
 }
 

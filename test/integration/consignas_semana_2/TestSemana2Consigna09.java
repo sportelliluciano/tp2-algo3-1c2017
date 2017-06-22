@@ -22,11 +22,11 @@ public class TestSemana2Consigna09 {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Goku goku = guerreros.getGoku();
-		tablero.agregarUnidad(goku,new Posicion(5,5));
+		tablero.agregarPosicionable(goku,new Posicion(5,5));
 		
 		EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		Freezer freezer = enemigos.getFreezer();//la vida de freezer es de 400
-		tablero.agregarUnidad(freezer, new Posicion(5,6));
+		tablero.agregarPosicionable(freezer, new Posicion(5,6));
 		
 		for(int i = 0; i <= 20; i++ )
 		     freezer.ataqueBasicoA(goku, tablero);//saca 20 de vida

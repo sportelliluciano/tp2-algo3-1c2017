@@ -19,7 +19,7 @@ public class TestSemana2Consigna05 {
 
 		Tablero tablero = new Tablero(19,23);
 		
-		tablero.agregarUnidad(cell, new Posicion(5,5));	
+		tablero.agregarPosicionable(cell, new Posicion(5,5));	
 
 		cell.transformarse();
 	}

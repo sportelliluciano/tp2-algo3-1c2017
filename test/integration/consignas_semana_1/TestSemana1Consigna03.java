@@ -22,8 +22,8 @@ public class TestSemana1Consigna03 {
 		Unidad goku = new Goku(null);
 		Unidad gohan = new Gohan(null);
 		
-		tablero.agregarUnidad(goku, new Posicion(1,1));
-		tablero.agregarUnidad(gohan, new Posicion(2,2));
+		tablero.agregarPosicionable(goku, new Posicion(1,1));
+		tablero.agregarPosicionable(gohan, new Posicion(2,2));
 		
 		tablero.moverUnidad(goku, new Posicion(3,3));
 	}
@@ -34,8 +34,8 @@ public class TestSemana1Consigna03 {
 		Unidad goku = new Goku(null);
 		Unidad gohan = new Gohan(null);
 		
-		tablero.agregarUnidad(goku, new Posicion(1,1));
-		tablero.agregarUnidad(gohan, new Posicion(2,2));
+		tablero.agregarPosicionable(goku, new Posicion(1,1));
+		tablero.agregarPosicionable(gohan, new Posicion(2,2));
 		
 		tablero.moverUnidad(goku, new Posicion(3,3));
 	}
