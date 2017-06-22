@@ -57,4 +57,21 @@ public class Estado {
 		return poderAtaqueBase + (poderAtaqueBase*calcularBoostAtaque())/100;
 		
 	}
+	
+	
+	public int calcularBoostVelocidad(){
+        	int boost = 0;
+		for(Efecto efecto : efectos){
+			boost += efecto.getBoostVelocidad();
+		}
+		return boost;
+		
+	}
+	
+	
+	public int aplicarBoostVelocidad(int velocidad){
+		return velocidad + (velocidad*calcularBoostVelocidad())/100;
+	
+	}
+	
 }
