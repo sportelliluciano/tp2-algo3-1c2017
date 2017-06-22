@@ -23,9 +23,9 @@ public abstract class Unidad extends Posicionable {
 	protected Vida vida;
 	protected Estado estado = new Estado();
 
-	public Set<Posicion> movsPosibles(Tablero tablero) throws ErrorPosicionInvalida {
+	public Set<Posicion> movsPosibles(Tablero tablero,int velocidad) throws ErrorPosicionInvalida {
 		Set<Posicion> posiciones = new HashSet<Posicion>();
-		_movsPosibles(tablero, posiciones, getPosicion(), modo.getVelocidad());
+		_movsPosibles(tablero, posiciones, getPosicion(), /*modo.getVelocidad()*/velocidad);
 		return posiciones;
 	}
 	
@@ -45,7 +45,7 @@ public abstract class Unidad extends Posicionable {
 	
 	public void moverA(Posicion nuevaPosicion, Tablero tablero) throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 		estado.moverseEsPosible();
-		Set<Posicion> movimientos = movsPosibles(tablero);
+		Set<Posicion> movimientos = movsPosibles(tablero,estado.aplicarBoostVelocidad(modo.getVelocidad()));
 		if (!movimientos.contains(nuevaPosicion))
 			throw new ErrorPosicionInvalida();
 		setPosicion(nuevaPosicion);
