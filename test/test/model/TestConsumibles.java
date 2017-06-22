@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+package test.model;
 
 import model.Posicion;
 import model.Tablero;
