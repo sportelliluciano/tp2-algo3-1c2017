@@ -91,11 +91,11 @@ public class TestConsumibles {
 		
 		assertEquals(goku.getModo().getVelocidad(),velocidadGokuAntesDeNubeVoladora*2);
 		
-		goku.moverA(new Posicion(9,9), tablero);
-		assertEquals(goku.getPosicion(),new Posicion(9,9));
+		goku.moverA(new Posicion(5,9), tablero);
+		assertEquals(goku.getPosicion(),new Posicion(5,9));
         goku.pasarTurno();
-        goku.moverA(new Posicion(13,13), tablero);
-		assertEquals(goku.getPosicion(),new Posicion(13,13));
+        goku.moverA(new Posicion(9,9), tablero);
+		assertEquals(goku.getPosicion(),new Posicion(9,9));
 		
 	}
 	
