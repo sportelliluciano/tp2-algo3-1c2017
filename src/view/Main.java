@@ -38,12 +38,13 @@ public class Main extends Application {
 					ventana.setScene(menuDeJuego) );
 		
 		StackPane layoutMenuInicio = new StackPane();
-		layoutMenuInicio.getChildren().addAll(fondoMenuVista, botonDeInicio);
-		BorderPane layoutInicio = new BorderPane();
-		layoutInicio.setCenter(layoutMenuInicio);
-		menuPrincipal = new Scene(layoutInicio, DIM_HOR, DIM_VER);
-		
-		BorderPane layoutJuego = new ContenedorTablero(ventana, DIM_HOR, DIM_VER, new Tablero(20,15));
+ 		layoutMenuInicio.getChildren().addAll(fondoMenuVista, botonDeInicio);
+ 		BorderPane layoutInicio = new BorderPane();
+  		layoutInicio.setCenter(layoutMenuInicio);
+  		menuPrincipal = new Scene(layoutInicio, DIM_HOR, DIM_VER);
+		StackPane layoutJuego = new StackPane();
+		Label textoPlaceholder = new Label("Aca va el juego");
+		layoutJuego.getChildren().add(textoPlaceholder);
 		menuDeJuego = new Scene(layoutJuego, DIM_HOR, DIM_VER);
 		
 		ventana.setScene(menuPrincipal);
