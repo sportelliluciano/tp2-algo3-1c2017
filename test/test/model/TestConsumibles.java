@@ -87,7 +87,7 @@ public class TestConsumibles {
 		
 		NubeVoladora nubeVoladora = new NubeVoladora();
 				
-		goku.consumir(nubeVoladora);//velociad = 2x2 = 4 (x2 turnos)
+		goku.aplicarConsumible(nubeVoladora);//velociad = 2x2 = 4 (x2 turnos)
 		
 		assertEquals(goku.getModo().getVelocidad(),velocidadGokuAntesDeNubeVoladora*2);
 		
