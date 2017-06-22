@@ -120,11 +120,11 @@ public abstract class Unidad extends Posicionable {
 		return false;
 		
 	}
-	
+	/*
 	public void consumir(Consumible consumible) {
 		estado.aplicarEfectos(consumible.efectos());
 		vida.incrementarEn(consumible.vidaIncrementada());
-	}
+	}*/
 	
 	//este metodo busca cuales son las posiciones que llega el ataque.FALTA A�ADIR SI TRASPASA O NO A UNIDAD ALIADA
 	private Set<Posicion> posicionesPosibles(Tablero tablero) throws ErrorPosicionInvalida {
@@ -161,6 +161,8 @@ public abstract class Unidad extends Posicionable {
 	
 	public void aplicarConsumible(Consumible consumible){
 		estado.aplicarEfectos(consumible.efectos);
+		vida.incrementarEn(consumible.vidaIncrementada());//le agrege esto y comente "consumir"
+
 	}
 	
 	//para pruebas
