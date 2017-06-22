@@ -2,7 +2,6 @@ package view;
 
 import javafx.application.*;
 import javafx.stage.*;
-import model.Tablero;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.control.*;
