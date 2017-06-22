@@ -32,22 +32,16 @@ public class TestSemana2Consigna08 {
 		tablero.agregarUnidad(majinBoo, new Posicion(5,6));
 		
 		for(int i = 0; i < 6; i++)
-			  majinBoo.pasarTurno();//necesita 30 de ki para ataqueEspecial
+			majinBoo.pasarTurno();//necesita 30 de ki para ataqueEspecial
 			
-	        majinBoo.ataqueEspecialA(goku, tablero);
-	
-   // assertEquals(goku.getEstado().duracionParalisis,3);
-	    
-	        for(int i = 0 ;i < 3; i++){//goku queda paralizado 3 turnos
-	                 assertTrue(goku.getEstado().paralizado());
-	    	         goku.pasarTurno();
-	         }
-	  
-	        for(int i = 0 ;i < 3; i++){//majinBoo no carga su ki durante 3 tiempos
-	                 majinBoo.pasarTurno();
-	                 assertEquals(majinBoo.getKi().getMagnitud(),0);
-	        }
-    
+        majinBoo.ataqueEspecialA(goku, tablero);
+   
+        int kiGoku = goku.getKi().getMagnitud();
+        for(int i = 0 ;i < 3; i++) { //goku queda paralizado 3 turnos y no carga ki en ese tiempo
+             assertTrue(goku.getEstado().paralizado());
+             assertEquals(kiGoku, goku.getKi().getMagnitud());
+	         goku.pasarTurno();
+         }
 	}
 
 }

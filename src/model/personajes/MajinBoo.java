@@ -3,7 +3,6 @@ package model.personajes;
 import model.Tablero;
 import model.Unidad;
 import model.ataque.ConvierteteEnChocolate;
-import model.ataque.Kamehameha;
 import model.atributos_de_unidad.Vida;
 import model.equipos.EnemigosDeLaTierra;
 import model.error.ErrorEnemigoFueraDeAlcance;

@@ -1,15 +1,15 @@
 package model.atributos_de_unidad;
 
+import model.error.ErrorKiInsuficiente;
+
 public class Ki {
 
 	private static final int INCREMENTO_POR_TURNO = 5;
 	private int magnitud = 0;
 
-	public void reducirEn(int magnitud) {
-		// TODO Auto-generated method stub
+	public void reducirEn(int magnitud) throws ErrorKiInsuficiente {
 		if (this.magnitud < magnitud)
-			//TODO: Exception
-			throw new RuntimeException();
+			throw new ErrorKiInsuficiente();
 		this.magnitud -= magnitud;
 	}
 

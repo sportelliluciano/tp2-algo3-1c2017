@@ -21,7 +21,7 @@ public abstract class Unidad extends Posicionable {
 	protected Modo modo;
 	protected Ki ki = new Ki();
 	protected Vida vida;
-	protected Estado estado = new Estado(); //Camilo
+	protected Estado estado = new Estado();
 
 	public Set<Posicion> movsPosibles(Tablero tablero) throws ErrorPosicionInvalida {
 		Set<Posicion> posiciones = new HashSet<Posicion>();
@@ -119,6 +119,11 @@ public abstract class Unidad extends Posicionable {
 		
 		return false;
 		
+	}
+	
+	public void consumir(Consumible consumible) {
+		estado.aplicarEfectos(consumible.efectos());
+		vida.incrementarEn(consumible.vidaIncrementada());
 	}
 	
 	//este metodo busca cuales son las posiciones que llega el ataque.FALTA A�ADIR SI TRASPASA O NO A UNIDAD ALIADA

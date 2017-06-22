@@ -32,9 +32,11 @@ public class TestSemana2Consigna09 {
 		     freezer.ataqueBasicoA(goku, tablero);//saca 20 de vida
         //goku queda con menos de 20% de vida	
 		
+		int vidaFreezerAntesAtaque = freezer.getVidaActual();
+		
 		goku.ataqueBasicoA(freezer, tablero);
 				
-		assertEquals(freezer.getVidaActual() , 376 );//aumenta un 20% entonces es 24 el daño que hace goku
+		assertEquals(vidaFreezerAntesAtaque - 24, freezer.getVidaActual());//aumenta un 20% entonces es 24 el daño que hace goku
 		
 	}
 

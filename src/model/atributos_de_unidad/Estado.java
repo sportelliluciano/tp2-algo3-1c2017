@@ -2,15 +2,13 @@ package model.atributos_de_unidad;
 
 import java.util.ArrayList;
 
-import model.ataque.Ataque;
 import model.efectos.Efecto;
-import model.efectos.Paralizante;
 import model.error.ErrorUnidadParalizada;
 
 public class Estado {
-	public ArrayList<Efecto> efectos;
+	protected ArrayList<Efecto> efectos;
 	
-	public Estado(){
+	public Estado() {
 		this.efectos = new ArrayList<Efecto>(); 
 	}
 	
@@ -19,11 +17,19 @@ public class Estado {
 		return;
 	}
 	
+	private void limpiarEfectosTerminados() {
+		for(int i=0;i<efectos.size();i++) {
+			if (efectos.get(i).tiempoRestante() <= 0) {
+				efectos.remove(i);
+			}
+		}
+	}
+	
 	public void pasarTurno(){
 		for(Efecto efecto : efectos){
 			efecto.pasarTurno();
-			if(efecto.tiempoRestante()<=0) efectos.remove(efecto);
 		}
+		limpiarEfectosTerminados();
 	}
 	
 	public void aplicarEfectos(ArrayList<Efecto> efectos){
