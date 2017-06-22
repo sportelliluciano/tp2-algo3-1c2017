@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.Random;
 
 import model.consumibles.EsferaDelDragon;
 import model.consumibles.NubeVoladora;
@@ -19,7 +20,7 @@ public class Tablero {
 		this.alto = alto;
 		this.ancho = ancho;
 		
-		if ( (alto < 3) || (ancho < 3) )
+		if ( (alto < 3) || (ancho < 4) )
 			throw new RuntimeException();
 	}
 	
@@ -63,13 +64,13 @@ public class Tablero {
 
 	public void agregarEquipos(Equipo equipo1, Equipo equipo2) {
 		List<Posicion> esquinaSupIzq = new ArrayList<Posicion>();
-		esquinaSupIzq.add(new Posicion(0,0));
-		esquinaSupIzq.add(new Posicion(0,1));
-		esquinaSupIzq.add(new Posicion(1,0));
+		esquinaSupIzq.add(new Posicion(2,0));
+		esquinaSupIzq.add(new Posicion(0,2));
+		esquinaSupIzq.add(new Posicion(1,1));
 		List<Posicion> esquinaInfDer = new ArrayList<Posicion>();
-		esquinaInfDer.add(new Posicion(ancho-1,alto-1));
-		esquinaInfDer.add(new Posicion(ancho-1,alto-2));
-		esquinaInfDer.add(new Posicion(ancho-2,alto-1));
+		esquinaInfDer.add(new Posicion(ancho-3,alto-1));
+		esquinaInfDer.add(new Posicion(ancho-1,alto-3));
+		esquinaInfDer.add(new Posicion(ancho-2,alto-2));
 		
 		try {
 			int i = 0;
@@ -89,15 +90,17 @@ public class Tablero {
 	}
 
 	private Posicion getPosicionRandom() {
-		int x = ((int)Math.random() * 100000) % ancho;
-		int y = ((int)Math.random() * 100000) % alto;
+		Random rand = new Random();
+		int x = rand.nextInt() % ancho;
+		int y = rand.nextInt() % alto;
 		
 		return new Posicion(x, y);
 	}
 	
 	public void agregarConsumibleAleatorio() {
 		Consumible consumible = null;
-		int opc = ((int)(Math.random() * 100)) % 3;
+		Random rand = new Random();
+		int opc = Math.abs(rand.nextInt()) % 3;
 		switch(opc) {
 		case 0:
 			consumible = new Semilla();
@@ -116,6 +119,16 @@ public class Tablero {
 		} catch (ErrorPosicionInvalida e) {
 			return;
 		}
+	}
+
+	public Posicionable getPosicionable(int i, int j) {
+		Posicion pos = new Posicion(i, j);
+		for (Posicionable p : posicionables) {
+			if (p.getPosicion().equals(pos))
+				return p;
+		}
+		return null;
+			
 	}
 	
 }

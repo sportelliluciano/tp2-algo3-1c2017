@@ -3,6 +3,8 @@ package model.personajes;
 import model.Tablero;
 import model.Unidad;
 import model.ataque.Ataque;
+import model.ataque.AtaqueBasico;
+import model.ataque.Kamehameha;
 import model.atributos_de_unidad.Vida;
 import model.equipos.EnemigosDeLaTierra;
 import model.error.ErrorEnemigoFueraDeAlcance;
@@ -12,19 +14,25 @@ import model.error.ErrorUnidadNoEsEnemiga;
 import model.personajes.modos.CellNormal;
 
 public class Cell extends Unidad {
-
+	int vidaAbsorbida;
+	
 	public Cell(EnemigosDeLaTierra equipo) {
 		this.equipo = equipo;
 		vida = new Vida(500);
-		
+		vidaAbsorbida = 0;
 		modo = new CellNormal();
 	}
 	
-	@Override
-	public void ataqueEspecialA(Unidad unidad, Tablero tablero)
+	public void ataqueEspecialA(Unidad unidad, Tablero tablero) 
 			throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
-		Ataque ataqueEspecial = this.modo.getAtaqueEspecial();
-		this.vida.incrementarEn(ataqueEspecial.getDano());
-		super._atacar(unidad, tablero, ataqueEspecial);
+		super.validarAtaque(unidad, tablero);
+		ki.reducirEn(5);
+		Ataque ataque = new AtaqueBasico(estado.aplicarBoost(modo.getPoderDeAtaque()));
+		vidaAbsorbida++;
+		vida.incrementarEn(ataque.getDano());
+		_atacar(unidad, tablero, ataque);
 	}
+	
+	
+	
 }

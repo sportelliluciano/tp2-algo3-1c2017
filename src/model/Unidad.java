@@ -70,7 +70,7 @@ public abstract class Unidad extends Posicionable {
 	}
 	
 	protected void _atacar(Unidad enemigo, Tablero tablero, Ataque ataque) throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
-		validarAtaque(enemigo, tablero);
+		validarAtaque(enemigo, tablero); //Me parece que hay que sacarlo 
 		enemigo.recibirAtaque(ataque);
 	}
 	
@@ -78,9 +78,7 @@ public abstract class Unidad extends Posicionable {
 	    _atacar(unidad, tablero, new AtaqueBasico(estado.aplicarBoost(modo.getPoderDeAtaque())));
 	}
 	
-	public void ataqueEspecialA(Unidad unidad, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
-		_atacar(unidad, tablero, modo.getAtaqueEspecial());
-	}
+	public abstract void ataqueEspecialA(Unidad unidad, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente ,ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida;
 	
 	public void recibirAtaque(Ataque ataque) {
 		vida.reducirEn(ataque.getDano());
@@ -103,7 +101,7 @@ public abstract class Unidad extends Posicionable {
 		return vida.getPorcentajeVida();
 	}
 		
-	private void validarAtaque (Unidad enemigo, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
+	protected void validarAtaque (Unidad enemigo, Tablero tablero) throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
 	    if(!enemigoEstaDentroDeAlcance(enemigo,tablero))
 			throw new ErrorEnemigoFueraDeAlcance();
 	    if(equipo.pertenece(enemigo))
@@ -120,11 +118,6 @@ public abstract class Unidad extends Posicionable {
 		return false;
 		
 	}
-	/*
-	public void consumir(Consumible consumible) {
-		estado.aplicarEfectos(consumible.efectos());
-		vida.incrementarEn(consumible.vidaIncrementada());
-	}*/
 	
 	//este metodo busca cuales son las posiciones que llega el ataque.FALTA A�ADIR SI TRASPASA O NO A UNIDAD ALIADA
 	private Set<Posicion> posicionesPosibles(Tablero tablero) throws ErrorPosicionInvalida {
@@ -161,13 +154,15 @@ public abstract class Unidad extends Posicionable {
 	
 	public void aplicarConsumible(Consumible consumible){
 		estado.aplicarEfectos(consumible.efectos);
-		vida.incrementarEn(consumible.vidaIncrementada());//le agrege esto y comente "consumir"
+		vida.incrementarEn(consumible.vidaIncrementada());
 
 	}
 	
-	//para pruebas
 	public Estado getEstado(){
 		return estado;
 	}
 	
+	public String getNombre() {
+		return modo.getNombre();
+	}
 }

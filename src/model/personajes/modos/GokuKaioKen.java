@@ -17,10 +17,4 @@ public class GokuKaioKen extends Modo {
 		siguienteModo     = new GokuSSJ();
 	}
 	
-	@Override
-    public void incrementarPoderPelea(double multiplicador) {
-    	ataqueBasico = new AtaqueBasico((int)(40 * multiplicador));
-    	ataqueEspecial = new Kamehameha((int)(40 * multiplicador));
-    }
-	
 }

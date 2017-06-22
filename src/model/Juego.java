@@ -10,7 +10,7 @@ public class Juego {
 	private int jugadorActual;
 	
 	public Juego(Jugador jugador1, Jugador jugador2) {
-		tablero = new Tablero(19, 23);
+		tablero = new Tablero(15, 10);
 		tablero.agregarEquipos(jugador1.equipo(), jugador2.equipo());
 		jugadores = new ArrayList<Jugador>();
 		jugadores.add(jugador1);
@@ -19,7 +19,7 @@ public class Juego {
 	}
 	
 	private void agregarConsumibles() {
-		if ( (Math.random() * 100) < 20 )
+		if ( (Math.random() * 100) < 50 )
 			tablero.agregarConsumibleAleatorio();
 	}
 	

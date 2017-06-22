@@ -8,4 +8,8 @@ public class EsferaDelDragon extends Consumible {
 		super();
 		efectos.add(new BoostEsfera());
 	}
+	
+	public String getNombre() {
+		return "Esfera del Dragón";
+	}
 }

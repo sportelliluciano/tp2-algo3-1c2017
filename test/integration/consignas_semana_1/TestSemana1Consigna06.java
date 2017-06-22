@@ -40,9 +40,9 @@ public class TestSemana1Consigna06 {
 		}
 		
 		assertEquals(3, posicionesJ1.size());
-		assertTrue(posicionesJ1.contains(new Posicion(0,0)));
-		assertTrue(posicionesJ1.contains(new Posicion(0,1)));
-		assertTrue(posicionesJ1.contains(new Posicion(1,0)));
+		assertTrue(posicionesJ1.contains(new Posicion(0,2)));
+		assertTrue(posicionesJ1.contains(new Posicion(2,0)));
+		assertTrue(posicionesJ1.contains(new Posicion(1,1)));
 		
 		Set<Posicion> posicionesJ2 = new HashSet<Posicion>();
 		
@@ -51,9 +51,9 @@ public class TestSemana1Consigna06 {
 		}
 		
 		assertEquals(3, posicionesJ2.size());
-		assertTrue(posicionesJ2.contains(new Posicion(ancho-1, alto-1)));
-		assertTrue(posicionesJ2.contains(new Posicion(ancho-2, alto-1)));
-		assertTrue(posicionesJ2.contains(new Posicion(ancho-1, alto-2)));
+		assertTrue(posicionesJ2.contains(new Posicion(ancho-2, alto-2)));
+		assertTrue(posicionesJ2.contains(new Posicion(ancho-3, alto-1)));
+		assertTrue(posicionesJ2.contains(new Posicion(ancho-1, alto-3)));
 	}
 
 }

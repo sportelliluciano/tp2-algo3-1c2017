@@ -17,9 +17,5 @@ public class GokuNormal extends Modo {
         siguienteModo     = new GokuKaioKen();
     }
 
-    @Override
-    public void incrementarPoderPelea(double multiplicador) {
-    	ataqueBasico = new AtaqueBasico((int)(20 * multiplicador));
-    	ataqueEspecial = new Kamehameha((int)(20 * multiplicador));
-    }
+
 }

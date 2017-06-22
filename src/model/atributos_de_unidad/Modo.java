@@ -42,8 +42,6 @@ public abstract class Modo {
 		return distanciaDeAtaque;
 	}
 
-	public void incrementarPoderPelea(double multiplicador) {
-	}
 	public int getCostoKiAtaqueEspecial(){
 		return costoKiAtaqueEspecial;
 	}

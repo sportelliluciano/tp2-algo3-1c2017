@@ -8,4 +8,8 @@ public class NubeVoladora extends Consumible {
 		super();
 		efectos.add(new BoostVelocidad(2, 100));
 	}
+	
+	public String getNombre() {
+		return "Nube voladora";
+	}
 }

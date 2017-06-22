@@ -22,10 +22,5 @@ public class GokuSSJ extends Modo {
 		throw new ErrorNoHayMasTrans();
 	}
 	
-	@Override
-    public void incrementarPoderPelea(double multiplicador) {
-    	ataqueBasico = new AtaqueBasico((int)(60 * multiplicador));
-    	ataqueEspecial = new Kamehameha((int)(60 * multiplicador));
-    }
 }
 

@@ -7,4 +7,8 @@ public class Semilla extends Consumible {
 	public int vidaIncrementada() {
 		return 100;
 	}
+	
+	public String getNombre() {
+		return "Semilla del Ermitaño";
+	}
 }
