@@ -55,11 +55,13 @@ public class TestPiccolo {
 	public void testTransformarPiccoloAProtectorConGohanConVidaSuperiorVeintePorcientoDaError() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Piccolo piccolo = guerreros.getPiccolo();
-    Gohan gohan = guerreros.getGohan();//300 de vida
+                Gohan gohan = guerreros.getGohan();//300 de vida
        
 		Tablero tablero = new Tablero(19,23);
 		
-		tablero.agregarPosicionable(piccolo, new Posicion(5,5));	
+		tablero.agregarPosicionable(piccolo, new Posicion(5,5));
+		tablero.agregarPosicionable(gohan, new Posicion(10,10));	
+		tablero.agregarPosicionable(freezer, new Posicion(11,10));	
 
 		for(int i = 0; i < 4 ; i++)
    			piccolo.pasarTurno();
@@ -82,6 +84,8 @@ public class TestPiccolo {
 		Tablero tablero = new Tablero(19,23);
 		
 		tablero.agregarPosicionable(piccolo, new Posicion(5,5));	
+		tablero.agregarPosicionable(gohan, new Posicion(10,10));	
+		tablero.agregarPosicionable(freezer, new Posicion(11,10));	
 
 		for(int i = 0; i < 4 ; i++)
 		   	piccolo.pasarTurno();
