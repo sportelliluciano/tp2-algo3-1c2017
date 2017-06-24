@@ -1,50 +1,84 @@
 package model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import model.consumibles.EsferaDelDragon;
 import model.consumibles.NubeVoladora;
 import model.consumibles.Semilla;
 import model.error.ErrorPosicionInvalida;
-import model.error.ErrorUnidadParalizada;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Tablero {
-	private List<Posicionable> posicionables = new ArrayList<Posicionable>();
+	private Map<Posicion, Posicionable> posicionables = new HashMap<Posicion, Posicionable>();
 	private int alto;
 	private int ancho;
+	
+	final private int ANCHO_MIN = 4;
+	final private int ALTO_MIN  = 3;
 	
 	public Tablero (int ancho, int alto) {
 		this.alto = alto;
 		this.ancho = ancho;
 		
-		if ( (alto < 3) || (ancho < 4) )
+		if ( (alto < ALTO_MIN) || (ancho < ANCHO_MIN) )
 			throw new RuntimeException();
 	}
 	
 	public boolean hayPosicionableEn(Posicion pos) {
-		for (Posicionable p: posicionables) {
-			if (p.getPosicion().equals(pos))
+		return posicionables.containsKey(pos);
+	}
+
+	public void agregarPosicionable(Posicionable posicionable, Posicion posicion) throws ErrorPosicionInvalida {
+		validarPosicion(posicion);
+	
+		if (posicionables.putIfAbsent(posicion, posicionable) != null)
+			throw new ErrorPosicionInvalida();
+		
+		posicionable.setPosicion(posicion);
+	}
+
+	private void _calcularMovimientosPosibles(Set<Posicion> posibles, Posicion posicion, int maxPasos) {
+		if (maxPasos <= 0) return;
+		
+		for (Posicion p: posicion.getVecinos(Direccion.getDireccionesSinDiagonales())) {
+			if (!hayPosicionableEn(p)) {
+				posibles.add(p);
+				_calcularMovimientosPosibles(posibles, p, maxPasos - 1);
+			}
+		}
+	}
+	
+	public Set<Posicion> getMovimientosPosibles(Posicion origen, int velocidad) {
+		Set<Posicion> resultado = new HashSet<Posicion>();
+		_calcularMovimientosPosibles(resultado, origen, velocidad);
+		return resultado;
+	}
+	
+	private boolean buscarDestino(Posicion origen, Posicion destino, int distanciaMax) {
+		if (origen.equals(destino))
+			return true;
+		
+		if (distanciaMax <= 0) 
+			return false;
+		
+		for (Posicion p: origen.getVecinos(Direccion.getDireccionesSinDiagonales())) {
+			if (p.equals(destino))
+				return true;
+			if (buscarDestino(p, destino, distanciaMax - 1))
 				return true;
 		}
 		
 		return false;
 	}
-
-	public void agregarPosicionable(Posicionable posicionable, Posicion posicion) throws ErrorPosicionInvalida {
-		validarPosicion(posicion);
-		if (hayPosicionableEn(posicion))
-			throw new ErrorPosicionInvalida();
-		
-		posicionable.setPosicion(posicion);
-		posicionables.add(posicionable);
-	}
-
-	public void moverUnidad(Unidad unidad, Posicion nuevaPosicion) throws ErrorPosicionInvalida, ErrorUnidadParalizada {
-		validarPosicion(nuevaPosicion);
-		unidad.moverA(nuevaPosicion, this);
+	
+	public boolean estaDentroDelAlcance(Posicion origen, Posicion destino, int distanciaMax) {
+		return buscarDestino(origen, destino, distanciaMax);
 	}
 	
 	public void validarPosicion(Posicion posicion) throws ErrorPosicionInvalida {
@@ -122,13 +156,7 @@ public class Tablero {
 	}
 
 	public Posicionable getPosicionable(int i, int j) {
-		Posicion pos = new Posicion(i, j);
-		for (Posicionable p : posicionables) {
-			if (p.getPosicion().equals(pos))
-				return p;
-		}
-		return null;
-			
+		return posicionables.get(new Posicion(i, j));
 	}
 	
 }

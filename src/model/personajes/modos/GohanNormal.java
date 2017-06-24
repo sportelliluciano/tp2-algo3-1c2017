@@ -1,22 +1,47 @@
 package model.personajes.modos;
 
-import model.ataque.AtaqueBasico;
+import model.Unidad;
 import model.ataque.Masenko;
+import model.atributos_de_unidad.Estado;
 import model.atributos_de_unidad.Modo;
 import model.equipos.GuerrerosZ;
+import model.error.ErrorKiInsuficiente;
+import model.error.ErrorNoCumpleReqTrans;
+import model.error.ErrorNoHayMasTrans;
+import model.error.ErrorUnidadParalizada;
 
 public class GohanNormal extends Modo {
 
-    public GohanNormal(GuerrerosZ equipo) {
-    	nombre = "Gohan Normal";
-    	velocidad = 2;
+	protected GuerrerosZ equipo;
+	
+	public GohanNormal(GuerrerosZ equipo) {
+    	nombre            = "Gohan Normal";
+    	velocidad         = 2;
     	distanciaDeAtaque = 2;
-     	ataqueBasico = new AtaqueBasico(15);
-     	ataqueEspecial = new Masenko(15);
-     	poderDeAtaque = 15;
+     	poderDePelea      = 15;
      	
-     	costoKiSiguienteTransformacion = 10;
-        siguienteModo = new GohanSSJFase1(equipo);
+     	this.equipo       = equipo;
+        estado            = new Estado(300);
     }
+
+	@Override
+	public Modo siguienteTransformacion() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+		try {
+			estado.reducirKi(10);
+		} catch (ErrorKiInsuficiente e) {
+			throw new ErrorNoCumpleReqTrans();
+		}
+		
+		return new GohanSSJFase1(estado, equipo);
+	}
+
+	@Override
+	public void ataqueEspecialA(Unidad enemigo) throws ErrorKiInsuficiente, ErrorUnidadParalizada {
+		estado.reducirKi(10);
+		enemigo.recibirAtaque(new Masenko(getPoderDePelea()));
+	}
     
+	protected GohanNormal() {
+		
+	}
 }

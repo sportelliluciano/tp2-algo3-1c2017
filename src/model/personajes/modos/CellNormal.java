@@ -1,37 +1,42 @@
 package model.personajes.modos;
 
+import model.Unidad;
 import model.ataque.Ataque;
 import model.ataque.AtaqueBasico;
-import model.atributos_de_unidad.Ki;
+import model.atributos_de_unidad.Estado;
 import model.atributos_de_unidad.Modo;
+import model.error.ErrorKiInsuficiente;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
+import model.error.ErrorUnidadParalizada;
 
 public class CellNormal extends Modo {
 	
-	private int vidaAbsorbida = 0;
+	protected int vidaAbsorbida = 0;
 	
 	public CellNormal() {
     	nombre            = "Cell Normal";
     	velocidad         = 2;
     	distanciaDeAtaque = 3;
-     	ataqueBasico      = new AtaqueBasico(20);
-     	poderDeAtaque = 20;
+     	poderDePelea      = 20;
      	
-        siguienteModo     = new CellSemiPerfecto();
+     	estado = new Estado(500);
     }
 	
 	@Override
-	public Ataque getAtaqueEspecial() {
-		vidaAbsorbida++;
-		return ataqueBasico;
-	}
-	
-	@Override
-	public Modo siguienteTransformacion(Ki ki) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+	public Modo siguienteTransformacion() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
 		if (vidaAbsorbida < 4)
 			throw new ErrorNoCumpleReqTrans();
-		
-		return siguienteModo;
+		vidaAbsorbida -= 4;
+		return new CellSemiPerfecto(estado, vidaAbsorbida);
+	}
+
+	@Override
+	public void ataqueEspecialA(Unidad enemigo) throws ErrorKiInsuficiente, ErrorUnidadParalizada {
+		estado.reducirKi(5);
+		Ataque ataque = new AtaqueBasico(estado.getPoderDePelea(poderDePelea));
+		estado.incrementarVida(ataque.getDano());
+		vidaAbsorbida++;
+		enemigo.recibirAtaque(ataque);
 	}
 }

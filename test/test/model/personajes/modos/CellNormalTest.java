@@ -15,6 +15,7 @@ import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadNoEsEnemiga;
+import model.error.ErrorUnidadParalizada;
 import model.personajes.Cell;
 import model.personajes.Goku;
 import model.personajes.modos.CellSemiPerfecto;
@@ -22,7 +23,7 @@ import model.personajes.modos.CellSemiPerfecto;
 public class CellNormalTest {
 
 	@Test
-	public void testCellRecuperaVidaAlUsarAtaqueEspecial() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance {
+	public void testCellRecuperaVidaAlUsarAtaqueEspecial() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorUnidadParalizada {
 		EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Cell cell = enemigos.getCell();
@@ -32,15 +33,15 @@ public class CellNormalTest {
 		tablero.agregarPosicionable(goku, new Posicion(5,6));
 		
 		cell.recibirAtaque(new AtaqueBasico(200));
-		int vidaCellAntesAtaque = cell.getVidaActual();
+		int vidaCellAntesAtaque = cell.getVida().getVidaActual();
 		cell.pasarTurno();
 		cell.ataqueEspecialA(goku, tablero);
-		assertFalse(vidaCellAntesAtaque == cell.getVidaActual());
-		assertEquals(goku.getVidaMaxima() - goku.getVidaActual(), cell.getVidaActual() - vidaCellAntesAtaque);
+		assertFalse(vidaCellAntesAtaque == cell.getVida().getVidaActual());
+		assertEquals(goku.getVida().getVidaMaxima() - goku.getVida().getVidaActual(), cell.getVida().getVidaActual() - vidaCellAntesAtaque);
 	}
 
 	@Test
-	public void testCellPuedeTransformarseDespuesDeAbsorberVida4Veces() throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+	public void testCellPuedeTransformarseDespuesDeAbsorberVida4Veces() throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorUnidadParalizada {
 		EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Cell cell = enemigos.getCell();
@@ -55,11 +56,12 @@ public class CellNormalTest {
 			cell.ataqueEspecialA(goku, tablero);
 		}
 		cell.transformarse();
-		assertTrue(cell.getModo() instanceof CellSemiPerfecto);
+		assertTrue(cell.getNombre() == "Cell Semi-perfecto");
 	}
 	
 	@Test (expected = ErrorNoCumpleReqTrans.class)
-	public void testCellNoPuedeTransformarseSinAbsorberVida4Veces() throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+	public void testCellNoPuedeTransformarseSinAbsorberVida4Veces() 
+			throws ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorUnidadParalizada {
 		EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Cell cell = enemigos.getCell();

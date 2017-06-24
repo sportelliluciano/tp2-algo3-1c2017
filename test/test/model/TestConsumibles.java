@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import model.Posicion;
 import model.Tablero;
+import model.Unidad;
 import model.consumibles.EsferaDelDragon;
 import model.consumibles.NubeVoladora;
 import model.consumibles.Semilla;
@@ -22,7 +23,7 @@ import model.personajes.Goku;
 public class TestConsumibles {
 
 	@Test
-	public void testAgarrarEsferaIncrementaEnLosDosTurnosSiguientesAtaque() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
+	public void testAgarrarEsferaIncrementaEnLosDosTurnosSiguientesAtaque() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorUnidadParalizada {
         Tablero tablero = new Tablero(19,23);
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
@@ -35,22 +36,22 @@ public class TestConsumibles {
 		
 		EsferaDelDragon esfera = new EsferaDelDragon();
 		
-		goku.aplicarConsumible(esfera);//da 25% mas de daño en cada ataque durante los prox's 2 turnos
+		goku.consumir(esfera);//da 25% mas de daño en cada ataque durante los prox's 2 turnos
 		
-		int vidaFreezerAntesAtaque = freezer.getVidaActual();
+		int vidaFreezerAntesAtaque = freezer.getVida().getVidaActual();
 		
 		for(int i = 0; i < 2; i++){
 			goku.ataqueBasicoA(freezer, tablero);
 	        goku.pasarTurno();
 		}
 		
-		assertEquals(vidaFreezerAntesAtaque - 50, freezer.getVidaActual());
+		assertEquals(vidaFreezerAntesAtaque - 50, freezer.getVida().getVidaActual());
 
 		
 	}
 	
 	@Test
-	public void testConsumirSemillaRegeneraCienDeVida() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
+	public void testConsumirSemillaRegeneraCienDeVida() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorUnidadParalizada {
         Tablero tablero = new Tablero(19,23);
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
@@ -68,11 +69,11 @@ public class TestConsumibles {
 	        goku.pasarTurno();
 		}
 		
-		int vidaFreezerDespuesAtaque = freezer.getVidaActual();
+		int vidaFreezerDespuesAtaque = freezer.getVida().getVidaActual();
 
-		freezer.aplicarConsumible(semilla);//regenera 100 de vida
+		freezer.consumir(semilla);//regenera 100 de vida
 
-		assertEquals( freezer.getVidaActual(),vidaFreezerDespuesAtaque + 100);
+		assertEquals( freezer.getVida().getVidaActual(),vidaFreezerDespuesAtaque + 100);
 		
 	}
 	
@@ -82,14 +83,14 @@ public class TestConsumibles {
         Tablero tablero = new Tablero(19,23);
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
-		Goku goku = guerreros.getGoku();//velocidad = 2
+		Unidad goku = guerreros.getGoku();//velocidad = 2
 		tablero.agregarPosicionable(goku,new Posicion(5,5));
 		
-		int velocidadGokuAntesDeNubeVoladora = goku.getModo().getVelocidad();
+		int velocidadGokuAntesDeNubeVoladora = goku.getVelocidad();
 		
 		NubeVoladora nubeVoladora = new NubeVoladora();
 				
-		goku.aplicarConsumible(nubeVoladora);//velociad = 2x2 = 4 (x2 turnos)
+		goku.consumir(nubeVoladora);//velociad = 2x2 = 4 (x2 turnos)
 		
 		//assertEquals(goku.getModo().getVelocidad(),velocidadGokuAntesDeNubeVoladora*2); ESTO ESTA BIEN QUE NO DE BIEN?
 		//                                                                     PORQUE YO pense que los bosts no afectan los atributos                      

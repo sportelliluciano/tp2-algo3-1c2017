@@ -1,19 +1,28 @@
 package model.personajes.modos;
 
-import model.ataque.AtaqueBasico;
-import model.ataque.RayoMortal;
+import model.atributos_de_unidad.Estado;
 import model.atributos_de_unidad.Modo;
+import model.error.ErrorKiInsuficiente;
+import model.error.ErrorNoCumpleReqTrans;
+import model.error.ErrorNoHayMasTrans;
 
-public class FreezerSegundaForma extends Modo {
-	public FreezerSegundaForma() {
-    	nombre = "Freezer Segunda Forma";
-    	velocidad = 4;
+public class FreezerSegundaForma extends FreezerNormal {
+	public FreezerSegundaForma(Estado estadoAnterior) {
+    	nombre            = "Freezer Segunda Forma";
+    	velocidad         = 4;
     	distanciaDeAtaque = 3;
-    	ataqueBasico = new AtaqueBasico(40);
-    	ataqueEspecial = new RayoMortal(40);
-    	poderDeAtaque = 40;
+    	poderDePelea      = 40;
     	
-        costoKiSiguienteTransformacion = 50;
-        siguienteModo = new FreezerDefinitivo();
+        estado = estadoAnterior;
     }
+	
+	@Override
+	public Modo siguienteTransformacion() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+		try {
+			estado.reducirKi(50);
+		} catch (ErrorKiInsuficiente e) {
+			throw new ErrorNoCumpleReqTrans();
+		}
+		return new FreezerDefinitivo(estado);
+	}
 }

@@ -25,7 +25,7 @@ public class TestSemana1Consigna03 {
 		tablero.agregarPosicionable(goku, new Posicion(1,1));
 		tablero.agregarPosicionable(gohan, new Posicion(2,2));
 		
-		tablero.moverUnidad(goku, new Posicion(3,3));
+		goku.moverA(new Posicion(3,3), tablero);
 	}
 	
 	@Test (expected = ErrorPosicionInvalida.class)
@@ -37,7 +37,7 @@ public class TestSemana1Consigna03 {
 		tablero.agregarPosicionable(goku, new Posicion(1,1));
 		tablero.agregarPosicionable(gohan, new Posicion(2,2));
 		
-		tablero.moverUnidad(goku, new Posicion(3,3));
+		goku.moverA(new Posicion(3,3), tablero);
 	}
 	
 }

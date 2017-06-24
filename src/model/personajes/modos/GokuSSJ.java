@@ -1,24 +1,23 @@
 package model.personajes.modos;
 
-import model.ataque.AtaqueBasico;
-import model.ataque.Kamehameha;
-import model.atributos_de_unidad.Ki;
+import model.atributos_de_unidad.Estado;
 import model.atributos_de_unidad.Modo;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 
-public class GokuSSJ extends Modo {
+public class GokuSSJ extends GokuNormal {
 
-	public GokuSSJ() {
+	public GokuSSJ(Estado estadoAnterior) {
 		nombre            = "Super Saiyajin";
     	velocidad         = 5;
     	distanciaDeAtaque = 4;
-     	ataqueBasico      = new AtaqueBasico(60);
-     	poderDeAtaque = 60;
+    	poderDePelea      = 60;
+    	
+    	estado = estadoAnterior;
 	}
 	
 	@Override
-	public Modo siguienteTransformacion(Ki ki) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+	public Modo siguienteTransformacion() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
 		throw new ErrorNoHayMasTrans();
 	}
 	

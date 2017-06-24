@@ -12,6 +12,7 @@ import model.equipos.GuerrerosZ;
 import model.error.ErrorEnemigoFueraDeAlcance;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadNoEsEnemiga;
+import model.error.ErrorUnidadParalizada;
 import model.personajes.Freezer;
 import model.personajes.Gohan;
 import model.personajes.Goku;
@@ -19,7 +20,7 @@ import model.personajes.Goku;
 public class TestSemana1Consigna07 {
 	
 	@Test(expected = ErrorEnemigoFueraDeAlcance.class)  
-	public void test07NoSePuedeAtacarEnemigosMuyLejos() throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
+	public void test07NoSePuedeAtacarEnemigosMuyLejos() throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorUnidadParalizada {
 		
 		Tablero tablero = new Tablero(20,20);
 		
@@ -36,7 +37,7 @@ public class TestSemana1Consigna07 {
 	}		
 	
 	@Test
-	public void test07AtacarEnemigoCercanoReduceSuVida() throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida  {
+	public void test07AtacarEnemigoCercanoReduceSuVida() throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorUnidadParalizada  {
 		Tablero tablero = new Tablero(20,20);
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
@@ -51,11 +52,11 @@ public class TestSemana1Consigna07 {
 		tablero.agregarPosicionable(goku,posGoku);//distancia de ataque = 2
 		tablero.agregarPosicionable(freezer,posFreezer );//se encuentra a distancia = 1
 		
-		int vidaOponenteAntesDeAtaque = freezer.getVidaActual();
+		int vidaOponenteAntesDeAtaque = freezer.getVida().getVidaActual();
 		
 		goku.ataqueBasicoA(freezer,tablero);
 		
-		assertEquals(freezer.getVidaActual(),(vidaOponenteAntesDeAtaque - 20));
+		assertEquals(freezer.getVida().getVidaActual(),(vidaOponenteAntesDeAtaque - 20));
 		
 	}
 	

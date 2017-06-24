@@ -22,7 +22,7 @@ public class TestSemana1Consigna05 {
 		Unidad goku = new Goku(null);
 		tablero.agregarPosicionable(goku, new Posicion(5,5));
 		
-		tablero.moverUnidad(goku, new Posicion(8,5));
+		goku.moverA(new Posicion(8,5), tablero);
 	}
 	
 	@Test
@@ -36,7 +36,7 @@ public class TestSemana1Consigna05 {
 		
 		goku.transformarse();
 		
-		tablero.moverUnidad(goku, new Posicion(8,5));
+		goku.moverA(new Posicion(8,5), tablero);
 		assertTrue(goku.getPosicion().equals(new Posicion(8,5)));
 	}
 }

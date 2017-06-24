@@ -11,13 +11,14 @@ import model.equipos.GuerrerosZ;
 import model.error.ErrorEnemigoFueraDeAlcance;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadNoEsEnemiga;
+import model.error.ErrorUnidadParalizada;
 import model.personajes.Freezer;
 import model.personajes.Goku;
 
 public class TestSemana2Consigna09 {
 
 	@Test
-	public void test09GokuAumentaDañoAlReducirVidaDeBajoAlVeintePorciento() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
+	public void test09GokuAumentaDañoAlReducirVidaDeBajoAlVeintePorciento() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorUnidadParalizada {
     Tablero tablero = new Tablero(19,23);
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
@@ -32,11 +33,11 @@ public class TestSemana2Consigna09 {
 		     freezer.ataqueBasicoA(goku, tablero);//saca 20 de vida
         //goku queda con menos de 20% de vida	
 		
-		int vidaFreezerAntesAtaque = freezer.getVidaActual();
+		int vidaFreezerAntesAtaque = freezer.getVida().getVidaActual();
 		
 		goku.ataqueBasicoA(freezer, tablero);
 				
-		assertEquals(vidaFreezerAntesAtaque - 24, freezer.getVidaActual());//aumenta un 20% entonces es 24 el daño que hace goku
+		assertEquals(vidaFreezerAntesAtaque - 24, freezer.getVida().getVidaActual());//aumenta un 20% entonces es 24 el daño que hace goku
 		
 	}
 

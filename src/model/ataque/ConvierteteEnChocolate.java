@@ -20,11 +20,6 @@ public class ConvierteteEnChocolate implements Ataque {
 	}
 
 	@Override
-	public int paralizaDurante() {
-		return 3;
-	}
-
-	@Override
 	public ArrayList<Efecto> efectos() {
 		return efectos;
 	}

@@ -41,7 +41,7 @@ public class TestSemana2Consigna02 {
 		
 		gohan.transformarse();
 		
-		assertTrue(gohan.getModo().getNombre().equals("Gohan Super Sayajin Fase 2"));
+		assertTrue(gohan.getNombre().equals("Gohan Super Sayajin Fase 2"));
 		
 	}
 

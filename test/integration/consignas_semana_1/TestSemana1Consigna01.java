@@ -21,7 +21,7 @@ public class TestSemana1Consigna01 {
 		Unidad goku = new Goku(null);
 		tablero.agregarPosicionable(goku, new Posicion(5,5));
 		
-		tablero.moverUnidad(goku, new Posicion(5,4));
+		goku.moverA(new Posicion(5,4), tablero);
 		
 		assertTrue(goku.getPosicion().equals(new Posicion(5,4)));
 		

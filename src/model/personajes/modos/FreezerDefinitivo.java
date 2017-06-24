@@ -1,24 +1,22 @@
 package model.personajes.modos;
 
-import model.ataque.AtaqueBasico;
-import model.ataque.RayoMortal;
-import model.atributos_de_unidad.Ki;
+import model.atributos_de_unidad.Estado;
 import model.atributos_de_unidad.Modo;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 
-public class FreezerDefinitivo extends Modo {
-	public FreezerDefinitivo() {
-    	nombre = "Freezer Definitivo";
-    	velocidad = 6;
+public class FreezerDefinitivo extends FreezerNormal {
+	public FreezerDefinitivo(Estado estadoAnterior) {
+    	nombre            = "Freezer Definitivo";
+    	velocidad         = 6;
     	distanciaDeAtaque = 3;
-    	ataqueBasico = new AtaqueBasico(50);
-    	ataqueEspecial = new RayoMortal(50);
-    	poderDeAtaque = 50;
+    	poderDePelea      = 50;
+    	
+    	estado = estadoAnterior;
     }
 	
 	@Override
-	public Modo siguienteTransformacion(Ki ki) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+	public Modo siguienteTransformacion() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
 		throw new ErrorNoHayMasTrans();
 	}
 }

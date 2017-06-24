@@ -47,7 +47,7 @@ public class Jugador {
 	}
 	
 	public void ataqueBasico(Unidad personaje, Unidad enemigo) 
-			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
+			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorUnidadParalizada {
 		if ((!equipo.pertenece(personaje)) || (equipo.pertenece(enemigo)))
 			throw new RuntimeException();
 		if (ataco)
@@ -57,7 +57,7 @@ public class Jugador {
 	}
 	
 	public void ataqueEspecial(Unidad personaje, Unidad enemigo) 
-			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorKiInsuficiente {
+			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorKiInsuficiente, ErrorUnidadParalizada {
 		if ((!equipo.pertenece(personaje)) || (equipo.pertenece(enemigo)))
 			throw new RuntimeException();
 		if (ataco)

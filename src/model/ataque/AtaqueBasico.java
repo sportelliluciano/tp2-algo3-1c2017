@@ -18,11 +18,6 @@ public class AtaqueBasico implements Ataque {
 	}
 
 	@Override
-	public int paralizaDurante() {
-		return 0;
-	}
-
-	@Override
 	public ArrayList<Efecto> efectos() {
 		// TODO Auto-generated method stub
 		return new ArrayList<Efecto>();

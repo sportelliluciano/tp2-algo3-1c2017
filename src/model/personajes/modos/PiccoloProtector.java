@@ -1,26 +1,23 @@
 package model.personajes.modos;
 
-import model.ataque.AtaqueBasico;
-import model.ataque.Makankosappo;
-import model.atributos_de_unidad.Ki;
+import model.atributos_de_unidad.Estado;
 import model.atributos_de_unidad.Modo;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 
-public class PiccoloProtector extends Modo {
+public class PiccoloProtector extends PiccoloNormal {
 
-	public PiccoloProtector() {
-		nombre = "Piccolo Protector";
-    	velocidad = 4;
+	public PiccoloProtector(Estado estadoAnterior) {
+		nombre            = "Piccolo Protector";
+    	velocidad         = 4;
     	distanciaDeAtaque = 6;
-     	ataqueBasico = new AtaqueBasico(60);
-     	ataqueEspecial = new Makankosappo(60);
-     	poderDeAtaque = 60;
+     	poderDePelea      = 60;
+     	
+     	estado = estadoAnterior;
 	}
 	
 	@Override
-	public Modo siguienteTransformacion(Ki ki) throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
-
+	public Modo siguienteTransformacion() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
 		throw new ErrorNoHayMasTrans();
 	}
 }

@@ -14,6 +14,7 @@ import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadNoEsEnemiga;
+import model.error.ErrorUnidadParalizada;
 import model.personajes.Cell;
 import model.personajes.Goku;
 import model.personajes.Piccolo;
@@ -21,7 +22,7 @@ import model.personajes.Piccolo;
 public class TestSemana2Consigna07 {
 
 	@Test
-	public void test07aTransformarCellAsemiPerfectoAbsorbiendoCuatroVecesCambiaModo() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+	public void test07aTransformarCellAsemiPerfectoAbsorbiendoCuatroVecesCambiaModo() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorUnidadParalizada {
         Tablero tablero = new Tablero(19,23);
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
@@ -39,13 +40,13 @@ public class TestSemana2Consigna07 {
 		
 		cell.transformarse();
 		
-		assertEquals(cell.getModo().getNombre(),"Cell Semi-perfecto");
+		assertEquals(cell.getNombre(),"Cell Semi-perfecto");
 	
 	
 	}
 	
 	@Test
-	public void test07bTransformarCellAPerfectoAbsorbiendoOchoVecesCambiaModo() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans {
+	public void test07bTransformarCellAPerfectoAbsorbiendoOchoVecesCambiaModo() throws ErrorPosicionInvalida, ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance, ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorUnidadParalizada {
         Tablero tablero = new Tablero(19,23);
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
@@ -73,7 +74,7 @@ public class TestSemana2Consigna07 {
 		
 		cell.transformarse();
 		
-		assertEquals(cell.getModo().getNombre(),"Cell Perfecto");
+		assertEquals(cell.getNombre(),"Cell Perfecto");
 	
 	
 	}

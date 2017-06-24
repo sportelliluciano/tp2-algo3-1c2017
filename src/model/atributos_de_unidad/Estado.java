@@ -2,14 +2,22 @@ package model.atributos_de_unidad;
 
 import java.util.ArrayList;
 
+import model.ataque.Ataque;
 import model.efectos.Efecto;
+import model.error.ErrorKiInsuficiente;
 import model.error.ErrorUnidadParalizada;
 
 public class Estado {
 	protected ArrayList<Efecto> efectos;
+	private Vida vida;
+	private Ki ki;
+	private int cantidadEsferas = 0;
 	
-	public Estado() {
-		this.efectos = new ArrayList<Efecto>(); 
+	
+	public Estado(int vidaMaxima) {
+		efectos = new ArrayList<Efecto>();
+		vida = new Vida(vidaMaxima);
+		ki = new Ki();
 	}
 	
 	public void moverseEsPosible() throws ErrorUnidadParalizada {
@@ -30,6 +38,8 @@ public class Estado {
 			efecto.pasarTurno();
 		}
 		limpiarEfectosTerminados();
+		if (!paralizado())
+			ki.pasarTurno();
 	}
 	
 	public void aplicarEfectos(ArrayList<Efecto> efectos){
@@ -58,20 +68,59 @@ public class Estado {
 		
 	}
 	
-	
 	public int calcularBoostVelocidad(){
-        	int boost = 0;
-		for(Efecto efecto : efectos){
+        int boost = 0;
+		for(Efecto efecto : efectos) {
 			boost += efecto.getBoostVelocidad();
 		}
 		return boost;
-		
 	}
 	
 	
 	public int aplicarBoostVelocidad(int velocidad){
 		return velocidad + (velocidad*calcularBoostVelocidad())/100;
-	
+	}
+
+	public int getVelocidad(int velocidadBase) throws ErrorUnidadParalizada {
+		if (paralizado())
+			throw new ErrorUnidadParalizada();
+		return aplicarBoostVelocidad(velocidadBase);
 	}
 	
+	public int getPoderDePelea(int poderDePeleaBase) throws ErrorUnidadParalizada {
+		if (paralizado()) 
+			throw new ErrorUnidadParalizada();
+		return aplicarBoost(poderDePeleaBase);
+	}
+	
+	public int getDistanciaDeAtaque(int distanciaDeAtaqueBase) throws ErrorUnidadParalizada {
+		if (paralizado()) 
+			throw new ErrorUnidadParalizada();
+		return distanciaDeAtaqueBase;
+	}
+
+	public void recibirAtaque(Ataque ataque) {
+		aplicarEfectos(ataque.efectos());
+		vida.reducirEn(ataque.getDano());
+	}
+
+	public Ki getKi() {
+		return ki;
+	}
+	
+	public Vida getVida() {
+		return vida;
+	}
+
+	public int cantidadDeEsferasDelDragon() {
+		return cantidadEsferas;
+	}
+
+	public void reducirKi(int magnitud) throws ErrorKiInsuficiente {
+		ki.reducirEn(magnitud);
+	}
+
+	public void incrementarVida(int magnitud) {
+		vida.incrementarEn(magnitud);		
+	}
 }

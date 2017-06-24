@@ -36,7 +36,7 @@ public class TestSemana2Consigna04 {
 		
 	        piccolo.transformarse();
 		
-	        assertTrue(piccolo.getModo().getNombre().equals("Piccolo Protector"));
+	        assertTrue(piccolo.getNombre().equals("Piccolo Protector"));
 
 	}
 	
