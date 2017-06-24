@@ -61,8 +61,7 @@ public class TestPiccolo {
 		
 		tablero.agregarPosicionable(piccolo, new Posicion(5,5));
 		tablero.agregarPosicionable(gohan, new Posicion(10,10));	
-		tablero.agregarPosicionable(freezer, new Posicion(11,10));	
-
+		
 		for(int i = 0; i < 4 ; i++)
    			piccolo.pasarTurno();
  		
