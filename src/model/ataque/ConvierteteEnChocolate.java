@@ -13,7 +13,6 @@ public class ConvierteteEnChocolate implements Ataque {
 		efectos.add(new Paralizante(3));
 	}
 	
-	
 	@Override
 	public int getDano() {
 		return 0;
