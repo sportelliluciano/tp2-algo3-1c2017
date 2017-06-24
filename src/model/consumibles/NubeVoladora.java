@@ -1,12 +1,12 @@
 package model.consumibles;
 
 import model.Consumible;
-import model.efectos.BoostVelocidad;
+import model.efectos.EfectoNubeVoladora;
 
 public class NubeVoladora extends Consumible {
 	public NubeVoladora(){
 		super();
-		efectos.add(new BoostVelocidad(2, 100));
+		efectos.add(new EfectoNubeVoladora());
 	}
 	
 	public String getNombre() {

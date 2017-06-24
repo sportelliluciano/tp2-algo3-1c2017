@@ -12,11 +12,15 @@ public abstract class Consumible extends Posicionable {
 		this.efectos = new ArrayList<Efecto>();
 	}
 	
-	public ArrayList<Efecto> efectos(){
+	public ArrayList<Efecto> getEfectos(){
 		return efectos;
 	}
 	
-	public int vidaIncrementada() {
+	public int getIncrementoVida() {
+		return 0;
+	}
+
+	public int getCantidadEsferasDelDragon() {
 		return 0;
 	}
 	

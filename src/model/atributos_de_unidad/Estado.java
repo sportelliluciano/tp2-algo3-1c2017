@@ -2,6 +2,7 @@ package model.atributos_de_unidad;
 
 import java.util.ArrayList;
 
+import model.Consumible;
 import model.ataque.Ataque;
 import model.efectos.Efecto;
 import model.error.ErrorKiInsuficiente;
@@ -20,11 +21,6 @@ public class Estado {
 		ki = new Ki();
 	}
 	
-	public void moverseEsPosible() throws ErrorUnidadParalizada {
-		if(paralizado()) throw new ErrorUnidadParalizada();
-		return;
-	}
-	
 	private void limpiarEfectosTerminados() {
 		for(int i=0;i<efectos.size();i++) {
 			if (efectos.get(i).tiempoRestante() <= 0) {
@@ -33,70 +29,44 @@ public class Estado {
 		}
 	}
 	
-	public void pasarTurno(){
-		for(Efecto efecto : efectos){
+	public void pasarTurno() {
+		for(Efecto efecto : efectos)
 			efecto.pasarTurno();
-		}
 		limpiarEfectosTerminados();
 		if (!paralizado())
 			ki.pasarTurno();
 	}
 	
 	public void aplicarEfectos(ArrayList<Efecto> efectos){
-		for(Efecto efecto : efectos){
+		for(Efecto efecto : efectos)
 			this.efectos.add(efecto);
-		}
 	}
 	
-	public boolean paralizado(){
-		for(Efecto efecto : efectos){
-			if(efecto.paraliza()) return true;
-		}
-		return false;
+	public void consumir(Consumible consumible) {
+		vida.incrementarEn(consumible.getIncrementoVida());
+		cantidadEsferas += consumible.getCantidadEsferasDelDragon();
+		aplicarEfectos(consumible.getEfectos());
 	}
 	
-	public int calcularBoostAtaque(){
-		int boost = 0;
-		for(Efecto efecto : efectos){
-			boost += efecto.getBoostAtaque();
-		}
-		return boost;
-		
-	}
-	public int aplicarBoost(int poderAtaqueBase){
-		return poderAtaqueBase + (poderAtaqueBase*calcularBoostAtaque())/100;
-		
-	}
-	
-	public int calcularBoostVelocidad(){
-        int boost = 0;
-		for(Efecto efecto : efectos) {
-			boost += efecto.getBoostVelocidad();
-		}
-		return boost;
-	}
-	
-	
-	public int aplicarBoostVelocidad(int velocidad){
-		return velocidad + (velocidad*calcularBoostVelocidad())/100;
-	}
-
 	public int getVelocidad(int velocidadBase) throws ErrorUnidadParalizada {
-		if (paralizado())
-			throw new ErrorUnidadParalizada();
-		return aplicarBoostVelocidad(velocidadBase);
+		int velocidadExtra = 0;
+		for (Efecto efecto : efectos)
+			velocidadExtra += efecto.getBoostVelocidad(velocidadBase);
+		return velocidadBase + velocidadExtra;
 	}
 	
 	public int getPoderDePelea(int poderDePeleaBase) throws ErrorUnidadParalizada {
-		if (paralizado()) 
-			throw new ErrorUnidadParalizada();
-		return aplicarBoost(poderDePeleaBase);
+		int poderDePeleaExtra = 0;
+		for (Efecto efecto : efectos)
+			poderDePeleaExtra += efecto.getBoostPoderDePelea(poderDePeleaBase);
+		return poderDePeleaBase + poderDePeleaExtra;
 	}
 	
 	public int getDistanciaDeAtaque(int distanciaDeAtaqueBase) throws ErrorUnidadParalizada {
-		if (paralizado()) 
-			throw new ErrorUnidadParalizada();
-		return distanciaDeAtaqueBase;
+		int distanciaDeAtaqueExtra = 0;
+		for (Efecto efecto : efectos)
+			distanciaDeAtaqueExtra += efecto.getBoostDistanciaDeAtaque(distanciaDeAtaqueBase);
+		return distanciaDeAtaqueBase + distanciaDeAtaqueExtra;
 	}
 
 	public void recibirAtaque(Ataque ataque) {
@@ -122,5 +92,13 @@ public class Estado {
 
 	public void incrementarVida(int magnitud) {
 		vida.incrementarEn(magnitud);		
+	}
+	
+	public boolean paralizado() {
+		for (Efecto efecto : efectos) {
+			if (efecto.paraliza())
+				return true;
+		}
+		return false;
 	}
 }

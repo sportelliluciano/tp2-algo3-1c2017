@@ -53,8 +53,7 @@ public abstract class Modo {
 	}
 
 	public void consumir(Consumible consumible) {
-		estado.aplicarEfectos(consumible.efectos());
-		estado.incrementarVida(consumible.vidaIncrementada());
+		estado.consumir(consumible);
 	}
 
 	public abstract void ataqueEspecialA(Unidad enemigo) throws ErrorKiInsuficiente, ErrorUnidadParalizada;
