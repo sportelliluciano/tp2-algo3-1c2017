@@ -1,3 +1,5 @@
+package test.model.personajes;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
