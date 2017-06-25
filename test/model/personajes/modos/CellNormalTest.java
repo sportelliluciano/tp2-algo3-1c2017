@@ -1,4 +1,4 @@
-package test.model.personajes.modos;
+package model.personajes.modos;
 
 import static org.junit.Assert.*;
 
