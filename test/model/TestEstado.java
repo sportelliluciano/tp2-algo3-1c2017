@@ -69,7 +69,7 @@ public class TestEstado {
 	     
 	}
 	
-    @Test
+        @Test
 	public void testRecibirAtaqueMayorQueLaVidaDaCero() throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance {		 
 		
 		 int vidaMaxima = 50;
