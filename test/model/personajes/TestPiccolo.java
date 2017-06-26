@@ -21,7 +21,7 @@ import model.personajes.Piccolo;
 public class TestPiccolo {
 
 	@Test(expected = ErrorNoCumpleReqTrans.class)
-	public void testTransformarPiccioloAfortalecidoConKiInsuficiienteDaError() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida {
+	public void testTransformarPiccioloAfortalecidoConKiInsuficienteDaError() throws ErrorNoCumpleReqTrans, ErrorNoHayMasTrans, ErrorPosicionInvalida {
 		GuerrerosZ guerreros = new GuerrerosZ();
 		Piccolo piccolo = guerreros.getPiccolo();
 

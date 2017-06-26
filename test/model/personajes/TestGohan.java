@@ -1,3 +1,4 @@
+package model.personajes;
 
 import static org.junit.Assert.*;
 

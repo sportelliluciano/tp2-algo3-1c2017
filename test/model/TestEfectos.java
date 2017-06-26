@@ -1,30 +1,28 @@
+package model;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import model.efectos.BoostAtaque;
-import model.efectos.BoostEsfera;
-import model.efectos.BoostVelocidad;
+import model.efectos.EfectoEsferaDelDragon;
+import model.efectos.EfectoNubeVoladora;
 import model.efectos.Paralizante;
+import model.error.ErrorUnidadParalizada;
 
 public class TestEfectos {
 
 	@Test
 	public void testCrearBoostAtaqueVerificaDuracion() {
-		int duracion = 1;
-		int porcentaje = 200;
- 		BoostAtaque boostAtaque = new BoostAtaque(porcentaje,duracion);
+ 		EfectoEsferaDelDragon boostAtaque = new EfectoEsferaDelDragon();
  		
- 		assertEquals(boostAtaque.tiempoRestante(),1);
+ 		assertEquals(boostAtaque.tiempoRestante(),2);
 	}
 	
 	@Test
-	public void testCrearBoostAtaqueVerificaPorcentaje() {
-		int duracion = 1;
-		int porcentaje = 200;
- 		BoostAtaque boostAtaque = new BoostAtaque(porcentaje,duracion);
+	public void testCrearBoostAtaqueVerificaPorcentaje() throws ErrorUnidadParalizada {
+		EfectoEsferaDelDragon boostAtaque = new EfectoEsferaDelDragon();
  		
- 		assertEquals(boostAtaque.getBoostAtaque(),200);
+ 		assertEquals(25, boostAtaque.getBoostPoderDePelea(100));
 	}
 
 	@Test 
@@ -36,49 +34,29 @@ public class TestEfectos {
  		assertEquals(paralizante.tiempoRestante(),1);
 	}
 	
-	@Test 
-	public void testAplicarBoostParalizarVerificaPorcentajeNulo() {
+	@Test (expected = ErrorUnidadParalizada.class)
+	public void testAplicarBoostParalizarLanzaUnidadParalizadaAlObtenerPoderDePelea() throws ErrorUnidadParalizada {
 		int duracion = 1;
 		
 		Paralizante paralizante = new Paralizante(duracion);
 		 		
- 		assertEquals(paralizante.getBoostAtaque(),0);
-	}
-	
-	@Test 
-	public void testAplicarBoostEsferaVerificaDuracionDos() {
-		
-		BoostEsfera boostEsfera = new BoostEsfera();
-		
-		assertEquals(boostEsfera.tiempoRestante(),2);
-		 		
-	}
-	
-	@Test 
-	public void testAplicarBoostEsferaVerificaPorcentajeVeintiCinco() {
-		
-		BoostEsfera boostEsfera = new BoostEsfera();
-		
-		assertEquals(boostEsfera.getBoostAtaque(),25);
-		 		
+ 		assertEquals(0, paralizante.getBoostPoderDePelea(100));
 	}
 	
 	@Test 
 	public void testBoostVelocidadVerificaDuracion() {
 		
-		BoostVelocidad boostVelocidad = new BoostVelocidad(10,23);
+		EfectoNubeVoladora boostVelocidad = new EfectoNubeVoladora();
 		
-		assertEquals(boostVelocidad.tiempoRestante(),10);
+		assertEquals(boostVelocidad.tiempoRestante(),2);
 			
 	}
 	
 	@Test 
-	public void testBoostVelocidadVerificaPorcentaje() {
+	public void testBoostVelocidadVerificaPorcentaje() throws ErrorUnidadParalizada {
+		EfectoNubeVoladora boostVelocidad = new EfectoNubeVoladora();
 		
-		BoostVelocidad boostVelocidad = new BoostVelocidad(10,23);
-		
-		assertEquals(boostVelocidad.getBoostVelocidad(),23);
-			
+		assertEquals(100, boostVelocidad.getBoostVelocidad(100));
 	}
 	
 	
