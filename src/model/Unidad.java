@@ -36,6 +36,7 @@ public abstract class Unidad extends Posicionable {
 		if (!tablero.getMovimientosPosibles(getPosicion(), modo.getVelocidad()).contains(nuevaPosicion))
 			throw new ErrorPosicionInvalida();
 		setPosicion(nuevaPosicion);
+		tablero.cambiarPosUnidad(this, nuevaPosicion);
 	}
 	
 	public void ataqueBasicoA(Unidad enemigo, Tablero tablero) throws ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {

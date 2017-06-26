@@ -4,6 +4,8 @@ import javafx.application.*;
 import javafx.stage.*;
 import model.Juego;
 import model.Jugador;
+import model.equipos.EnemigosDeLaTierra;
+import model.equipos.GuerrerosZ;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.control.*;
@@ -15,13 +17,12 @@ public class Main extends Application {
 	Button botonDeInicio;
 	Stage ventana;
 	Scene escenaMenu, escenaJuego;
-	Pane layoutJuego;
-	int DIM_HOR = 600;
-	int DIM_VER = 400;
+	ContenedorJuego layoutJuego;
+	int DIM_HOR = 800;
+	int DIM_VER = 600;
 	Juego juego;
 	Jugador jugador1;
 	Jugador jugador2;
-
 	
 	public void start(Stage primaryStage) {
 		ventana = primaryStage;
@@ -35,14 +36,21 @@ public class Main extends Application {
 	public Scene iniciarJuego(){
 		iniciarLayoutJuego(); // TODO: Ac� faltar�a hacer que el layout que se inicie sea el nuevo objeto tablero
 		
-		/* Ac� va a ir el c�digo que pone en el tablero los personajes */
+		/* Ac� va a ir el c�digo que pone en el tablero los personsajes */
+		ventana.widthProperty().addListener((obs, oldVal, newVal) -> {
+		     layoutJuego.redimensionar(ventana.widthProperty().doubleValue(), ventana.heightProperty().doubleValue());
+		});
+
+		ventana.heightProperty().addListener((obs, oldVal, newVal) -> {
+			layoutJuego.redimensionar(ventana.widthProperty().doubleValue(), ventana.heightProperty().doubleValue());
+		});
 		
 		escenaJuego = new Scene(layoutJuego, DIM_HOR, DIM_VER);
 		return escenaJuego;
 	}
 	
 	public void iniciarLayoutJuego(){
-		layoutJuego = new Pane();
+		layoutJuego = new ContenedorJuego(new Juego(new Jugador("Fabio", new GuerrerosZ()), new Jugador("Marito", new EnemigosDeLaTierra())));
 		Label textoPlaceholder = new Label("Aca va el juego");
 		textoPlaceholder.setLayoutX(DIM_HOR/2);
 		textoPlaceholder.setLayoutY(DIM_VER/2);
@@ -77,7 +85,7 @@ public class Main extends Application {
 	}
 	
 	public void cerrarPrograma(){
-		System.out.println("Se cerr� el juego.");
+		//System.out.println("Se cerr� el juego.");
 		ventana.close();
 	}
 } 

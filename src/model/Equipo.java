@@ -24,4 +24,9 @@ public abstract class Equipo {
 	public List<Unidad> integrantes() {
 		return integrantes;
 	}
+
+	public void pasarTurno() {
+		for(Unidad integrante : integrantes)
+			integrante.pasarTurno();
+	}
 }

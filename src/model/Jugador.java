@@ -68,6 +68,7 @@ public class Jugador {
 	
 	public void pasarTurno() {
 		movio = ataco = false;
+		equipo.pasarTurno();
 	}
 }
 

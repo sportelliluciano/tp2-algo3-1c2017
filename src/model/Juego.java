@@ -37,6 +37,10 @@ public class Juego {
 		return tablero;
 	}
 
+	public Jugador getJugadorActual() {
+		return jugadores.get(jugadorActual);
+	}
+
 }
 
 
