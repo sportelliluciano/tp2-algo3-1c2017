@@ -28,7 +28,7 @@ public class TestJugador {
 		
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
-	    Juego juego = new Juego(jugador1,jugador2);
+	        Juego juego = new Juego(jugador1,jugador2);
 		jugador1.setJuego(juego);
 		jugador2.setJuego(juego);
 				
@@ -44,7 +44,7 @@ public class TestJugador {
 		
 		Jugador jugador1 = new Jugador("Lucy",guerreros);
  
-        EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
+                EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
@@ -73,7 +73,7 @@ public class TestJugador {
 		
 		Jugador jugador1 = new Jugador("Lucy",guerreros);
  
-        EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
+                EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
@@ -104,7 +104,7 @@ public class TestJugador {
 		
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
-	    Juego juego = new Juego(jugador1,jugador2);
+	        Juego juego = new Juego(jugador1,jugador2);
 		jugador1.setJuego(juego);
 		jugador2.setJuego(juego);
 				
@@ -121,9 +121,9 @@ public class TestJugador {
 		
 		Jugador jugador1 = new Jugador("Lucy",guerreros);
  
-        EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
+                EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		
-        Freezer freezer = enemigos.getFreezer();
+                Freezer freezer = enemigos.getFreezer();
         
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
@@ -145,8 +145,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posDer));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posIzq));
-	    	posFreezerIni = freezer.getPosicion();
+	    	        jugador2.mover(freezer, posFreezerIni.add(posIzq));
+	    	        posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 		
@@ -154,8 +154,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posArriba));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posAbajo));
-	    	posFreezerIni = freezer.getPosicion();
+	        	jugador2.mover(freezer, posFreezerIni.add(posAbajo));
+	    	        posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 			
@@ -177,7 +177,7 @@ public class TestJugador {
 		
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
-	    Juego juego = new Juego(jugador1,jugador2);
+	        Juego juego = new Juego(jugador1,jugador2);
 		jugador1.setJuego(juego);
 		jugador2.setJuego(juego);
 				
@@ -194,9 +194,9 @@ public class TestJugador {
 		
 		Jugador jugador1 = new Jugador("Lucy",guerreros);
  
-        EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
+                EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		
-        Freezer freezer = enemigos.getFreezer();
+                Freezer freezer = enemigos.getFreezer();
         
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
@@ -218,8 +218,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posDer));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posIzq));
-	    	posFreezerIni = freezer.getPosicion();
+	         	jugador2.mover(freezer, posFreezerIni.add(posIzq));
+	    	        posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 		
@@ -227,8 +227,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posArriba));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posAbajo));
-	    	posFreezerIni = freezer.getPosicion();
+	    	        jugador2.mover(freezer, posFreezerIni.add(posAbajo));
+	    	        posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 			
@@ -248,9 +248,9 @@ public class TestJugador {
 		
 		Jugador jugador1 = new Jugador("Lucy",guerreros);
  
-        EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
+                EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		
-        Freezer freezer = enemigos.getFreezer();
+                Freezer freezer = enemigos.getFreezer();
         
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
@@ -272,8 +272,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posDer));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posIzq));
-	    	posFreezerIni = freezer.getPosicion();
+	    	        jugador2.mover(freezer, posFreezerIni.add(posIzq));
+	    	        posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 		
@@ -281,8 +281,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posArriba));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posAbajo));
-	    	posFreezerIni = freezer.getPosicion();
+	    	        jugador2.mover(freezer, posFreezerIni.add(posAbajo));
+	    	        posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 			
@@ -302,9 +302,9 @@ public class TestJugador {
 		
 		Jugador jugador1 = new Jugador("Lucy",guerreros);
  
-        EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
+                EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		
-        Freezer freezer = enemigos.getFreezer();
+                Freezer freezer = enemigos.getFreezer();
         
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
@@ -326,8 +326,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posDer));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posIzq));
-	    	posFreezerIni = freezer.getPosicion();
+	          	jugador2.mover(freezer, posFreezerIni.add(posIzq));
+	    	        posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 		
@@ -335,8 +335,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posArriba));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posAbajo));
-	    	posFreezerIni = freezer.getPosicion();
+	        	jugador2.mover(freezer, posFreezerIni.add(posAbajo));
+	        	posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 			
@@ -362,9 +362,9 @@ public class TestJugador {
 		
 		Jugador jugador1 = new Jugador("Lucy",guerreros);
  
-        EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
+                EnemigosDeLaTierra enemigos = new EnemigosDeLaTierra();
 		
-        Freezer freezer = enemigos.getFreezer();
+                Freezer freezer = enemigos.getFreezer();
         
 		Jugador jugador2 = new Jugador("Jimmy",enemigos);
 		
@@ -386,8 +386,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posDer));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posIzq));
-	    	posFreezerIni = freezer.getPosicion();
+	        	jugador2.mover(freezer, posFreezerIni.add(posIzq));
+	        	posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 		
@@ -395,8 +395,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posArriba));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	jugador2.mover(freezer, posFreezerIni.add(posAbajo));
-	    	posFreezerIni = freezer.getPosicion();
+	    	        jugador2.mover(freezer, posFreezerIni.add(posAbajo));
+	    	        posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 			
