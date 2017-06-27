@@ -37,7 +37,7 @@ public class TestJugador {
 
 	@Test 
 	public void testMoverUnidadCambiaPos() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada {
-		
+		 
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
 		Goku goku = guerreros.getGoku();
