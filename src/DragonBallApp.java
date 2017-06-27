@@ -1,9 +1,10 @@
-package app;
-
 import javafx.application.*;
 import javafx.stage.*;
 import model.Juego;
 import model.Jugador;
+import model.equipos.EnemigosDeLaTierra;
+import model.equipos.GuerrerosZ;
+import view.ContenedorJuego;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.control.*;
@@ -15,9 +16,9 @@ public class DragonBallApp extends Application {
 	Button botonDeInicio;
 	Stage ventana;
 	Scene escenaMenu, escenaJuego;
-	Pane layoutJuego;
-	int DIM_HOR = 600;
-	int DIM_VER = 400;
+	ContenedorJuego layoutJuego;
+	int DIM_HOR = 800;
+	int DIM_VER = 600;
 	Juego juego;
 	Jugador jugador1;
 	Jugador jugador2;
@@ -33,16 +34,23 @@ public class DragonBallApp extends Application {
 	}
 	
 	public Scene iniciarJuego(){
-		iniciarLayoutJuego(); // TODO: Acá faltaría hacer que el layout que se inicie sea el nuevo objeto tablero
+		iniciarLayoutJuego(); // TODO: Acï¿½ faltarï¿½a hacer que el layout que se inicie sea el nuevo objeto tablero
 		
-		/* Acá va a ir el código que pone en el tablero los personajes */
+		/* Acï¿½ va a ir el cï¿½digo que pone en el tablero los personajes */
+		ventana.widthProperty().addListener((obs, oldVal, newVal) -> {
+		     layoutJuego.redimensionar(ventana.widthProperty().doubleValue(), ventana.heightProperty().doubleValue());
+		});
+
+		ventana.heightProperty().addListener((obs, oldVal, newVal) -> {
+			 layoutJuego.redimensionar(ventana.widthProperty().doubleValue(), ventana.heightProperty().doubleValue());
+		});
 		
 		escenaJuego = new Scene(layoutJuego, DIM_HOR, DIM_VER);
 		return escenaJuego;
 	}
 	
 	public void iniciarLayoutJuego(){
-		layoutJuego = new Pane();
+		layoutJuego = new ContenedorJuego(new Juego(new Jugador("Fabio", new GuerrerosZ()), new Jugador("Marito", new EnemigosDeLaTierra())));
 		Label textoPlaceholder = new Label("Aca va el juego");
 		textoPlaceholder.setLayoutX(DIM_HOR/2);
 		textoPlaceholder.setLayoutY(DIM_VER/2);
@@ -77,7 +85,7 @@ public class DragonBallApp extends Application {
 	}
 	
 	public void cerrarPrograma(){
-		System.out.println("Se cerró el juego.");
+		System.out.println("Se cerrï¿½ el juego.");
 		ventana.close();
 	}
 } 
