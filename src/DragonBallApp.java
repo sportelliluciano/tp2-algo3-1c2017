@@ -5,6 +5,7 @@ import model.Jugador;
 import model.equipos.EnemigosDeLaTierra;
 import model.equipos.GuerrerosZ;
 import view.ContenedorJuego;
+import view.ContenedorMenuInicio;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.control.*;
@@ -19,9 +20,9 @@ public class DragonBallApp extends Application {
 	ContenedorJuego layoutJuego;
 	int DIM_HOR = 800;
 	int DIM_VER = 600;
-	Juego juego;
 	Jugador jugador1;
 	Jugador jugador2;
+	Juego juego;
 
 	
 	public void start(Stage primaryStage) {
@@ -29,14 +30,15 @@ public class DragonBallApp extends Application {
 		ventana.setTitle("Guerreros Z vs Enemigos de la Tierra");
 		ventana.setOnCloseRequest(e -> cerrarPrograma() );
 		
-		ventana.setScene(crearEscenaMenu() );
+		ContenedorMenuInicio contenedorMenuInicio = new ContenedorMenuInicio(ventana, iniciarJuego() );
+		Scene escenaMenu = new Scene(contenedorMenuInicio, DIM_HOR, DIM_VER);
+
+		ventana.setScene(escenaMenu);
 		ventana.show();
 	}
 	
 	public Scene iniciarJuego(){
-		iniciarLayoutJuego(); // TODO: Ac� faltar�a hacer que el layout que se inicie sea el nuevo objeto tablero
-		
-		/* Ac� va a ir el c�digo que pone en el tablero los personajes */
+		iniciarLayoutJuego();
 		ventana.widthProperty().addListener((obs, oldVal, newVal) -> {
 		     layoutJuego.redimensionar(ventana.widthProperty().doubleValue(), ventana.heightProperty().doubleValue());
 		});
@@ -50,35 +52,14 @@ public class DragonBallApp extends Application {
 	}
 	
 	public void iniciarLayoutJuego(){
-		layoutJuego = new ContenedorJuego(new Juego(new Jugador("Fabio", new GuerrerosZ()), new Jugador("Marito", new EnemigosDeLaTierra())));
-		Label textoPlaceholder = new Label("Aca va el juego");
-		textoPlaceholder.setLayoutX(DIM_HOR/2);
-		textoPlaceholder.setLayoutY(DIM_VER/2);
-		ImageView fondoJuego = new ImageView("file:fondo_juego.jpg");
-		fondoJuego.setFitHeight(DIM_VER);
-		fondoJuego.setFitWidth(DIM_HOR);
-		layoutJuego.getChildren().addAll(fondoJuego,textoPlaceholder);
+		jugador1 = new Jugador("Fabio", new GuerrerosZ() );
+		jugador2 = new Jugador("Marito", new EnemigosDeLaTierra() );
+		layoutJuego = new ContenedorJuego(new Juego(jugador1, jugador2) );
+		Image imagenTablero = new Image("file:fondo_juego.jpg");
+		BackgroundImage fondoJuego = new BackgroundImage(imagenTablero, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+		layoutJuego.setBackground(new Background(fondoJuego) );
 	}
 	
-	public Scene crearEscenaMenu(){
-		ImageView fondoMenuVista = new ImageView("file:imagen_menu.jpg");
-		fondoMenuVista.setFitHeight(DIM_VER);
-		fondoMenuVista.setFitWidth(DIM_HOR);
-		
-		botonDeInicio = new Button("A luchar");
-		botonDeInicio.setOnAction(e ->
-					ventana.setScene(iniciarJuego() ));
-		botonDeInicio.setLayoutX(200);
-		botonDeInicio.setLayoutY(220);
-		
-		Pane layoutMenuInicio = new Pane();
-		layoutMenuInicio.getChildren().addAll(fondoMenuVista, botonDeInicio);
-		BorderPane layoutInicio = new BorderPane();
-		layoutInicio.setCenter(layoutMenuInicio);
-		escenaMenu = new Scene(layoutInicio, DIM_HOR, DIM_VER);
-		
-		return escenaMenu;
-	}
 	
 	public static void main(String[] args) {
 		launch(args);
