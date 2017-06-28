@@ -15,21 +15,20 @@ public class ContenedorTablero extends StackPane {
 	private Posicion ultimoClick;
 	
 	public ContenedorTablero(ContenedorJuego contenedorJuego, double ancho, double alto, Tablero tablero) {
-		crear(contenedorJuego, ancho, alto, tablero);
-	}
-	
-	private void crear(ContenedorJuego contenedorJuego, double ancho, double alto, Tablero tablero) {
+
 		this.contenedorJuego = contenedorJuego;
+		this.tablero = tablero;
+		
 		Canvas canvasCentral = new Canvas(ancho, alto);
 		canvasCentral.setOnMouseClicked(e -> canvasClick(e));
 		BorderPane borderPaneTablero = new BorderPane();
 		borderPaneTablero.setCenter(canvasCentral);
 		this.getChildren().add(borderPaneTablero);
-		this.tablero = tablero;
+		
 		vistaTablero = new VistaTablero(tablero, canvasCentral);
 		vistaTablero.dibujar();
-	}
 	
+	}	
 	
 	private void canvasClick(MouseEvent e) {
 		Posicionable p = vistaTablero.getPosicionable(e.getX(), e.getY());
@@ -46,7 +45,10 @@ public class ContenedorTablero extends StackPane {
 
 
 	public void redimensionar(double ancho, double alto) {
-		crear(contenedorJuego, ancho, alto, tablero);
+		
+		vistaTablero.redimensionar(ancho, alto);
+		vistaTablero.dibujar();
+		//crear(contenedorJuego, ancho, alto, tablero);
 	}
 
 	public void actualizar() {

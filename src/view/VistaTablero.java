@@ -47,6 +47,11 @@ public class VistaTablero {
 		gfc.drawImage(spritePosicionable, posX, posY, ancho, alto);
 	}
 	
+	public void redimensionar(double ancho, double alto) {
+		canvas.setWidth(ancho);
+		canvas.setHeight(alto);
+	}
+	
 	public void dibujar() {
 		limpiar();
 		GraphicsContext gfc = canvas.getGraphicsContext2D();
