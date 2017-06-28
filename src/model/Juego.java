@@ -10,6 +10,10 @@ public class Juego {
 	private int jugadorActual;
 	
 	public Juego(Jugador jugador1, Jugador jugador2) {
+		
+		jugador1.setJuego(this);
+		jugador2.setJuego(this);
+		
 		tablero = new Tablero(15, 10);
 		tablero.agregarEquipos(jugador1.equipo(), jugador2.equipo());
 		jugadores = new ArrayList<Jugador>();
