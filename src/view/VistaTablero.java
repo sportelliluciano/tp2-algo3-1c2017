@@ -56,8 +56,8 @@ public class VistaTablero {
 		limpiar();
 		GraphicsContext gfc = canvas.getGraphicsContext2D();
 		gfc.setFill(Color.web("#c3c3c3"));
-		anchoCasilla = canvas.getWidth() / tablero.getAncho();
-		altoCasilla  = canvas.getHeight() / tablero.getAlto();
+		anchoCasilla = (canvas.getWidth() - 16) / tablero.getAncho(); // Ni idea xq ese 16 es necesario pero sino se queda corta la ultima fila
+		altoCasilla  = (canvas.getHeight()) / tablero.getAlto();
 		for(int i=0;i<tablero.getAncho();i++) {
 			for (int j=0;j<tablero.getAlto();j++) {
 				double posX = 0.5 + (i * anchoCasilla);
@@ -92,6 +92,9 @@ public class VistaTablero {
 	}
 
 	public Posicion getPosicion(double x, double y) {
+		
+		return new Posicion((int) (x / anchoCasilla), (int) (y/altoCasilla));
+		/*
 		for(int i=0;i<tablero.getAncho();i++) {
 			for (int j=0;j<tablero.getAlto();j++) {
 				double posX = 0.5 + (i * anchoCasilla);
@@ -104,7 +107,7 @@ public class VistaTablero {
 				}
 			}
 		}
-		return null;
+		return null;*/
 	}
 	
 	public void setSeleccionada(Posicion p) {
