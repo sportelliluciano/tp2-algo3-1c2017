@@ -1,3 +1,4 @@
+package model;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -18,7 +19,7 @@ import model.personajes.Goku;
 public class TestJugador {
 
 	@Test (expected = RuntimeException.class)
-	public void testMoverUnidadAjenaDaError() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada {
+	public void testMoverUnidadAjenaDaError() throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -36,7 +37,7 @@ public class TestJugador {
 	}
 
 	@Test 
-	public void testMoverUnidadCambiaPos() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada {
+	public void testMoverUnidadCambiaPos() throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 		 
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -65,7 +66,7 @@ public class TestJugador {
 	
 	
 	@Test (expected = RuntimeException.class)
-	public void testMoverDosVecesDaError() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada {
+	public void testMoverDosVecesDaError() throws ErrorPosicionInvalida, ErrorUnidadParalizada {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -94,7 +95,7 @@ public class TestJugador {
 	
 
 	@Test (expected = RuntimeException.class)
-	public void testAtacarUnidadAliadaDaError() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
+	public void testAtacarUnidadAliadaDaError() throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -113,7 +114,7 @@ public class TestJugador {
 
 	
 	@Test (expected = RuntimeException.class)
-	public void testAtacarDosVecesDaError() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
+	public void testAtacarDosVecesDaError() throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -167,7 +168,7 @@ public class TestJugador {
 	
 	
 	@Test (expected = RuntimeException.class)
-	public void testAtacarEspecialUnidadAliadaDaError() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorKiInsuficiente {
+	public void testAtacarEspecialUnidadAliadaDaError() throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorKiInsuficiente {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -186,7 +187,7 @@ public class TestJugador {
 	
 
 	@Test (expected = RuntimeException.class)
-	public void testAtacarEspecialDosVecesDaError() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorKiInsuficiente {
+	public void testAtacarEspecialDosVecesDaError() throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorKiInsuficiente {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -240,7 +241,7 @@ public class TestJugador {
 	
 
 	@Test (expected = RuntimeException.class)
-	public void testAtacarMixDosVecesDaError() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorKiInsuficiente {
+	public void testAtacarMixDosVecesDaError() throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorKiInsuficiente {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -294,7 +295,7 @@ public class TestJugador {
 
 
 	@Test 
-	public void testAtacarDisminuyeVidaRival() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
+	public void testAtacarDisminuyeVidaRival() throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		
@@ -354,7 +355,7 @@ public class TestJugador {
 	
 	
 	@Test 
-	public void testAtacarEspecialDisminuyeVidaRival() throws RuntimeException, ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorKiInsuficiente {
+	public void testAtacarEspecialDisminuyeVidaRival() throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorKiInsuficiente {
 		
 		GuerrerosZ guerreros = new GuerrerosZ();
 		

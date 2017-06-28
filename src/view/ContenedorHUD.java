@@ -56,6 +56,7 @@ public class ContenedorHUD extends BorderPane {
 		btnTransformarse = new Button("Transformar");
 		btnPasarTurno.setOnAction(e -> clicPasarTurno() );
 		btnAccion.setOnAction(e -> clicAccion() );
+		btnAccion.setDisable(true);
 		btnTransformarse.setOnAction(e -> clicTransformarse() );
 		botoneraAcciones.getChildren().add(btnPasarTurno);
 		botoneraAcciones.getChildren().add(btnAccion);
@@ -102,7 +103,7 @@ public class ContenedorHUD extends BorderPane {
 		
 		if ((p == null) || (p instanceof Consumible)) {
 			try {
-				personajeSeleccionado.moverA(pos, juego.getTablero());
+				jugador.mover(personajeSeleccionado, pos);
 				actualizar();
 			} catch (ErrorPosicionInvalida | ErrorUnidadParalizada e) {
 				label.setText("Nope");
@@ -110,7 +111,7 @@ public class ContenedorHUD extends BorderPane {
 		}
 		else if(p instanceof Unidad) {
 			try {
-				personajeSeleccionado.ataqueBasicoA((Unidad)p, juego.getTablero());
+				jugador.ataqueBasico(personajeSeleccionado, (Unidad)p);
 				actualizar();
 			} catch (ErrorUnidadParalizada | ErrorUnidadNoEsEnemiga | ErrorEnemigoFueraDeAlcance
 					| ErrorPosicionInvalida e) {
