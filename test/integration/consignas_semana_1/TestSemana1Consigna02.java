@@ -49,7 +49,7 @@ public class TestSemana1Consigna02 {
 		tablero.agregarPosicionable(goku, new Posicion(5,5));
 		tablero.agregarPosicionable(gohan, new Posicion(6,5));
 		
-		gohan.moverA(new Posicion(6,5), tablero);//no deberia mover goku?
-}
+		gohan.moverA(new Posicion(6,5), tablero);
+	}
 
 }

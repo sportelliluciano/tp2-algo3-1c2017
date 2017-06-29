@@ -33,10 +33,18 @@ public abstract class Unidad extends Posicionable {
 	}
 	
 	public void moverA(Posicion nuevaPosicion, Tablero tablero) throws ErrorPosicionInvalida, ErrorUnidadParalizada {
-		if (!tablero.getMovimientosPosibles(getPosicion(), modo.getVelocidad()).contains(nuevaPosicion))
+		if (!tablero.puedeLlegarA(nuevaPosicion, getPosicion(), getVelocidad()))
 			throw new ErrorPosicionInvalida();
-		setPosicion(nuevaPosicion);
-		tablero.cambiarPosUnidad(this, nuevaPosicion);
+		try {
+			Consumible consumible = tablero.pisar(nuevaPosicion);
+			consumir(consumible);
+			tablero.eliminarPosicionable(nuevaPosicion);
+			setPosicion(nuevaPosicion);
+			tablero.cambiarPosUnidad(this, nuevaPosicion);
+		}
+		catch (ErrorUnidadNoSePuedePisar e) {
+			throw new ErrorPosicionInvalida();
+		}
 	}
 	
 	public void ataqueBasicoA(Unidad enemigo, Tablero tablero) throws ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {
@@ -82,5 +90,9 @@ public abstract class Unidad extends Posicionable {
 
 	public boolean estaParalizado() {
 		return modo.estaParalizado();
+	}
+	
+	public Consumible pisar() throws ErrorUnidadNoSePuedePisar {
+		throw new ErrorUnidadNoSePuedePisar();
 	}
 }

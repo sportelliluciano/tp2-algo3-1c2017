@@ -30,11 +30,11 @@ public abstract class Efecto {
 	}
 	
 	public void pasarTurno() {
-		if (duracion > 0)
+		if (duracion > -1)
 			duracion--;
 	}
 	
 	public int tiempoRestante() {
-		return duracion;
+		return duracion + 1;
 	}
 }

@@ -23,5 +23,9 @@ public abstract class Consumible extends Posicionable {
 	public int getCantidadEsferasDelDragon() {
 		return 0;
 	}
-	
+
+	@Override
+	public Consumible pisar() {
+		return this;
+	}
 }

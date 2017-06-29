@@ -6,6 +6,8 @@ import model.error.ErrorKiInsuficiente;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadNoEsEnemiga;
 import model.error.ErrorUnidadParalizada;
+import model.error.ErrorYaAtaco;
+import model.error.ErrorYaMovio;
 
 public class Jugador {
 		
@@ -37,33 +39,36 @@ public class Jugador {
 	}
 	
 	public void mover(Unidad personaje, Posicion posicionNueva) 
-			throws ErrorPosicionInvalida, ErrorUnidadParalizada {
+			throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorYaMovio {
 		if (!equipo.pertenece(personaje))
 			throw new RuntimeException();
 		if (movio)
-			throw new RuntimeException();
-		movio = true;
+			throw new ErrorYaMovio();
+
 		personaje.moverA(posicionNueva, juego.getTablero());
+		movio = true;
 	}
 	
 	public void ataqueBasico(Unidad personaje, Unidad enemigo) 
-			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorUnidadParalizada {
+			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorYaAtaco {
 		if ((!equipo.pertenece(personaje)) || (equipo.pertenece(enemigo)))
-			throw new RuntimeException();
+			throw new ErrorUnidadNoEsEnemiga();
 		if (ataco)
-			throw new RuntimeException();
-		ataco = true;
+			throw new ErrorYaAtaco();
+
 		personaje.ataqueBasicoA(enemigo, juego.getTablero());
+		ataco = true;
 	}
 	
 	public void ataqueEspecial(Unidad personaje, Unidad enemigo) 
-			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorKiInsuficiente, ErrorUnidadParalizada {
+			throws ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida, ErrorKiInsuficiente, ErrorUnidadParalizada, ErrorYaAtaco {
 		if ((!equipo.pertenece(personaje)) || (equipo.pertenece(enemigo)))
 			throw new RuntimeException();
 		if (ataco)
-			throw new RuntimeException();
-		ataco = true;
+			throw new ErrorYaAtaco();
+		
 		personaje.ataqueEspecialA(enemigo, juego.getTablero());
+		ataco = true;
 	}
 	
 	public void pasarTurno() {

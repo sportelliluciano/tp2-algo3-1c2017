@@ -1,5 +1,7 @@
 package model;
 
+import model.consumibles.ConsumibleVacio;
+
 public abstract class Posicionable {
 
 	private Posicion posicion;
@@ -13,4 +15,8 @@ public abstract class Posicionable {
 	}
 	
 	public abstract String getNombre();
+
+	public Consumible pisar() throws ErrorUnidadNoSePuedePisar {
+		return new ConsumibleVacio();
+	}
 }

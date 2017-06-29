@@ -207,9 +207,9 @@
 	</target>
 
 	<target name="ejecutar.aplicacion" depends="empaquetar">
-		<java classname="fiuba.algo3.ejemplo1.Foo" fork="true">
+		<java classname="DragonBallApp.java" fork="true">
 			<classpath refid="classpath" />
-			<classpath location="${build}/dist/algo3.jar" />
+			<classpath location="${build}/dist/dbapp.jar" />
 		</java>
 	</target>
 

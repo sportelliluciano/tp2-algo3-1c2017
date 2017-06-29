@@ -1,13 +1,8 @@
 package view;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import model.Posicion;
 import model.Posicionable;
@@ -19,32 +14,34 @@ public class VistaTablero {
 	private Canvas canvas;
 	private double anchoCasilla, altoCasilla;
 	private Posicion posSeleccionada = null;
-	private Map<String, Image> imagenes;
 	
 	public VistaTablero(Tablero tablero, Canvas canvas) {
 		this.tablero = tablero;
 		this.canvas = canvas;
-		imagenes = new HashMap<String, Image>();
 	}
 	
-	public void dibujarPosicionable(GraphicsContext gfc, Posicionable posicionable, double posX, double posY, double ancho, double alto) {
+	public void dibujarPosicionable(GraphicsContext gfc, Posicionable posicionable, double posX, double posY, double maxAncho, double maxAlto) {
 		if (posicionable == null)
 			return;
 		
-		String nombre = posicionable.getNombre().toLowerCase().replaceAll(" ", "-");
-		String rutaSprite = "src/view/imagenes/posicionables/" + nombre + ".png";
-		Image spritePosicionable = imagenes.get(rutaSprite);
-		if (spritePosicionable == null) {
-			spritePosicionable = new Image("file:" + rutaSprite);
-			imagenes.put(rutaSprite, spritePosicionable);
+		Image spritePosicionable = FabricaSprites.getSpritePosicionable(posicionable);
+		double anchoSprite = spritePosicionable.getWidth(),
+				altoSprite = spritePosicionable.getHeight();
+		double margenX = 0, margenY = 0;
+		double alto = 0, ancho = 0;
+		
+		if (altoSprite < anchoSprite) {
+			ancho = Math.min(maxAncho, anchoSprite);
+			alto = altoSprite * (ancho / anchoSprite);
+			margenY = (maxAlto - alto) / 2;
+		}
+		else {
+			alto = Math.min(maxAlto, altoSprite);
+			ancho = anchoSprite * (alto / altoSprite);
+			margenX = (maxAncho - ancho) / 2;
 		}
 		
-		if (spritePosicionable.isError()) {
-			System.out.println(nombre);
-			throw new RuntimeException();
-		}
-		
-		gfc.drawImage(spritePosicionable, posX, posY, ancho, alto);
+		gfc.drawImage(spritePosicionable, posX + margenX, posY + margenY, ancho, alto);
 	}
 	
 	public void redimensionar(double ancho, double alto) {

@@ -5,11 +5,12 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import model.consumibles.ConsumibleVacio;
 import model.consumibles.EsferaDelDragon;
 import model.consumibles.NubeVoladora;
 import model.consumibles.Semilla;
 import model.error.ErrorPosicionInvalida;
-
+import model.ErrorUnidadNoSePuedePisar;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,7 +28,7 @@ public class Tablero {
 		this.ancho = ancho;
 		
 		if ( (alto < ALTO_MIN) || (ancho < ANCHO_MIN) )
-			throw new RuntimeException();
+			throw new RuntimeException("El tablero debe ser como mínimo de " + ANCHO_MIN + "x" + ALTO_MIN);
 	}
 	
 	public boolean hayPosicionableEn(Posicion pos) {
@@ -47,7 +48,7 @@ public class Tablero {
 		if (maxPasos <= 0) return;
 		
 		for (Posicion p: posicion.getVecinos(Direccion.getDireccionesSinDiagonales())) {
-			if (!hayPosicionableEn(p)) {
+			if ( (!hayPosicionableEn(p)) && (!p.equals(posicion)) ) {
 				posibles.add(p);
 				_calcularMovimientosPosibles(posibles, p, maxPasos - 1);
 			}
@@ -171,6 +172,35 @@ public class Tablero {
 
 	public Posicionable getPosicionable(int i, int j) {
 		return posicionables.get(new Posicion(i, j));
+	}
+
+	public void eliminarPosicionable(Posicion pos) {
+		posicionables.remove(pos);
+	}
+
+	public boolean puedeLlegarA(Posicion nuevaPosicion, Posicion origen, int velocidad) {
+		if (origen.equals(nuevaPosicion))
+			return true;
+		
+		if (velocidad <= 0) 
+			return false;
+		
+		for (Posicion p: origen.getVecinos(Direccion.getDireccionesSinDiagonales())) {
+			if (p.equals(nuevaPosicion))
+				return true;
+			
+			if (hayPosicionableEn(p))
+				continue;
+			
+			if (puedeLlegarA(nuevaPosicion, p, velocidad - 1))
+				return true;
+		}
+		
+		return false;
+	}
+
+	public Consumible pisar(Posicion posicion) throws ErrorUnidadNoSePuedePisar {
+		return posicionables.getOrDefault(posicion, new ConsumibleVacio()).pisar();
 	}
 	
 }

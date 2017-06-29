@@ -3,8 +3,6 @@ package view;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import model.Consumible;
@@ -19,10 +17,11 @@ import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadNoEsEnemiga;
 import model.error.ErrorUnidadParalizada;
+import model.error.ErrorYaAtaco;
+import model.error.ErrorYaMovio;
 
 public class ContenedorHUD extends BorderPane {
 
-	private ImageView personaje;
 	private VBox botoneraAcciones, botoneraPersonajes;
 	private Button btnPasarTurno, btnAccion, btnTransformarse;
 	private Button btnPersonajes[];
@@ -35,7 +34,6 @@ public class ContenedorHUD extends BorderPane {
 	public ContenedorHUD(Juego juego, ContenedorTablero contenedorTablero) {
 		this.juego = juego;
 		this.jugador = juego.getJugadorActual();
-		personaje = new ImageView(new Image("file:src/view/imagenes/posicionables/goku-normal.png"));
 		label = new Label();
 		botoneraAcciones = new VBox();
 		botoneraPersonajes = new VBox();
@@ -105,7 +103,7 @@ public class ContenedorHUD extends BorderPane {
 			try {
 				jugador.mover(personajeSeleccionado, pos);
 				actualizar();
-			} catch (ErrorPosicionInvalida | ErrorUnidadParalizada e) {
+			} catch (ErrorPosicionInvalida | ErrorUnidadParalizada | ErrorYaMovio e) {
 				label.setText("Nope");
 			}
 		}
@@ -114,7 +112,7 @@ public class ContenedorHUD extends BorderPane {
 				jugador.ataqueBasico(personajeSeleccionado, (Unidad)p);
 				actualizar();
 			} catch (ErrorUnidadParalizada | ErrorUnidadNoEsEnemiga | ErrorEnemigoFueraDeAlcance
-					| ErrorPosicionInvalida e) {
+					| ErrorPosicionInvalida | ErrorYaAtaco e) {
 				label.setText("Nope");
 			}
 		}
