@@ -1,9 +1,15 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Consumible;
 import model.Juego;
@@ -22,21 +28,27 @@ import model.error.ErrorYaMovio;
 
 public class ContenedorHUD extends BorderPane {
 
-	private VBox botoneraAcciones, botoneraPersonajes;
+	private HBox botoneraAcciones;
+	private VBox botoneraPersonajes, statsPersonaje;
 	private Button btnPasarTurno, btnAccion, btnTransformarse;
 	private Button btnPersonajes[];
 	private Juego juego;
 	private Jugador jugador;
-	private Label label;
+	private Label ki;
+	private Label vida;
+	private Label nombreUnidad;
 	private Unidad personajeSeleccionado;
 	private ContenedorTablero contenedorTablero;
 	
 	public ContenedorHUD(Juego juego, ContenedorTablero contenedorTablero) {
 		this.juego = juego;
 		this.jugador = juego.getJugadorActual();
-		label = new Label();
-		botoneraAcciones = new VBox();
+		nombreUnidad = new Label();
+		vida = new Label();
+		ki = new Label();
+		botoneraAcciones = new HBox();
 		botoneraPersonajes = new VBox();
+		statsPersonaje = new VBox();
 		
 		this.contenedorTablero = contenedorTablero;
 		
@@ -49,24 +61,30 @@ public class ContenedorHUD extends BorderPane {
 			botoneraPersonajes.getChildren().add(btnPersonajes[i]);
 		}
 		
-		btnPasarTurno = new Button("Pasar turno");
-		btnAccion = new Button("Atacar/Mover");
-		btnTransformarse = new Button("Transformar");
+		btnPasarTurno = new Button();
+		btnPasarTurno.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_pasar_turno.png"));
 		btnPasarTurno.setOnAction(e -> clicPasarTurno() );
+		btnTransformarse = new Button();
+		btnTransformarse.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_transformacion.png"));
+		btnTransformarse.setOnAction(e -> clicTransformarse() );
+		btnAccion = new Button();
 		btnAccion.setOnAction(e -> clicAccion() );
 		btnAccion.setDisable(true);
-		btnTransformarse.setOnAction(e -> clicTransformarse() );
-		botoneraAcciones.getChildren().add(btnPasarTurno);
-		botoneraAcciones.getChildren().add(btnAccion);
-		botoneraAcciones.getChildren().add(btnTransformarse);
+		btnAccion.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_atacar_mover.png"));
+		botoneraAcciones.getChildren().addAll(btnPasarTurno,btnAccion,btnTransformarse);
+		
+		statsPersonaje.getChildren().addAll(nombreUnidad,vida, ki);
+		
 		this.setRight(botoneraAcciones);
 		this.setLeft(botoneraPersonajes);
-		this.setCenter(label);
+		this.setCenter(statsPersonaje);
 		deseleccionarPersonaje();
 	}
 	
 	public void seleccionarPersonaje(ActionEvent e) {
 		personajeSeleccionado = jugador.getPersonajes().get((int) ((Button)e.getSource()).getUserData());
+		vida.setText("Vida: "+personajeSeleccionado.getVida().getVidaActual()+"/"+personajeSeleccionado.getVida().getVidaMaxima());
+		ki.setText("Ki: "+personajeSeleccionado.getKi().getMagnitud() );
 		btnAccion.setDisable(false);
 		btnTransformarse.setDisable(false);
 		actualizar();
@@ -79,10 +97,11 @@ public class ContenedorHUD extends BorderPane {
 	}
 	
 	private void actualizar() {
-		if (personajeSeleccionado != null)
-			label.setText("Unidad: " + personajeSeleccionado.getNombre());
+		if (personajeSeleccionado != null){
+			nombreUnidad.setText("Unidad: " + personajeSeleccionado.getNombre());
+		}
 		else
-			label.setText("Unidad: <ninguno>");
+			nombreUnidad.setText("Unidad: <ninguno>");
 		for(int i=0;i<3;i++) {
 			btnPersonajes[i].setText(jugador.getPersonajes().get(i).getNombre());
 		}
@@ -104,7 +123,7 @@ public class ContenedorHUD extends BorderPane {
 				jugador.mover(personajeSeleccionado, pos);
 				actualizar();
 			} catch (ErrorPosicionInvalida | ErrorUnidadParalizada | ErrorYaMovio e) {
-				label.setText("Nope");
+				nombreUnidad.setText("Nope");
 			}
 		}
 		else if(p instanceof Unidad) {
@@ -113,7 +132,7 @@ public class ContenedorHUD extends BorderPane {
 				actualizar();
 			} catch (ErrorUnidadParalizada | ErrorUnidadNoEsEnemiga | ErrorEnemigoFueraDeAlcance
 					| ErrorPosicionInvalida | ErrorYaAtaco e) {
-				label.setText("Nope");
+				nombreUnidad.setText("Nope");
 			}
 		}
 		
@@ -126,21 +145,29 @@ public class ContenedorHUD extends BorderPane {
 			personajeSeleccionado.transformarse();
 			actualizar();
 		} catch (ErrorNoCumpleReqTrans | ErrorNoHayMasTrans e) {
-			label.setText("No te podes transformar wacho");
+			nombreUnidad.setText("No te podes transformar wacho");
 		}
 	}
 
 	public void posicionSeleccionada(Posicion p) {
-		label.setText("Seleccionado: " + p.getX() + ";" + p.getY());
+		nombreUnidad.setText("Seleccionado: " + p.getX() + ";" + p.getY());
 		if (personajeSeleccionado == null)
 			return;
-		btnAccion.setText("Mover");
+		btnAccion.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_mover.png"));;
 	}
 
 	public void personajeSeleccionado(Unidad p) {
-		label.setText("Seleccionado: " + p.getNombre());
+		nombreUnidad.setText("Seleccionado: " + p.getNombre());
 		if (personajeSeleccionado == null)
 			return;
-		btnAccion.setText("Atacar");
+		btnAccion.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_atacar.png"));;
+		try{
+			Set<Posicion> posiciones = juego.getTablero().getMovimientosPosibles(p.getPosicion(), p.getVelocidad());
+			contenedorTablero.marcarPosiciones(posiciones);
+		}
+		catch (ErrorUnidadParalizada e){
+			return;
+		}
 	}
 }
+
