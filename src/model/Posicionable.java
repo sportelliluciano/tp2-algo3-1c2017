@@ -1,6 +1,7 @@
 package model;
 
 import model.consumibles.ConsumibleVacio;
+import model.error.ErrorUnidadNoSePuedePisar;
 
 public abstract class Posicionable {
 

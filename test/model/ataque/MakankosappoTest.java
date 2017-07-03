@@ -18,7 +18,7 @@ public class MakankosappoTest {
 	public void testDanoDeMakankosappoEs25pMasQueElPoderDePelea() {
 		Ataque makankosappo = new Makankosappo(TEST_PODER_PELEA);
 		Ataque basico       = new AtaqueBasico(TEST_PODER_PELEA);
-		assertEquals((int)(basico.getDano() * 1.25), makankosappo.getDano());
+		assertEquals((int)(basico.getDano(TEST_PODER_PELEA) * 1.25), makankosappo.getDano(TEST_PODER_PELEA));
 	}
 
 }

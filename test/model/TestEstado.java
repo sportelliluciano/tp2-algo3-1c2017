@@ -22,6 +22,8 @@ import model.error.ErrorUnidadParalizada;
 
 public class TestEstado {
 	
+	final private int TEST_PODER_PELEA = 100;
+	
 	@Test (expected =  ErrorUnidadParalizada.class)
 	public void testMoverseConUnidadParalizadaDaError() throws ErrorPosicionInvalida, ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorKiInsuficiente, ErrorEnemigoFueraDeAlcance {		 
 		
@@ -58,9 +60,9 @@ public class TestEstado {
 		 
 		 Estado estado = new Estado(vidaMaxima);
 	        
-	     Ataque ataque = new AtaqueBasico(100);
+	     Ataque ataque = new AtaqueBasico(TEST_PODER_PELEA);
 	     
-	     estado.recibirAtaque(ataque);
+	     estado.recibirAtaque(ataque, TEST_PODER_PELEA);
 	     
 	     assertEquals(estado.getVida().getVidaActual(),vidaMaxima - 100);
 	     
@@ -73,9 +75,9 @@ public class TestEstado {
 		 
 		 Estado estado = new Estado(vidaMaxima);
 	        
-	     Ataque ataque = new AtaqueBasico(100);
+	     Ataque ataque = new AtaqueBasico(TEST_PODER_PELEA);
 	     
-	     estado.recibirAtaque(ataque);
+	     estado.recibirAtaque(ataque, TEST_PODER_PELEA);
 	     
 	     assertEquals(estado.getVida().getVidaActual(),0);
 	     
@@ -128,6 +130,7 @@ public class TestEstado {
 
 		 estado.aplicarEfectos(efectos);
 		 
+		 estado.pasarTurno();
 		 estado.pasarTurno();
 		 
 		 int velocidad = 2;

@@ -14,7 +14,7 @@ public class ConvierteteEnChocolate implements Ataque {
 	}
 	
 	@Override
-	public int getDano() {
+	public int getDano(int poderDePeleaPropio) {
 		return 0;
 	}
 

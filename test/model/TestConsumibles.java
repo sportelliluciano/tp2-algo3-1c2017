@@ -92,12 +92,11 @@ public class TestConsumibles {
 				
 		goku.consumir(nubeVoladora);//velociad = 2x2 = 4 (x2 turnos)
 		
-		assertEquals(goku.getVelocidad(),velocidadGokuAntesDeNubeVoladora*2); //ESTO ESTA BIEN QUE NO DE BIEN?
-		//                                                                     PORQUE YO pense que los bosts no afectan los atributos                      
-		goku.moverA(new Posicion(5,9), tablero);
+		assertEquals(goku.getVelocidad(),velocidadGokuAntesDeNubeVoladora*2);                      
+		tablero.moverUnidad(goku, new Posicion(5,9));
 		assertEquals(goku.getPosicion(),new Posicion(5,9));
         goku.pasarTurno();
-        goku.moverA(new Posicion(9,9), tablero);
+        tablero.moverUnidad(goku, new Posicion(9,9));
 		assertEquals(goku.getPosicion(),new Posicion(9,9));
 		
 	}

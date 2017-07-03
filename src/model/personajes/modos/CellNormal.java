@@ -35,7 +35,7 @@ public class CellNormal extends Modo {
 	public void ataqueEspecialA(Unidad enemigo) throws ErrorKiInsuficiente, ErrorUnidadParalizada {
 		estado.reducirKi(5);
 		Ataque ataque = new AtaqueBasico(estado.getPoderDePelea(poderDePelea));
-		estado.incrementarVida(ataque.getDano());
+		estado.incrementarVida(ataque.getDano(poderDePelea));
 		vidaAbsorbida++;
 		enemigo.recibirAtaque(ataque);
 	}

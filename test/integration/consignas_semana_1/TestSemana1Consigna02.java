@@ -10,8 +10,6 @@ import model.Unidad;
 import model.error.*;
 import model.personajes.Gohan;
 import model.personajes.Goku;
-import model.personajes.modos.GohanNormal;
-import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna02 {
 	@Test(expected = ErrorPosicionInvalida.class)
@@ -49,7 +47,7 @@ public class TestSemana1Consigna02 {
 		tablero.agregarPosicionable(goku, new Posicion(5,5));
 		tablero.agregarPosicionable(gohan, new Posicion(6,5));
 		
-		gohan.moverA(new Posicion(6,5), tablero);
+		tablero.moverUnidad(gohan, new Posicion(6,5));
 	}
 
 }

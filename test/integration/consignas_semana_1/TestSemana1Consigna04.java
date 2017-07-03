@@ -9,8 +9,6 @@ import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 import model.personajes.Goku;
-//import model.error.ErrorNoHayMasTrans;
-import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna04 {
 	

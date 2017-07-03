@@ -15,7 +15,7 @@ public class ContenedorJuego extends BorderPane {
 	public ContenedorJuego(Juego juego) {
 		this.juego = juego;
 		contenedorTablero = new ContenedorTablero(this, 800, 600 * 0.8, juego.getTablero());
-		this.contenedorHUD = new ContenedorHUD(juego, contenedorTablero);
+		this.contenedorHUD = new ContenedorHUD(juego, contenedorTablero, 600 * 0.2);
 		setCenter(contenedorTablero);
 		setBottom(contenedorHUD);
 		redimensionar(800, 600);

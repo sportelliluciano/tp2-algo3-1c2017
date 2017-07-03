@@ -48,10 +48,12 @@ public class DragonBallApp extends Application {
 		});
 		
 		escenaJuego = new Scene(layoutJuego, DIM_HOR, DIM_VER);
+		escenaJuego.getStylesheets().add("view/style.css");
 		return escenaJuego;
 	}
 	
 	public void iniciarLayoutJuego(){
+
 		jugador1 = new Jugador("Fabio", new GuerrerosZ() );
 		jugador2 = new Jugador("Marito", new EnemigosDeLaTierra() );
 		layoutJuego = new ContenedorJuego(new Juego(jugador1, jugador2) );

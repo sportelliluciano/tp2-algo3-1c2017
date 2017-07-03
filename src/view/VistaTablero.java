@@ -101,8 +101,7 @@ public class VistaTablero {
 		return tablero.getPosicionable(p.getX(), p.getY());
 	}
 
-	public Posicion getPosicion(double x, double y) {
-		
+	public Posicion getPosicion(double x, double y) {		
 		return new Posicion((int) (x / anchoCasilla), (int) (y/altoCasilla));
 	}
 	
@@ -120,6 +119,7 @@ public class VistaTablero {
 	
 	public void desmarcarTodasLasPosiciones() {
 		posicionesMarcadas = new HashSet<Posicion>();
+		posSeleccionada = null;
 	}
 	
 	public void marcarPosiciones(Set<Posicion> p) {

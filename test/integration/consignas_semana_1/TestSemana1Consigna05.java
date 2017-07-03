@@ -12,7 +12,6 @@ import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadParalizada;
 import model.personajes.Goku;
-import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna05 {
 	
@@ -22,7 +21,7 @@ public class TestSemana1Consigna05 {
 		Unidad goku = new Goku(null);
 		tablero.agregarPosicionable(goku, new Posicion(5,5));
 		
-		goku.moverA(new Posicion(8,5), tablero);
+		tablero.moverUnidad(goku, new Posicion(8,5));
 	}
 	
 	@Test
@@ -36,7 +35,7 @@ public class TestSemana1Consigna05 {
 		
 		goku.transformarse();
 		
-		goku.moverA(new Posicion(8,5), tablero);
+		tablero.moverUnidad(goku, new Posicion(8,5));
 		assertTrue(goku.getPosicion().equals(new Posicion(8,5)));
 	}
 }

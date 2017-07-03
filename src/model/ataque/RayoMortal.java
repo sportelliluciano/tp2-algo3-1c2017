@@ -1,7 +1,8 @@
 package model.ataque;
 
 public class RayoMortal extends AtaqueBasico implements Ataque {
-	public RayoMortal(int poderPelea) {
-		super((int)(poderPelea * 1.5));
+	public RayoMortal(int poderDePelea) {
+		this.poderDePelea = poderDePelea;
+		this.dano = (int)(poderDePelea * 1.5);
 	}
 }

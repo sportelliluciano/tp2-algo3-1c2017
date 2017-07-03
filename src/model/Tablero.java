@@ -10,7 +10,9 @@ import model.consumibles.EsferaDelDragon;
 import model.consumibles.NubeVoladora;
 import model.consumibles.Semilla;
 import model.error.ErrorPosicionInvalida;
-import model.ErrorUnidadNoSePuedePisar;
+import model.error.ErrorUnidadNoSePuedePisar;
+import model.error.ErrorUnidadParalizada;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -53,6 +55,24 @@ public class Tablero {
 				_calcularMovimientosPosibles(posibles, p, maxPasos - 1);
 			}
 		}
+	}
+	
+	public void moverUnidad(Unidad unidad, Posicion nuevaPosicion) throws ErrorPosicionInvalida, ErrorUnidadParalizada {
+		if (!puedeLlegarA(nuevaPosicion, unidad.getPosicion(), unidad.getVelocidad()))
+			throw new ErrorPosicionInvalida();
+		try {
+			Consumible consumible = pisar(nuevaPosicion);
+			posicionables.remove(unidad.getPosicion());
+			posicionables.put(nuevaPosicion, unidad);
+			unidad.moverA(nuevaPosicion, consumible);
+		}
+		catch (ErrorUnidadNoSePuedePisar e) {
+			throw new ErrorPosicionInvalida();
+		}
+	}
+	
+	private Consumible pisar(Posicion posicion) throws ErrorUnidadNoSePuedePisar {
+		return posicionables.getOrDefault(posicion, new ConsumibleVacio()).pisar();
 	}
 	
 	public void cambiarPosUnidad(Unidad u, Posicion p) {
@@ -197,10 +217,6 @@ public class Tablero {
 		}
 		
 		return false;
-	}
-
-	public Consumible pisar(Posicion posicion) throws ErrorUnidadNoSePuedePisar {
-		return posicionables.getOrDefault(posicion, new ConsumibleVacio()).pisar();
 	}
 	
 }

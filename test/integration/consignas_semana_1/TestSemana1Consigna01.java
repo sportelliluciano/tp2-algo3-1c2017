@@ -4,13 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import model.*;
 import model.Posicion;
 import model.Tablero;
 import model.Unidad;
 import model.error.*;
 import model.personajes.Goku;
-import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna01 {
 	
@@ -21,7 +19,7 @@ public class TestSemana1Consigna01 {
 		Unidad goku = new Goku(null);
 		tablero.agregarPosicionable(goku, new Posicion(5,5));
 		
-		goku.moverA(new Posicion(5,4), tablero);
+		tablero.moverUnidad(goku, new Posicion(5,4));
 		
 		assertTrue(goku.getPosicion().equals(new Posicion(5,4)));
 		

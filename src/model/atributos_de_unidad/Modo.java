@@ -35,7 +35,7 @@ public abstract class Modo {
 	public int getPoderDePelea() throws ErrorUnidadParalizada {
 		return estado.getPoderDePelea(poderDePelea);
 	}
-
+	
 	public void pasarTurno() {
 		estado.pasarTurno();		
 	}
@@ -49,7 +49,7 @@ public abstract class Modo {
 	}
 
 	public void recibirAtaque(Ataque ataque) {
-		estado.recibirAtaque(ataque);	
+		estado.recibirAtaque(ataque, poderDePelea);	
 	}
 
 	public void consumir(Consumible consumible) {

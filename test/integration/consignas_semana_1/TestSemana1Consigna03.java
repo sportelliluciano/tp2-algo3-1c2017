@@ -1,7 +1,5 @@
 package integration.consignas_semana_1;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 import model.Posicion;
@@ -11,8 +9,6 @@ import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadParalizada;
 import model.personajes.Gohan;
 import model.personajes.Goku;
-import model.personajes.modos.GohanNormal;
-import model.personajes.modos.GokuNormal;
 
 public class TestSemana1Consigna03 {
 
@@ -25,7 +21,7 @@ public class TestSemana1Consigna03 {
 		tablero.agregarPosicionable(goku, new Posicion(1,1));
 		tablero.agregarPosicionable(gohan, new Posicion(2,2));
 		
-		goku.moverA(new Posicion(3,3), tablero);
+		tablero.moverUnidad(goku, new Posicion(3,3));
 	}
 	
 	@Test (expected = ErrorPosicionInvalida.class)
@@ -37,7 +33,7 @@ public class TestSemana1Consigna03 {
 		tablero.agregarPosicionable(goku, new Posicion(1,1));
 		tablero.agregarPosicionable(gohan, new Posicion(2,2));
 		
-		goku.moverA(new Posicion(3,3), tablero);
+		tablero.moverUnidad(goku, new Posicion(3,3));
 	}
 	
 }

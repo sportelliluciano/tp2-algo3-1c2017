@@ -45,7 +45,7 @@ public class Jugador {
 		if (movio)
 			throw new ErrorYaMovio();
 
-		personaje.moverA(posicionNueva, juego.getTablero());
+		juego.getTablero().moverUnidad(personaje, posicionNueva);
 		movio = true;
 	}
 	

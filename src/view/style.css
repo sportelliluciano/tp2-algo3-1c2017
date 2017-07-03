@@ -1,0 +1,8 @@
+.hud.guerreros {
+	-fx-background-image: url("file:src/view/imagenes/hud/wp-guerreros-2.jpg");
+	
+}
+
+.hud.enemigos {
+	-fx-background-image: url("file:src/view/imagenes/hud/wp-enemigos-2.jpg");
+}

@@ -6,20 +6,28 @@ import model.efectos.Efecto;
 
 public class AtaqueBasico implements Ataque {
 
-	private int dano;
+	protected int poderDePelea;
+	protected int dano;
 	
-	public AtaqueBasico(int dano) {
-		this.dano = dano;
+	public AtaqueBasico() {
+		dano = 0;
+		poderDePelea = 0;
+	}
+	
+	public AtaqueBasico(int poderDePelea) {
+		this.dano = poderDePelea;
+		this.poderDePelea = poderDePelea;
 	}
 	
 	@Override
-	public int getDano() {
+	public int getDano(int poderDePeleaPropio) {
+		if (poderDePeleaPropio > poderDePelea)
+			return (int)(this.dano * 0.8);
 		return this.dano;
 	}
 
 	@Override
 	public ArrayList<Efecto> efectos() {
-		// TODO Auto-generated method stub
 		return new ArrayList<Efecto>();
 	}
 }

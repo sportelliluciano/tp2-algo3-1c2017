@@ -30,7 +30,8 @@ public class TestEfectos {
 		int duracion = 1;
 		
 		Paralizante paralizante = new Paralizante(duracion);
-		 		
+		paralizante.pasarTurno();
+		
  		assertEquals(paralizante.tiempoRestante(),1);
 	}
 	
@@ -45,9 +46,8 @@ public class TestEfectos {
 	
 	@Test 
 	public void testBoostVelocidadVerificaDuracion() {
-		
 		EfectoNubeVoladora boostVelocidad = new EfectoNubeVoladora();
-		
+		boostVelocidad.pasarTurno();
 		assertEquals(boostVelocidad.tiempoRestante(),2);
 			
 	}

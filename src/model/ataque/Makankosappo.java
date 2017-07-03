@@ -2,8 +2,9 @@ package model.ataque;
 
 public class Makankosappo extends AtaqueBasico implements Ataque {
 
-	public Makankosappo(int poderPelea) {
-		super((int)(poderPelea * 1.25));
+	public Makankosappo(int poderDePelea) {
+		this.poderDePelea = poderDePelea;
+		this.dano = (int)(poderDePelea * 1.25);
 	}
 
 }

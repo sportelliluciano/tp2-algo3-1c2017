@@ -18,7 +18,7 @@ public class KamehamehaTest {
 	public void testDanoDeKamehamehaEs50pMasQueElPoderDePelea() {
 		Ataque kamehameha = new Kamehameha(TEST_PODER_PELEA);
 		Ataque basico     = new AtaqueBasico(TEST_PODER_PELEA);
-		assertEquals((int)(basico.getDano() * 1.5), kamehameha.getDano());
+		assertEquals((int)(basico.getDano(TEST_PODER_PELEA) * 1.5), kamehameha.getDano(TEST_PODER_PELEA));
 	}
 
 }

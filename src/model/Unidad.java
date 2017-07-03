@@ -7,6 +7,7 @@ import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadNoEsEnemiga;
+import model.error.ErrorUnidadNoSePuedePisar;
 import model.error.ErrorUnidadParalizada;
 import model.error.ErrorEnemigoFueraDeAlcance;
 
@@ -32,19 +33,9 @@ public abstract class Unidad extends Posicionable {
 		modo.pasarTurno();
 	}
 	
-	public void moverA(Posicion nuevaPosicion, Tablero tablero) throws ErrorPosicionInvalida, ErrorUnidadParalizada {
-		if (!tablero.puedeLlegarA(nuevaPosicion, getPosicion(), getVelocidad()))
-			throw new ErrorPosicionInvalida();
-		try {
-			Consumible consumible = tablero.pisar(nuevaPosicion);
-			consumir(consumible);
-			tablero.eliminarPosicionable(nuevaPosicion);
-			setPosicion(nuevaPosicion);
-			tablero.cambiarPosUnidad(this, nuevaPosicion);
-		}
-		catch (ErrorUnidadNoSePuedePisar e) {
-			throw new ErrorPosicionInvalida();
-		}
+	public void moverA(Posicion nuevaPosicion, Consumible consumible) {
+		consumir(consumible);
+		setPosicion(nuevaPosicion);
 	}
 	
 	public void ataqueBasicoA(Unidad enemigo, Tablero tablero) throws ErrorUnidadParalizada, ErrorUnidadNoEsEnemiga, ErrorEnemigoFueraDeAlcance, ErrorPosicionInvalida {

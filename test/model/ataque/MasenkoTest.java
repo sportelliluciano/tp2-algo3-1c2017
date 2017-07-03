@@ -18,6 +18,6 @@ public class MasenkoTest {
 	public void testDanoDeMasenkoEs25pMasQueElAtaqueBasico() {
 		Ataque masenko = new Masenko(TEST_PODER_PELEA);
 		Ataque basico  = new AtaqueBasico(TEST_PODER_PELEA);
-		assertEquals((int)(basico.getDano() * 1.25), masenko.getDano());
+		assertEquals((int)(basico.getDano(TEST_PODER_PELEA) * 1.25), masenko.getDano(TEST_PODER_PELEA));
 	}
 }

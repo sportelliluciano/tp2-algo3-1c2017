@@ -13,9 +13,6 @@ import model.error.ErrorEnemigoFueraDeAlcance;
 import model.error.ErrorPosicionInvalida;
 import model.error.ErrorUnidadNoEsEnemiga;
 import model.error.ErrorUnidadParalizada;
-import model.personajes.Freezer;
-import model.personajes.Gohan;
-import model.personajes.Goku;
 
 public class TestSemana1Consigna07 {
 	

@@ -69,9 +69,9 @@ public class Estado {
 		return distanciaDeAtaqueBase + distanciaDeAtaqueExtra;
 	}
 
-	public void recibirAtaque(Ataque ataque) {
+	public void recibirAtaque(Ataque ataque, int poderDePeleaBase) {
 		aplicarEfectos(ataque.efectos());
-		vida.reducirEn(ataque.getDano());
+		vida.reducirEn(ataque.getDano(poderDePeleaBase));
 	}
 
 	public Ki getKi() {
