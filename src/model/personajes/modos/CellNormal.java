@@ -15,7 +15,7 @@ public class CellNormal extends Modo {
 	protected int vidaAbsorbida = 0;
 	
 	public CellNormal() {
-    	nombre            = "Cell Normal";
+    	nombre            = "Cell";
     	velocidad         = 2;
     	distanciaDeAtaque = 3;
      	poderDePelea      = 20;

@@ -11,7 +11,7 @@ import model.error.ErrorUnidadParalizada;
 
 public class MajinBooNormal extends Modo {
 	public MajinBooNormal() {
-    	nombre = "Majin Boo Normal";
+    	nombre = "Majin Boo";
     	velocidad = 2;
     	distanciaDeAtaque = 2;
         poderDePelea = 30;

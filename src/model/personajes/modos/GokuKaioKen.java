@@ -9,7 +9,7 @@ import model.error.ErrorNoHayMasTrans;
 public class GokuKaioKen extends GokuNormal {
 
 	public GokuKaioKen(Estado estadoAnterior) {
-		nombre            = "Kaio-ken";	
+		nombre            = "Goku Kaio-ken";
 		velocidad         = 3;
 		distanciaDeAtaque = 4;
 		poderDePelea      = 40;

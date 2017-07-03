@@ -15,7 +15,7 @@ public class PiccoloNormal extends Modo {
 	private GuerrerosZ equipo;
 	
 	public PiccoloNormal(GuerrerosZ equipo) {
-		nombre            = "Piccolo Normal";
+		nombre            = "Piccolo";
     	velocidad         = 2;
     	distanciaDeAtaque = 2;
      	poderDePelea      = 20;

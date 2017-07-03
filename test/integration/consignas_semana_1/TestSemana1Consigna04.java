@@ -20,7 +20,7 @@ public class TestSemana1Consigna04 {
 		
 		goku.transformarse();
 		
-		assertTrue(goku.getNombre().equals("Kaio-ken"));
+		assertTrue(goku.getNombre().equals("Goku Kaio-ken"));
 	}
 	
 	@Test (expected = ErrorNoCumpleReqTrans.class)

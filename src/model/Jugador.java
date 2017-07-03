@@ -79,5 +79,17 @@ public class Jugador {
 		movio = ataco = false;
 		equipo.pasarTurno();
 	}
+
+	public boolean puedeMoverA(Posicion p, Unidad unidad) {
+		if (movio)
+			return false;
+		return juego.getTablero().esMovimientoPosible(unidad, p);
+	}
+
+	public boolean puedeAtacarA(Unidad personaje, Unidad enemigo) {
+		if (ataco)
+			return false;
+		return juego.getTablero().puedeAtacarA(personaje, enemigo);
+	}
 }
 

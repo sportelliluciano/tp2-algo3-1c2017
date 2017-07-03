@@ -32,7 +32,7 @@ public class TestEfectos {
 		Paralizante paralizante = new Paralizante(duracion);
 		paralizante.pasarTurno();
 		
- 		assertEquals(paralizante.tiempoRestante(),1);
+ 		assertEquals(paralizante.tiempoRestante(),0);
 	}
 	
 	@Test (expected = ErrorUnidadParalizada.class)

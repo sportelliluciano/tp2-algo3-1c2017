@@ -46,7 +46,7 @@ public class TestGoku {
 		
 		goku.transformarse();
 		
-		assertEquals(goku.getNombre(),"Kaio-ken");
+		assertEquals(goku.getNombre(),"Goku Kaio-ken");
 	
 	}
 	
@@ -88,7 +88,7 @@ public class TestGoku {
 		
 		goku.transformarse();
 		
-		assertEquals(goku.getNombre(),"Super Saiyajin");
+		assertEquals(goku.getNombre(),"Goku Super Saiyajin");
 		
 	}
 	

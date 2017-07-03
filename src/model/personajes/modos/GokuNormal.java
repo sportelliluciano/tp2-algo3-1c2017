@@ -12,7 +12,7 @@ import model.error.ErrorUnidadParalizada;
 public class GokuNormal extends Modo {
 	
     public GokuNormal() {
-    	nombre            = "Goku Normal";
+    	nombre            = "Goku";
     	velocidad         = 2;
     	distanciaDeAtaque = 2;
     	poderDePelea      = 20;

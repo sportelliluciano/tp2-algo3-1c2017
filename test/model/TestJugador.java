@@ -148,8 +148,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posDer));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	        jugador2.mover(freezer, posFreezerIni.add(posIzq));
-	    	        posFreezerIni = freezer.getPosicion();
+	    	jugador2.mover(freezer, posFreezerIni.add(posIzq));
+	    	posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 		
@@ -221,8 +221,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posDer));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	         	jugador2.mover(freezer, posFreezerIni.add(posIzq));
-	    	        posFreezerIni = freezer.getPosicion();
+	        jugador2.mover(freezer, posFreezerIni.add(posIzq));
+	    	posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 		
@@ -230,8 +230,8 @@ public class TestJugador {
 			jugador1.mover(goku, posGokuIni.add(posArriba));
 			posGokuIni = goku.getPosicion();
 			jugador1.pasarTurno();
-	    	        jugador2.mover(freezer, posFreezerIni.add(posAbajo));
-	    	        posFreezerIni = freezer.getPosicion();
+	    	jugador2.mover(freezer, posFreezerIni.add(posAbajo));
+	    	posFreezerIni = freezer.getPosicion();
 			jugador2.pasarTurno();
 		}
 			

@@ -12,7 +12,7 @@ import model.error.ErrorUnidadParalizada;
 public class FreezerNormal extends Modo {
 	
     public FreezerNormal() {
-    	nombre            = "Freezer Normal";
+    	nombre            = "Freezer";
     	velocidad         = 4;
     	distanciaDeAtaque = 2;
         poderDePelea      = 20;

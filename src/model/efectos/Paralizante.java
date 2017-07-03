@@ -32,5 +32,14 @@ public class Paralizante extends Efecto {
 	public boolean paraliza() {
 		return true;
 	}
-
+	
+	@Override
+	public int tiempoRestante() {
+		return duracion;
+	}
+	@Override
+	public void pasarTurno() {
+		if (duracion > 0)
+			duracion--;
+	}
 }

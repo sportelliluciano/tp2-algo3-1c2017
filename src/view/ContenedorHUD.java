@@ -18,6 +18,7 @@ import model.Posicionable;
 import model.Unidad;
 import model.equipos.GuerrerosZ;
 import model.error.ErrorEnemigoFueraDeAlcance;
+import model.error.ErrorKiInsuficiente;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
 import model.error.ErrorPosicionInvalida;
@@ -29,14 +30,12 @@ import model.error.ErrorYaMovio;
 public class ContenedorHUD extends BorderPane {
 
 	private HBox botoneraAcciones, botoneraPersonajes;
-	private VBox statsPersonaje;
-	private Button btnPasarTurno, btnAccion, btnTransformarse;
+	private ContenedorStats statsPersonaje;
+	private Button btnPasarTurno, btnAccion, btnTransformarse, btnAtaqueEspecial;
 	private Button btnPersonajes[];
 	private Juego juego;
 	private Jugador jugador;
-	private Label ki;
-	private Label vida;
-	private Label nombreUnidad;
+	private Label mensajeEstado;
 	private Unidad personajeSeleccionado;
 	private ContenedorTablero contenedorTablero;
 	private double altoHUD;
@@ -45,13 +44,10 @@ public class ContenedorHUD extends BorderPane {
 		this.juego = juego;
 		this.jugador = juego.getJugadorActual();
 		altoHUD = alto;
-		nombreUnidad = new Label();
-		vida = new Label();
-		ki = new Label();
 		botoneraAcciones = new HBox();
 		botoneraPersonajes = new HBox();
-		statsPersonaje = new VBox();
-		
+		mensajeEstado = new Label();
+		mensajeEstado.setStyle("-fx-text-fill: white;");
 		this.getStyleClass().add("hud");
 		
 		cambioEquipo();
@@ -84,23 +80,48 @@ public class ContenedorHUD extends BorderPane {
 		btnAccion.setOnAction(e -> clicAccion() );
 		btnAccion.setDisable(true);
 		btnAccion.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_atacar_mover.png"));
-		botoneraAcciones.getChildren().addAll(btnPasarTurno,btnAccion,btnTransformarse);
+		btnAtaqueEspecial = new Button();
+		btnAtaqueEspecial.setOnAction(e -> clicAtaqueEspecial() );
+		btnAtaqueEspecial.setDisable(true);
+		btnAtaqueEspecial.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_atacar_especial.png"));
+		botoneraAcciones.getChildren().addAll(btnPasarTurno, btnAccion, btnAtaqueEspecial, btnTransformarse);
 		botoneraAcciones.setPadding(new Insets(10, 0, 0, 0));
-		
-		statsPersonaje.getChildren().addAll(nombreUnidad, vida, ki);
-		
-		vida.setStyle("-fx-text-fill: white;");
-		ki.setStyle("-fx-text-fill: white;");
-		nombreUnidad.setStyle("-fx-text-fill: white;");
 		
 		setMinHeight(alto);
 		setMaxHeight(alto);
 		this.setRight(botoneraAcciones);
 		this.setLeft(botoneraPersonajes);
-		//this.setCenter(statsPersonaje);
+		this.setCenter(mensajeEstado);
 		deseleccionarPersonaje();
 	}
 	
+	private void clicAtaqueEspecial() {
+		Posicionable enemigo = contenedorTablero.getPosicionableSeleccionado();
+		
+		try {
+			if (enemigo instanceof Unidad)
+				jugador.ataqueEspecial(personajeSeleccionado, (Unidad)enemigo);
+		} 
+		catch (ErrorUnidadParalizada e) {
+			mensajeEstado.setText("¡La unidad está paralizada!");
+		} catch (ErrorPosicionInvalida e) {
+			mensajeEstado.setText("Demasiado lejos");
+		}  catch (ErrorKiInsuficiente e) {
+			mensajeEstado.setText("Ki insuficiente");
+		} catch (ErrorUnidadNoEsEnemiga e) {
+			mensajeEstado.setText("No se permite el fuego amigo");
+		} catch (ErrorYaAtaco e) {
+			mensajeEstado.setText("Ya atacó en este turno.");
+		} catch (ErrorEnemigoFueraDeAlcance e) {
+			mensajeEstado.setText("El enemigo está muy lejos");
+		}
+		
+		contenedorTablero.desmarcarTodasLasPosiciones();
+		btnAccion.setDisable(true);
+		btnAtaqueEspecial.setDisable(true);
+		actualizar();
+	}
+
 	public void seleccionarPersonaje(ActionEvent e) {
 		personajeSeleccionado(jugador.getPersonajes().get((int) ((Button)e.getSource()).getUserData()));
 		setLeft(statsPersonaje);
@@ -123,6 +144,8 @@ public class ContenedorHUD extends BorderPane {
 			btnPersonajes[i].setGraphic(imagen);
 		}
 		contenedorTablero.actualizar();
+		if (statsPersonaje != null)
+			statsPersonaje.actualizar();
 	}
 
 	private void cambioEquipo() {
@@ -137,6 +160,7 @@ public class ContenedorHUD extends BorderPane {
 	}
 	
 	public void clicPasarTurno() {
+		mensajeEstado.setText("");
 		jugador = juego.siguienteTurno();
 		deseleccionarPersonaje();
 		contenedorTablero.desmarcarTodasLasPosiciones();
@@ -147,31 +171,30 @@ public class ContenedorHUD extends BorderPane {
 	public void clicAccion() {
 		Posicionable p = contenedorTablero.getPosicionableSeleccionado();
 		Posicion pos = contenedorTablero.getPosicionSeleccionada();
-		
-		if ((p == null) || (p instanceof Consumible)) {
-			try {
+		mensajeEstado.setText("");
+		try {
+			if ((p == null) || (p instanceof Consumible))
 				jugador.mover(personajeSeleccionado, pos);
-				actualizar();
-			} catch (ErrorPosicionInvalida e) {
-				nombreUnidad.setText("Demasiado lejos");
-				
-			} catch (ErrorUnidadParalizada e) {
-				nombreUnidad.setText("¡La unidad está paralizada!");
-			}
-			catch (ErrorYaMovio e) {
-				nombreUnidad.setText("Ya movió un personaje");
-			}
-		}
-		else if(p instanceof Unidad) {
-			try {
+			else if (p instanceof Unidad)
 				jugador.ataqueBasico(personajeSeleccionado, (Unidad)p);
-				actualizar();
-			} catch (ErrorUnidadParalizada | ErrorUnidadNoEsEnemiga | ErrorEnemigoFueraDeAlcance
-					| ErrorPosicionInvalida | ErrorYaAtaco e) {
-				nombreUnidad.setText("Nope");
-			}
 		}
+		catch (ErrorUnidadParalizada e) {
+			mensajeEstado.setText("¡La unidad está paralizada!");
+		} catch (ErrorPosicionInvalida e) {
+			mensajeEstado.setText("Demasiado lejos");
+		}  catch (ErrorYaMovio e) {
+			mensajeEstado.setText("Ya movió un personaje");
+		} catch (ErrorUnidadNoEsEnemiga e) {
+			mensajeEstado.setText("No se permite el fuego amigo");
+		} catch (ErrorYaAtaco e) {
+			mensajeEstado.setText("Ya atacó en este turno.");
+		} catch (ErrorEnemigoFueraDeAlcance e) {
+			mensajeEstado.setText("El enemigo está muy lejos");
+		}
+		
 		contenedorTablero.desmarcarTodasLasPosiciones();
+		btnAccion.setDisable(true);
+		btnAtaqueEspecial.setDisable(true);
 		actualizar();
 	}
 	
@@ -180,26 +203,21 @@ public class ContenedorHUD extends BorderPane {
 			personajeSeleccionado.transformarse();
 			actualizar();
 		} catch (ErrorNoCumpleReqTrans e) {
-			nombreUnidad.setText("¡No se puede transformar en este momento!");
+			mensajeEstado.setText("¡No se puede transformar en este momento!");
 		}
 		catch (ErrorNoHayMasTrans e) {
-			nombreUnidad.setText("El personaje está en su última transformación");
+			mensajeEstado.setText("El personaje está en su última transformación");
 		}
 	}
 
 	public void posicionSeleccionada(Posicion p) {
 		if (personajeSeleccionado == null)
 			return;
+		btnAccion.setDisable(jugador.puedeMoverA(p, personajeSeleccionado) == false);
 		btnAccion.setGraphic(new ImageView(FabricaSprites.getSpriteBoton("mover")));
 	}
 
 	public void personajeSeleccionado(Unidad p) {
-		nombreUnidad.setText("Seleccionado: " + p.getNombre());
-		vida.setText("Vida: "+p.getVida().getVidaActual()+"/"+p.getVida().getVidaMaxima());
-		ki.setText("Ki: "+p.getKi().getMagnitud() );
-		btnAccion.setDisable(false);
-		btnTransformarse.setDisable(false);
-		
 		if (jugador.equipo().pertenece(p))
 			personajePropioSeleccionado(p);
 		else
@@ -209,12 +227,27 @@ public class ContenedorHUD extends BorderPane {
 	}
 	
 	private void personajeEnemigoSeleccionado(Unidad p) {
-		contenedorTablero.desmarcarTodasLasPosiciones();
+		if (personajeSeleccionado == null)
+			return;
+		boolean puedeAtacar = jugador.puedeAtacarA(personajeSeleccionado, p); 
+		btnAccion.setDisable(puedeAtacar == false);
+		btnAtaqueEspecial.setDisable(puedeAtacar == false);
 		btnAccion.setGraphic(new ImageView(FabricaSprites.getSpriteBoton("atacar")));
 	}
 
 	private void personajePropioSeleccionado(Unidad p) {
 		personajeSeleccionado = p;
+		statsPersonaje = new ContenedorStats(p, altoHUD);
+		setLeft(statsPersonaje);
+		if (personajeSeleccionado.estaParalizado()) {
+			mensajeEstado.setText("Esta unidad está paralizada");
+			return;
+		}
+		else {
+			mensajeEstado.setText("");
+		}
+			
+		btnTransformarse.setDisable(false);
 		try {
 			Set<Posicion> posiciones = juego.getTablero().getMovimientosPosibles(p.getPosicion(), p.getVelocidad());
 			contenedorTablero.marcarPosiciones(posiciones);

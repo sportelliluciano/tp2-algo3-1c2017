@@ -86,4 +86,8 @@ public abstract class Unidad extends Posicionable {
 	public Consumible pisar() throws ErrorUnidadNoSePuedePisar {
 		throw new ErrorUnidadNoSePuedePisar();
 	}
+
+	public int getDistanciaDeAtaque() throws ErrorUnidadParalizada {
+		return modo.getDistanciaDeAtaque();
+	}
 }

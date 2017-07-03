@@ -15,7 +15,7 @@ public class GohanNormal extends Modo {
 	protected GuerrerosZ equipo;
 	
 	public GohanNormal(GuerrerosZ equipo) {
-    	nombre            = "Gohan Normal";
+    	nombre            = "Gohan";
     	velocidad         = 2;
     	distanciaDeAtaque = 2;
      	poderDePelea      = 15;

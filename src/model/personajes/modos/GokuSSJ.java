@@ -8,7 +8,7 @@ import model.error.ErrorNoHayMasTrans;
 public class GokuSSJ extends GokuNormal {
 
 	public GokuSSJ(Estado estadoAnterior) {
-		nombre            = "Super Saiyajin";
+		nombre            = "Goku Super Saiyajin";
     	velocidad         = 5;
     	distanciaDeAtaque = 4;
     	poderDePelea      = 60;

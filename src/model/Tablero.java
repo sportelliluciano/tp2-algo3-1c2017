@@ -75,20 +75,6 @@ public class Tablero {
 		return posicionables.getOrDefault(posicion, new ConsumibleVacio()).pisar();
 	}
 	
-	public void cambiarPosUnidad(Unidad u, Posicion p) {
-		Posicion posAnterior = null;
-		for (Posicion pos : posicionables.keySet()) {
-			if (posicionables.get(pos).equals(u)) {
-				posAnterior = pos;
-				break;
-			}
-		}
-		if (posAnterior == null)
-			throw new RuntimeException("Esto no debería pasar");
-		posicionables.remove(posAnterior);
-		posicionables.put(p, u);
-	}
-	
 	public Set<Posicion> getMovimientosPosibles(Posicion origen, int velocidad) {
 		Set<Posicion> resultado = new HashSet<Posicion>();
 		_calcularMovimientosPosibles(resultado, origen, velocidad);
@@ -217,6 +203,31 @@ public class Tablero {
 		}
 		
 		return false;
+	}
+
+	public boolean esMovimientoPosible(Unidad unidad, Posicion p) {
+		try {
+			if (!puedeLlegarA(p, unidad.getPosicion(), unidad.getVelocidad()))
+				return false;
+			pisar(p);
+		}
+		catch (ErrorUnidadNoSePuedePisar | ErrorUnidadParalizada e) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	public boolean puedeAtacarA(Unidad personaje, Unidad enemigo) {
+		try {
+			if (!estaDentroDelAlcance(personaje.getPosicion(), enemigo.getPosicion(), personaje.getDistanciaDeAtaque()))
+				return false;			
+		}
+		catch (ErrorUnidadParalizada e) {
+			return false;
+		}
+		
+		return true;
 	}
 	
 }
