@@ -1,14 +1,13 @@
 package view;
 
 import java.util.Set;
-
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Consumible;
 import model.Juego;
@@ -16,7 +15,6 @@ import model.Jugador;
 import model.Posicion;
 import model.Posicionable;
 import model.Unidad;
-import model.equipos.GuerrerosZ;
 import model.error.ErrorEnemigoFueraDeAlcance;
 import model.error.ErrorNoCumpleReqTrans;
 import model.error.ErrorNoHayMasTrans;
@@ -28,9 +26,10 @@ import model.error.ErrorYaMovio;
 
 public class ContenedorHUD extends BorderPane {
 
-	private HBox botoneraAcciones, botoneraPersonajes;
-	private VBox statsPersonaje;
-	private Button btnPasarTurno, btnAccion, btnTransformarse;
+	private HBox botoneraAcciones;
+	private Pane HUD;
+	private VBox botoneraPersonajes, statsPersonaje;
+	private Button btnPasarTurno, btnAccion, btnTransformarse, btnAtaqueEspecial;
 	private Button btnPersonajes[];
 	private Juego juego;
 	private Jugador jugador;
@@ -39,108 +38,91 @@ public class ContenedorHUD extends BorderPane {
 	private Label nombreUnidad;
 	private Unidad personajeSeleccionado;
 	private ContenedorTablero contenedorTablero;
-	private double altoHUD;
+	private int POS_STATS_PERSONAJE = 250;
+	private int POS_BOTONERA_ACCIONES = 500;
+	private String PATH_IMG_BTN = "src/view/imagenes/botones/";
 	
-	public ContenedorHUD(Juego juego, ContenedorTablero contenedorTablero, double alto) {
+	public ContenedorHUD(Juego juego, ContenedorTablero contenedorTablero) {
 		this.juego = juego;
 		this.jugador = juego.getJugadorActual();
-		altoHUD = alto;
 		nombreUnidad = new Label();
 		vida = new Label();
 		ki = new Label();
+		HUD = new Pane();
 		botoneraAcciones = new HBox();
-		botoneraPersonajes = new HBox();
+		botoneraPersonajes = new VBox();
 		statsPersonaje = new VBox();
-		
-		this.getStyleClass().add("hud");
-		
-		cambioEquipo();
 		
 		this.contenedorTablero = contenedorTablero;
 		
 		btnPersonajes = new Button[3];
 		
 		for(int i=0;i<3;i++) {
-			Unidad personaje = jugador.getPersonajes().get(i);
-			btnPersonajes[i] = new Button(personaje.getNombre());
+			btnPersonajes[i] = new Button(jugador.getPersonajes().get(i).getNombre());
 			btnPersonajes[i].setUserData(i);
 			btnPersonajes[i].setOnAction(e -> seleccionarPersonaje(e));
-			ImageView imagen = new ImageView(FabricaSprites.getSpritePosicionable(personaje));
-			imagen.setPreserveRatio(true);
-			imagen.setFitHeight(alto * 0.5);
-			btnPersonajes[i].setGraphic(imagen);
 			botoneraPersonajes.getChildren().add(btnPersonajes[i]);
 		}
-		botoneraPersonajes.setSpacing(10);
-		botoneraPersonajes.setPadding(new Insets(10));
 		
 		btnPasarTurno = new Button();
-		btnPasarTurno.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_pasar_turno.png"));
+		btnPasarTurno.setGraphic(new ImageView("file:"+ PATH_IMG_BTN + "imagen_boton_pasar_turno.png"));
 		btnPasarTurno.setOnAction(e -> clicPasarTurno() );
+		btnPasarTurno.setStyle("-fx-background-color: transparent;");
 		btnTransformarse = new Button();
-		btnTransformarse.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_transformacion.png"));
+		btnTransformarse.setGraphic(new ImageView("file:" + PATH_IMG_BTN + "imagen_boton_transformacion.png"));
 		btnTransformarse.setOnAction(e -> clicTransformarse() );
+		btnTransformarse.setStyle("-fx-background-color: transparent;");
 		btnAccion = new Button();
 		btnAccion.setOnAction(e -> clicAccion() );
 		btnAccion.setDisable(true);
-		btnAccion.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_atacar_mover.png"));
-		botoneraAcciones.getChildren().addAll(btnPasarTurno,btnAccion,btnTransformarse);
-		botoneraAcciones.setPadding(new Insets(10, 0, 0, 0));
+		btnAccion.setGraphic(new ImageView("file:" + PATH_IMG_BTN + "imagen_boton_atacar_mover.png"));
+		btnAccion.setStyle("-fx-background-color: transparent;");
+		btnAtaqueEspecial = new Button();
+		btnAtaqueEspecial.setOnAction(e -> clicAtaqueEspecial() );
+		btnAtaqueEspecial.setGraphic(new ImageView("file:"+ PATH_IMG_BTN+ "imagen_boton_ataque_especial.png"));
+		btnAtaqueEspecial.setDisable(true);
+		btnAtaqueEspecial.setStyle("-fx-background-color: transparent;");
 		
-		statsPersonaje.getChildren().addAll(nombreUnidad, vida, ki);
+		botoneraAcciones.getChildren().addAll(btnPasarTurno,btnAccion,btnTransformarse,btnAtaqueEspecial);
 		
-		vida.setStyle("-fx-text-fill: white;");
-		ki.setStyle("-fx-text-fill: white;");
-		nombreUnidad.setStyle("-fx-text-fill: white;");
+		statsPersonaje.getChildren().addAll(nombreUnidad,vida, ki);
 		
-		setMinHeight(alto);
-		setMaxHeight(alto);
-		this.setRight(botoneraAcciones);
-		this.setLeft(botoneraPersonajes);
-		//this.setCenter(statsPersonaje);
-		deseleccionarPersonaje();
+		HUD.getChildren().addAll(statsPersonaje, botoneraAcciones, botoneraPersonajes);
+		statsPersonaje.setLayoutX(POS_STATS_PERSONAJE);
+		botoneraAcciones.setLayoutX(POS_BOTONERA_ACCIONES);
+		this.setCenter(HUD);
 	}
 	
 	public void seleccionarPersonaje(ActionEvent e) {
-		personajeSeleccionado(jugador.getPersonajes().get((int) ((Button)e.getSource()).getUserData()));
-		setLeft(statsPersonaje);
+		personajeSeleccionado = jugador.getPersonajes().get((int) ((Button)e.getSource()).getUserData());
+		vida.setText("Vida: "+personajeSeleccionado.getVida().getVidaActual()+"/"+personajeSeleccionado.getVida().getVidaMaxima());
+		ki.setText("Ki: "+personajeSeleccionado.getKi().getMagnitud() );
+		btnAccion.setDisable(false);
+		btnTransformarse.setDisable(false);
+		actualizar();
 	}
 	
 	public void deseleccionarPersonaje() {
 		personajeSeleccionado = null;
 		btnAccion.setDisable(true);
 		btnTransformarse.setDisable(true);
-		setLeft(botoneraPersonajes);
 	}
 	
 	private void actualizar() {
+		if (personajeSeleccionado != null){
+			nombreUnidad.setText("Unidad: " + personajeSeleccionado.getNombre());
+		}
+		else
+			nombreUnidad.setText("Unidad: <ninguno>");
 		for(int i=0;i<3;i++) {
-			Unidad personaje = jugador.getPersonajes().get(i);
-			btnPersonajes[i].setText(personaje.getNombre());
-			ImageView imagen = new ImageView(FabricaSprites.getSpritePosicionable(personaje));
-			imagen.setPreserveRatio(true);
-			imagen.setFitHeight(altoHUD * 0.5);
-			btnPersonajes[i].setGraphic(imagen);
+			btnPersonajes[i].setText(jugador.getPersonajes().get(i).getNombre());
 		}
 		contenedorTablero.actualizar();
 	}
 
-	private void cambioEquipo() {
-		if (jugador.equipo() instanceof GuerrerosZ) {
-			this.getStyleClass().remove("enemigos");
-			this.getStyleClass().add("guerreros");
-		}
-		else {
-			this.getStyleClass().remove("guerreros");
-			this.getStyleClass().add("enemigos");
-		}
-	}
-	
 	public void clicPasarTurno() {
 		jugador = juego.siguienteTurno();
 		deseleccionarPersonaje();
-		contenedorTablero.desmarcarTodasLasPosiciones();
-		cambioEquipo();
 		actualizar();
 	}
 	
@@ -152,14 +134,8 @@ public class ContenedorHUD extends BorderPane {
 			try {
 				jugador.mover(personajeSeleccionado, pos);
 				actualizar();
-			} catch (ErrorPosicionInvalida e) {
-				nombreUnidad.setText("Demasiado lejos");
-				
-			} catch (ErrorUnidadParalizada e) {
-				nombreUnidad.setText("¡La unidad está paralizada!");
-			}
-			catch (ErrorYaMovio e) {
-				nombreUnidad.setText("Ya movió un personaje");
+			} catch (ErrorPosicionInvalida | ErrorUnidadParalizada | ErrorYaMovio e) {
+				nombreUnidad.setText("Nope");
 			}
 		}
 		else if(p instanceof Unidad) {
@@ -171,55 +147,42 @@ public class ContenedorHUD extends BorderPane {
 				nombreUnidad.setText("Nope");
 			}
 		}
-		contenedorTablero.desmarcarTodasLasPosiciones();
-		actualizar();
+		
+		
+			
 	}
 	
 	public void clicTransformarse() {
 		try {
 			personajeSeleccionado.transformarse();
 			actualizar();
-		} catch (ErrorNoCumpleReqTrans e) {
-			nombreUnidad.setText("¡No se puede transformar en este momento!");
+		} catch (ErrorNoCumpleReqTrans | ErrorNoHayMasTrans e) {
+			nombreUnidad.setText("No te podes transformar wacho");
 		}
-		catch (ErrorNoHayMasTrans e) {
-			nombreUnidad.setText("El personaje está en su última transformación");
-		}
+	}
+	
+	public void clicAtaqueEspecial(){
+		
 	}
 
 	public void posicionSeleccionada(Posicion p) {
+		nombreUnidad.setText("Seleccionado: " + p.getX() + ";" + p.getY());
 		if (personajeSeleccionado == null)
 			return;
-		btnAccion.setGraphic(new ImageView(FabricaSprites.getSpriteBoton("mover")));
+		btnAccion.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_mover.png"));
 	}
 
 	public void personajeSeleccionado(Unidad p) {
 		nombreUnidad.setText("Seleccionado: " + p.getNombre());
-		vida.setText("Vida: "+p.getVida().getVidaActual()+"/"+p.getVida().getVidaMaxima());
-		ki.setText("Ki: "+p.getKi().getMagnitud() );
-		btnAccion.setDisable(false);
-		btnTransformarse.setDisable(false);
-		
-		if (jugador.equipo().pertenece(p))
-			personajePropioSeleccionado(p);
-		else
-			personajeEnemigoSeleccionado(p);
-		
-		actualizar();
-	}
-	
-	private void personajeEnemigoSeleccionado(Unidad p) {
-		contenedorTablero.desmarcarTodasLasPosiciones();
-		btnAccion.setGraphic(new ImageView(FabricaSprites.getSpriteBoton("atacar")));
-	}
-
-	private void personajePropioSeleccionado(Unidad p) {
-		personajeSeleccionado = p;
-		try {
-			Set<Posicion> posiciones = juego.getTablero().getMovimientosPosibles(p.getPosicion(), p.getVelocidad());
-			contenedorTablero.marcarPosiciones(posiciones);
+		if (personajeSeleccionado == null){
+			return;
 		}
-		catch (ErrorUnidadParalizada ex) {
+		btnAccion.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_atacar.png"));
+		try{
+			Set<Posicion> posiciones = juego.getTablero().getMovimientosPosibles(p.getPosicion(), p.getVelocidad());
+			// TODO: incorporar contenedorTablero.marcarPosiciones(posiciones);
+		}
+		catch (ErrorUnidadParalizada e){
 			return;
 		}
 	}
