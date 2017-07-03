@@ -6,7 +6,7 @@ import model.equipos.EnemigosDeLaTierra;
 import model.equipos.GuerrerosZ;
 import view.ContenedorJuego;
 import view.ContenedorMenuInicio;
-import view.ControladorTeclado;
+import view.eventos.ControladorTeclado;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyEvent;

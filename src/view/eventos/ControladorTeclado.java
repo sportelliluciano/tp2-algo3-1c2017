@@ -1,4 +1,4 @@
-package view;
+package view.eventos;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +10,7 @@ import model.Direccion;
 import model.Juego;
 import model.Jugador;
 import model.Posicion;
+import view.ContenedorJuego;
 
 public class ControladorTeclado implements EventHandler<KeyEvent> {
 
@@ -35,13 +36,11 @@ public class ControladorTeclado implements EventHandler<KeyEvent> {
 		
 		/* Acción */
 		teclasJ1.put(KeyCode.Z, KeyCode.Z); // Transformar
-		teclasJ1.put(KeyCode.X, KeyCode.X); // Mover
-		teclasJ1.put(KeyCode.C, KeyCode.C); // Atacar
-		teclasJ1.put(KeyCode.V, KeyCode.V); // Ataque especial
+		teclasJ1.put(KeyCode.X, KeyCode.X); // Mover/Atacar
+		teclasJ1.put(KeyCode.C, KeyCode.C); // Ataque especial
 		teclasJ2.put(KeyCode.U, KeyCode.Z); // Transformar
-		teclasJ2.put(KeyCode.I, KeyCode.X); // Mover
-		teclasJ2.put(KeyCode.O, KeyCode.C); // Atacar
-		teclasJ2.put(KeyCode.P, KeyCode.V); // Ataque especial
+		teclasJ2.put(KeyCode.I, KeyCode.X); // Mover/Atacar
+		teclasJ2.put(KeyCode.O, KeyCode.C); // Ataque especial
 		
 		/* Selección de personaje */
 		teclasJ1.put(KeyCode.DIGIT1, KeyCode.DIGIT1);

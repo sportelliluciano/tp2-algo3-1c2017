@@ -14,6 +14,10 @@ public class ContenedorStats extends HBox {
 	private ImageView imgPersonaje;
 	private Unidad personaje;
 	
+	protected ContenedorStats() {
+		
+	}
+	
 	public ContenedorStats(Unidad p, double maxAlto) {
 		personaje = p;
 		nombreUnidad.setStyle("-fx-text-fill: white;-fx-font-size: 20px;");
@@ -22,15 +26,13 @@ public class ContenedorStats extends HBox {
 		
 		atributos = new VBox(nombreUnidad, vida, ki);
 		atributos.setPadding(new Insets(0, 0, 0, 15));
-		
+		this.setPadding(new Insets(5, 5, 0, 0));
+
 		imgPersonaje = new ImageView(FabricaSprites.getSpritePosicionable(p));
 		imgPersonaje.setPreserveRatio(true);
 		imgPersonaje.maxHeight(maxAlto * 0.7);
 		imgPersonaje.setFitHeight(maxAlto * 0.7);
-		
-		
-		this.setPadding(new Insets(5, 5, 0, 0));
-		getChildren().addAll(imgPersonaje, atributos);
+		getChildren().addAll(imgPersonaje, atributos);		
 		actualizar();
 	}
 
