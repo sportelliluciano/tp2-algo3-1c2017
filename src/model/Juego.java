@@ -45,6 +45,9 @@ public class Juego {
 		return jugadores.get(jugadorActual);
 	}
 
+	public List<Jugador> jugadores() {
+		return jugadores;
+	}
 
 }
 

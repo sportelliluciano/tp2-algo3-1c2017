@@ -5,29 +5,31 @@ import java.util.Arrays;
 
 public class Direccion {
 	
-    private static Direccion der;
-    private static Direccion arriba_der;
-    private static Direccion arriba;
-    private static Direccion arriba_izq;
-    private static Direccion izq;
-    private static Direccion abajo_izq;
-    private static Direccion abajo;
-    private static Direccion abajo_der;
+    public static Direccion DERECHA;
+    public static Direccion ARRIBA_DERECHA;
+    public static Direccion ARRIBA;
+    public static Direccion ARRIBA_IZQUIERDA;
+    public static Direccion IZQUIERDA;
+    public static Direccion ABAJO_IZQUIERDA;
+    public static Direccion ABAJO;
+    public static Direccion ABAJO_DERECHA;
+    public static Direccion SIN_MOVIMIENTO;
     
     // Inspirado levemente en codigo propuesto en la teorica.
 	static {
-		der = 			new Direccion( 1,  0);
-		arriba_der = 	new Direccion( 1,  1);
-		arriba = 		new Direccion( 0,  1);
-		arriba_izq = 	new Direccion(-1,  1);
-		izq = 			new Direccion(-1,  0);
-		abajo_izq = 	new Direccion(-1, -1);
-		abajo = 		new Direccion( 0, -1);
-		abajo_der = 	new Direccion( 1, -1);
+		DERECHA = 			new Direccion( 1,  0);
+		ARRIBA_DERECHA = 	new Direccion( 1,  1);
+		ARRIBA =	 		new Direccion( 0, -1);
+		ARRIBA_IZQUIERDA = 	new Direccion(-1,  1);
+		IZQUIERDA = 		new Direccion(-1,  0);
+		ABAJO_IZQUIERDA = 	new Direccion(-1, -1);
+		ABAJO = 			new Direccion( 0,  1);
+		ABAJO_DERECHA = 	new Direccion( 1, -1);
+		SIN_MOVIMIENTO =    new Direccion( 0,  0);
     }
 	
-	private static ArrayList<Direccion> sinDiagonales = new ArrayList<Direccion>(Arrays.asList(der, arriba, izq, abajo));
-	private static ArrayList<Direccion> conDiagonales = new ArrayList<Direccion>(Arrays.asList(der, arriba_der, arriba, arriba_izq, izq, abajo_izq, abajo, abajo_der));
+	private static ArrayList<Direccion> sinDiagonales = new ArrayList<Direccion>(Arrays.asList(DERECHA, ARRIBA, IZQUIERDA, ABAJO));
+	private static ArrayList<Direccion> conDiagonales = new ArrayList<Direccion>(Arrays.asList(DERECHA, ARRIBA_DERECHA, ARRIBA, ARRIBA_IZQUIERDA, IZQUIERDA, ABAJO_IZQUIERDA, ABAJO, ABAJO_DERECHA));
 	
     private int x;
     private int y;

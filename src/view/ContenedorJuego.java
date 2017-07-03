@@ -35,4 +35,35 @@ public class ContenedorJuego extends BorderPane {
 	public void posicionSeleccionada(Posicion p) {
 		contenedorHUD.posicionSeleccionada(p);
 	}
+	
+	public Posicion getPosicionSeleccionada() {
+		return contenedorTablero.getPosicionSeleccionada();
+	}
+
+	public Posicion getPosicionCentral() {
+		return contenedorTablero.getPosicionCentral();
+	}
+	
+	public void seleccionarPosicion(Posicion pos) {
+		contenedorTablero.seleccionarPosicion(pos);
+		contenedorHUD.posicionSeleccionada(pos);
+	}
+	
+	public void clicTransformarse() {
+		contenedorHUD.clicTransformarse();
+	}
+
+	public void clicAccion() {
+		contenedorHUD.clicAccion();
+	}
+
+	public void clicAtaqueEspecial() {
+		contenedorHUD.clicAtaqueEspecial();
+	}
+
+	public void clicPasarTurno() {
+		contenedorHUD.clicPasarTurno();
+		
+	}
+	
 }

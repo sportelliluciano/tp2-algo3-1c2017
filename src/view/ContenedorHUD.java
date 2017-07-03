@@ -95,12 +95,15 @@ public class ContenedorHUD extends BorderPane {
 		deseleccionarPersonaje();
 	}
 	
-	private void clicAtaqueEspecial() {
+	public void clicAtaqueEspecial() {
+		if (btnAtaqueEspecial.isDisabled())
+			return;
 		Posicionable enemigo = contenedorTablero.getPosicionableSeleccionado();
 		
 		try {
-			if (enemigo instanceof Unidad)
-				jugador.ataqueEspecial(personajeSeleccionado, (Unidad)enemigo);
+			if (!(enemigo instanceof Unidad))
+				return;
+			jugador.ataqueEspecial(personajeSeleccionado, (Unidad)enemigo);
 		} 
 		catch (ErrorUnidadParalizada e) {
 			mensajeEstado.setText("¡La unidad está paralizada!");
@@ -169,6 +172,8 @@ public class ContenedorHUD extends BorderPane {
 	}
 	
 	public void clicAccion() {
+		if (btnAccion.isDisabled())
+			return;
 		Posicionable p = contenedorTablero.getPosicionableSeleccionado();
 		Posicion pos = contenedorTablero.getPosicionSeleccionada();
 		mensajeEstado.setText("");
@@ -199,6 +204,8 @@ public class ContenedorHUD extends BorderPane {
 	}
 	
 	public void clicTransformarse() {
+		if (btnTransformarse.isDisabled())
+			return;
 		try {
 			personajeSeleccionado.transformarse();
 			actualizar();

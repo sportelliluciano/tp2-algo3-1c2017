@@ -38,17 +38,23 @@ public class ContenedorTablero extends StackPane {
 		else
 			contenedorJuego.personajeSeleccionado(p);
 		
+		seleccionarPosicion(pos);
+	}
+
+	public void seleccionarPosicion(Posicion pos) {
+		if ( (pos.getX() >= tablero.getAncho()) || (pos.getX() < 0) )
+			return;
+		if ( (pos.getY() >= tablero.getAlto() || (pos.getY() < 0)) )
+			return;
+		
 		ultimoClick = pos;
 		vistaTablero.setSeleccionada(pos);
 		vistaTablero.dibujar();
 	}
 
-
 	public void redimensionar(double ancho, double alto) {
-		
 		vistaTablero.redimensionar(ancho, alto);
 		vistaTablero.dibujar();
-		//crear(contenedorJuego, ancho, alto, tablero);
 	}
 
 	public void actualizar() {
@@ -70,5 +76,9 @@ public class ContenedorTablero extends StackPane {
 
 	public void desmarcarTodasLasPosiciones() {
 		vistaTablero.desmarcarTodasLasPosiciones();
+	}
+
+	public Posicion getPosicionCentral() {
+		return new Posicion(tablero.getAncho() / 2, tablero.getAlto() / 2);
 	}
 }

@@ -6,8 +6,10 @@ import model.equipos.EnemigosDeLaTierra;
 import model.equipos.GuerrerosZ;
 import view.ContenedorJuego;
 import view.ContenedorMenuInicio;
+import view.ControladorTeclado;
 import javafx.scene.*;
 import javafx.scene.image.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
@@ -49,6 +51,7 @@ public class DragonBallApp extends Application {
 		
 		escenaJuego = new Scene(layoutJuego, DIM_HOR, DIM_VER);
 		escenaJuego.getStylesheets().add("view/style.css");
+		escenaJuego.addEventHandler(KeyEvent.KEY_PRESSED, new ControladorTeclado(juego, layoutJuego));
 		return escenaJuego;
 	}
 	
@@ -56,7 +59,8 @@ public class DragonBallApp extends Application {
 
 		jugador1 = new Jugador("Fabio", new GuerrerosZ() );
 		jugador2 = new Jugador("Marito", new EnemigosDeLaTierra() );
-		layoutJuego = new ContenedorJuego(new Juego(jugador1, jugador2) );
+		juego    = new Juego(jugador1, jugador2);
+		layoutJuego = new ContenedorJuego(juego);
 		Image imagenTablero = new Image("file:fondo_juego.jpg");
 		BackgroundImage fondoJuego = new BackgroundImage(imagenTablero, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		layoutJuego.setBackground(new Background(fondoJuego) );
