@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Set;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -15,7 +17,6 @@ public class ContenedorTablero extends StackPane {
 	private Posicion ultimoClick;
 	
 	public ContenedorTablero(ContenedorJuego contenedorJuego, double ancho, double alto, Tablero tablero) {
-
 		this.contenedorJuego = contenedorJuego;
 		this.tablero = tablero;
 		
@@ -27,7 +28,6 @@ public class ContenedorTablero extends StackPane {
 		
 		vistaTablero = new VistaTablero(tablero, canvasCentral);
 		vistaTablero.dibujar();
-	
 	}	
 	
 	private void canvasClick(MouseEvent e) {
@@ -61,5 +61,14 @@ public class ContenedorTablero extends StackPane {
 
 	public Posicion getPosicionSeleccionada() {
 		return ultimoClick;
+	}
+
+	public void marcarPosiciones(Set<Posicion> posiciones) {
+		vistaTablero.desmarcarTodasLasPosiciones();
+		vistaTablero.marcarPosiciones(posiciones);
+	}
+
+	public void desmarcarTodasLasPosiciones() {
+		vistaTablero.desmarcarTodasLasPosiciones();
 	}
 }

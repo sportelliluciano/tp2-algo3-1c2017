@@ -1,6 +1,5 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import javafx.event.ActionEvent;
@@ -9,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Consumible;
 import model.Juego;
@@ -87,6 +85,14 @@ public class ContenedorHUD extends BorderPane {
 		ki.setText("Ki: "+personajeSeleccionado.getKi().getMagnitud() );
 		btnAccion.setDisable(false);
 		btnTransformarse.setDisable(false);
+		Unidad p = personajeSeleccionado;
+		try {
+			Set<Posicion> posiciones = juego.getTablero().getMovimientosPosibles(p.getPosicion(), p.getVelocidad());
+			contenedorTablero.marcarPosiciones(posiciones);
+		}
+		catch (ErrorUnidadParalizada ex) {
+			return;
+		}
 		actualizar();
 	}
 	
@@ -111,6 +117,7 @@ public class ContenedorHUD extends BorderPane {
 	public void clicPasarTurno() {
 		jugador = juego.siguienteTurno();
 		deseleccionarPersonaje();
+		contenedorTablero.desmarcarTodasLasPosiciones();
 		actualizar();
 	}
 	
@@ -122,7 +129,10 @@ public class ContenedorHUD extends BorderPane {
 			try {
 				jugador.mover(personajeSeleccionado, pos);
 				actualizar();
-			} catch (ErrorPosicionInvalida | ErrorUnidadParalizada | ErrorYaMovio e) {
+			} catch (ErrorPosicionInvalida e) {
+				nombreUnidad.setText("Demasiado lejos");
+				
+			} catch (ErrorUnidadParalizada | ErrorYaMovio e) {
 				nombreUnidad.setText("Nope");
 			}
 		}
@@ -135,9 +145,8 @@ public class ContenedorHUD extends BorderPane {
 				nombreUnidad.setText("Nope");
 			}
 		}
-		
-		
-			
+		contenedorTablero.desmarcarTodasLasPosiciones();
+		actualizar();
 	}
 	
 	public void clicTransformarse() {
@@ -153,21 +162,14 @@ public class ContenedorHUD extends BorderPane {
 		nombreUnidad.setText("Seleccionado: " + p.getX() + ";" + p.getY());
 		if (personajeSeleccionado == null)
 			return;
-		btnAccion.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_mover.png"));;
+		btnAccion.setGraphic(new ImageView(FabricaSprites.getSpriteBoton("mover")));
 	}
 
 	public void personajeSeleccionado(Unidad p) {
 		nombreUnidad.setText("Seleccionado: " + p.getNombre());
 		if (personajeSeleccionado == null)
 			return;
-		btnAccion.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_atacar.png"));;
-		try{
-			Set<Posicion> posiciones = juego.getTablero().getMovimientosPosibles(p.getPosicion(), p.getVelocidad());
-			contenedorTablero.marcarPosiciones(posiciones);
-		}
-		catch (ErrorUnidadParalizada e){
-			return;
-		}
+		btnAccion.setGraphic(new ImageView(FabricaSprites.getSpriteBoton("atacar")));
 	}
 }
 

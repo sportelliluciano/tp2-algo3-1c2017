@@ -64,4 +64,9 @@ public class FabricaSprites {
 		
 		return fabrica.getSpriteConsumible((Consumible)p);
 	}
+	
+	public static Image getSpriteBoton(String accion) {
+		FabricaSprites fabrica = getInstance();
+		return fabrica.getSprite("/botones/imagen_boton_" + accion + ".png");
+	}
 }

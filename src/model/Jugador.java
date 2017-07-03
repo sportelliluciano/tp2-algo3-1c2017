@@ -57,6 +57,8 @@ public class Jugador {
 			throw new ErrorYaAtaco();
 
 		personaje.ataqueBasicoA(enemigo, juego.getTablero());
+		if (!enemigo.getVida().estaVivo())
+			juego.getTablero().eliminarPosicionable(enemigo.getPosicion());
 		ataco = true;
 	}
 	
@@ -68,6 +70,8 @@ public class Jugador {
 			throw new ErrorYaAtaco();
 		
 		personaje.ataqueEspecialA(enemigo, juego.getTablero());
+		if (!enemigo.getVida().estaVivo())
+			juego.getTablero().eliminarPosicionable(enemigo.getPosicion());
 		ataco = true;
 	}
 	

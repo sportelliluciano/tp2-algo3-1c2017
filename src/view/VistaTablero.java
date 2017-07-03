@@ -1,5 +1,8 @@
 package view;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -14,10 +17,12 @@ public class VistaTablero {
 	private Canvas canvas;
 	private double anchoCasilla, altoCasilla;
 	private Posicion posSeleccionada = null;
+	private Set<Posicion> posicionesMarcadas;
 	
 	public VistaTablero(Tablero tablero, Canvas canvas) {
 		this.tablero = tablero;
 		this.canvas = canvas;
+		posicionesMarcadas = new HashSet<Posicion>();
 	}
 	
 	public void dibujarPosicionable(GraphicsContext gfc, Posicionable posicionable, double posX, double posY, double maxAncho, double maxAlto) {
@@ -60,8 +65,12 @@ public class VistaTablero {
 				double posX = 0.5 + (i * anchoCasilla);
 				double posY = 0.5 + (j * altoCasilla);
 				
-				if ((posSeleccionada != null) && (posSeleccionada.equals(new Posicion(i,j))))
+				Posicion posActual = new Posicion(i, j);
+				
+				if ((posSeleccionada != null) && (posSeleccionada.equals(posActual)))
 					gfc.setFill(Color.web("#ffffff"));
+				else if (estaMarcada(posActual))
+					gfc.setFill(Color.web("#ccccff"));
 				else
 					gfc.setFill(Color.web("#c3c3c3"));
 				
@@ -71,6 +80,10 @@ public class VistaTablero {
 		}		
 	}
 	
+	private boolean estaMarcada(Posicion posicion) {
+		return posicionesMarcadas.contains(posicion);
+	}
+
 	public void limpiar() {
 		GraphicsContext gfc = canvas.getGraphicsContext2D();
 		gfc.setFill(Color.BLACK);
@@ -91,23 +104,25 @@ public class VistaTablero {
 	public Posicion getPosicion(double x, double y) {
 		
 		return new Posicion((int) (x / anchoCasilla), (int) (y/altoCasilla));
-		/*
-		for(int i=0;i<tablero.getAncho();i++) {
-			for (int j=0;j<tablero.getAlto();j++) {
-				double posX = 0.5 + (i * anchoCasilla);
-				double posY = 0.5 + (j * altoCasilla);
-				
-				if ((posX <= x) && (x <= (posX + anchoCasilla - 1))) {
-					if ((posY <= y) && (y <= (posY + altoCasilla - 1))) {
-						return new Posicion(i, j);
-					}
-				}
-			}
-		}
-		return null;*/
 	}
 	
 	public void setSeleccionada(Posicion p) {
 		posSeleccionada = p;
+	}
+	
+	public void marcarPosicion(Posicion p) {
+		posicionesMarcadas.add(p);
+	}
+	
+	public void desmarcarPosicion(Posicion p) {
+		posicionesMarcadas.remove(p);
+	}
+	
+	public void desmarcarTodasLasPosiciones() {
+		posicionesMarcadas = new HashSet<Posicion>();
+	}
+	
+	public void marcarPosiciones(Set<Posicion> p) {
+		posicionesMarcadas.addAll(p);
 	}
 }
