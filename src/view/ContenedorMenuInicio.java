@@ -9,11 +9,7 @@ import javafx.stage.Stage;
 import view.eventos.BotonInicioEventHandler;
 
 public class ContenedorMenuInicio extends Pane {
-	private Stage stage;
-	
 	public ContenedorMenuInicio(Stage stage, Scene proximaEscena, ContenedorJuego layoutJuego) {
-		this.stage = stage;
-		
 		Image imagen_menu = new Image("file:src/view/imagenes/menu/imagen_menu.jpg");
 		BackgroundImage imagenMenu = new BackgroundImage(imagen_menu , BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		this.setBackground(new Background(imagenMenu) );

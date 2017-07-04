@@ -22,6 +22,7 @@ public class GuerrerosZ extends Equipo {
 		integrantes.add(gohan);
 		integrantes.add(goku);
 		integrantes.add(piccolo);
+		nombreEquipo = "Guerreros Z";
 	}
 
 	public Goku getGoku() {

@@ -22,6 +22,7 @@ public class EnemigosDeLaTierra extends Equipo {
 		integrantes.add(cell);
 		integrantes.add(freezer);
 		integrantes.add(majinboo);
+		nombreEquipo = "Enemigos de la Tierra";
 	}
 
 	public Cell getCell() {

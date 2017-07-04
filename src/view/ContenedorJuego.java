@@ -5,6 +5,7 @@ import java.io.File;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Juego;
 import model.Posicion;
@@ -16,7 +17,8 @@ public class ContenedorJuego extends BorderPane {
 	private Juego juego;
 	private ContenedorHUD contenedorHUD;
 	private ContenedorTablero contenedorTablero;
-	
+	private MediaPlayer sonidoFondo;
+
 	public ContenedorJuego(Juego juego) {
 		this.juego = juego;
 		contenedorTablero = new ContenedorTablero(this, 800, 600 * 0.8, juego.getTablero());
@@ -27,15 +29,16 @@ public class ContenedorJuego extends BorderPane {
 	}
 	
 	public void iniciarJuego() {
-		MediaPlayer sonidoFondo = new MediaPlayer(new Media(new File("src/view/sonidos/background.mp3").toURI().toString()));
+		sonidoFondo = new MediaPlayer(new Media(new File("src/view/sonidos/background.mp3").toURI().toString()));
 		sonidoFondo.setOnEndOfMedia(new Runnable() {
 			public void run() {
 				sonidoFondo.seek(Duration.ZERO);
 			}
 		});
 		sonidoFondo.play();
+		
 	}
-	
+
 	public void redimensionar(double nuevoAncho, double nuevoAlto) {
 		contenedorTablero.redimensionar(nuevoAncho, nuevoAlto * 0.8);
 	}
@@ -78,7 +81,10 @@ public class ContenedorJuego extends BorderPane {
 
 	public void clicPasarTurno() {
 		contenedorHUD.clicPasarTurno();
-		
+	}
+
+	public void terminar() {
+		sonidoFondo.stop();
 	}
 	
 }
