@@ -1,3 +1,5 @@
+
+
 import javafx.application.*;
 import javafx.stage.*;
 import model.Juego;
@@ -32,7 +34,7 @@ public class DragonBallApp extends Application {
 		ventana.setTitle("Guerreros Z vs Enemigos de la Tierra");
 		ventana.setOnCloseRequest(e -> cerrarPrograma() );
 		
-		ContenedorMenuInicio contenedorMenuInicio = new ContenedorMenuInicio(ventana, iniciarJuego() );
+		ContenedorMenuInicio contenedorMenuInicio = new ContenedorMenuInicio(ventana, iniciarJuego(), layoutJuego);
 		Scene escenaMenu = new Scene(contenedorMenuInicio, DIM_HOR, DIM_VER);
 
 		ventana.setScene(escenaMenu);

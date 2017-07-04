@@ -9,9 +9,9 @@ import javafx.stage.Stage;
 import view.eventos.BotonInicioEventHandler;
 
 public class ContenedorMenuInicio extends Pane {
-	Stage stage;
+	private Stage stage;
 	
-	public ContenedorMenuInicio(Stage stage, Scene proximaEscena){
+	public ContenedorMenuInicio(Stage stage, Scene proximaEscena, ContenedorJuego layoutJuego) {
 		this.stage = stage;
 		
 		Image imagen_menu = new Image("file:src/view/imagenes/menu/imagen_menu.jpg");
@@ -27,7 +27,7 @@ public class ContenedorMenuInicio extends Pane {
 		Button botonInicio = new Button();
 		botonInicio.setGraphic(new ImageView("file:src/view/imagenes/botones/imagen_boton_inicio.png"));
 		botonInicio.setStyle("-fx-background-color: transparent;");
-		BotonInicioEventHandler botonInicioHandler = new BotonInicioEventHandler(stage, proximaEscena);
+		BotonInicioEventHandler botonInicioHandler = new BotonInicioEventHandler(stage, proximaEscena, layoutJuego);
 		botonInicio.setOnAction(botonInicioHandler);
 		botonInicio.setLayoutX(100);
 		botonInicio.setLayoutY(500);
